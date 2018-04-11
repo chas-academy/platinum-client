@@ -7,7 +7,9 @@ html {
 
 body {
   height: 100%;
-  margin-bottom: 60px; }
+  margin-bottom: 60px;
+  background-image: url("../Images/background.jpeg") !important;
+  background-size: cover !important; }
 
 .navbar-inverse {
   border-radius: 0; }

@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import ReactLogo from '../../Assets/Images/react-logo.svg'
-import { PageTitle } from '../../Lib/Common/Views'
 import { Header, Button} from 'semantic-ui-react'
 
 export default class Home extends Component {
@@ -11,15 +9,15 @@ export default class Home extends Component {
 
                 <div class="ui  two column centered grid">
                     <div class="four column centered row">    
-                        <div class="column middle aligned olive">
-                            <Button inverted color='pink'>LOG IN</Button>
+                        <div class="column middle aligned">
+                            <Button fluid inverted color='orange'>LOG IN</Button>
                         </div>
-                        <div class="column middle aligned black">
-                            <Button inverted color='pink'>REGISTER</Button>
+                        <div class="column middle aligned">
+                            <Button fluid inverted color='red'>REGISTER</Button>
                         </div>
                     </div>
-                    <div class="two column middle aligned red">
-                        <Button inverted color='pink'>WHAT WE DO</Button>
+                    <div class="two column middle aligned">
+                        <Button fluid inverted color="pink">WHAT WE DO</Button>
                     </div>
                 </div>
             </div>
