@@ -5,9 +5,6 @@ import { NavLink, AuthNavLink } from '../../../Lib/Common/Views'
 import SignOutButton from '../../../Redux/Containers/Sessions/SignOutButton'
 //import Logo from '../../../Assets/Images/Logo.jpg'
 
-//do not remove just yet. ask Jonas why tho
-//{process.env.REACT_APP_SITE_NAME}
-
 class Header extends Component {
   render() {
     const path = this.props.match.path
