@@ -1,25 +1,50 @@
 import React, { Component } from 'react'
-import {Form, Button, Container} from 'semantic-ui-react'
-import {Link } from 'react-router-dom'
+import {Form, Button} from 'semantic-ui-react'
 
 export default class CreateQuestion extends Component {
-  state = {question: '', option1: '', option2: ''}
+  constructor(props) {
+    super(props)
+    this.state = {
+      question: '', 
+      option1: '',
+      option2: '',
+      optionCount: 2
+    }
+    this.addOption = this.addOption.bind(this);
+  }
+  
  
   
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  addOption = () => {
+    this.setState({
+     [`option${this.state.optionCount + 1}`]: '',
+     optionCount: this.state.optionCount + 1
+    })
+
+  }
+
   render() {
-    const { question, option1, option2 } = this.state
+    const options = [];
+
+    for(let i = 1; i <= this.state.optionCount; i++) {
+      let option = <Form.Input  onChange={this.handleChange}  name={`option${i}`} value={this.state[`option${i}`]} small placeholder="Option" required type="text" width={8}/>
+      options.push(option)
+    }
+    
     return (
     <div className="create-question-view">
-      <Form >
-        <div class="center-content-column pd-bt-2">
-          <Form.Input className="center" onChange={this.handleChange} name="question" value={question} small placeholder="Question" required type="text" width={8}/>
-          <Form.Input  onChange={this.handleChange}  name="option1" value={option1} small placeholder="Option" required type="text" width={8}/>
-          <Form.Input  onChange={this.handleChange}  name="option2" value={option2} small placeholder="Option" required type="text" width={8}/>
+      <Form id="creat-question-form">
+        <div className="center-content-column pd-bt-2">
+          <Form.Input className="center" onChange={this.handleChange} name="question" value={this.state.question} small placeholder="Question" required type="text" width={8}/>
+          {options}
         </div>
-        <Button basic content="add option" icon="plus" labelPosition="left"/>
       </Form>
-      <Button basic content="NEXT" floated="right" icon="arrow right" labelPosition="right" />
+      <Button basic content="add option" icon="plus" labelPosition="left" onClick={this.addOption}/>
+      <Button basic content="NEXT" floated="right" icon="arrow right" labelPosition="right"/>
+      
+      
+      
     </div>
     )
   }
