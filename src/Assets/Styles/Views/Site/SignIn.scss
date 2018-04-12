@@ -1,8 +1,19 @@
 .sign-in-view {
-  .form-wrapper {
+  .form-wrapper, p, .button__signin, .page-title {
     width: 400px;
-    @media (max-width: 430px) {
+    @media (max-width: 500px) {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+    }
+    .form-control {
+      width: 20rem;
+    }
+    p {
+      margin-top: 2rem;
     }
   }
 }

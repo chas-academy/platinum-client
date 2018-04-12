@@ -6,6 +6,7 @@ import Alert from '../Alert'
 import Axios from '../../Lib/Common/Axios'
 import * as FormHelper from '../../Lib/Helpers/Form'
 import * as Session from '../../Lib/Helpers/Session'
+import { Button } from 'semantic-ui-react'
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -115,13 +116,13 @@ export default class SignIn extends Component {
           ErrorList={FormHelper.errorList}
           onSubmit={this.onSubmit}
         >
-          <button
-            type="submit"
-            className="btn btn-primary form-control"
-            disabled={this.state.isSigningIn}
-          >
-            Sign In
-          </button>
+
+        <Button className="button__signin" basic color='orange' content='SIGN IN' type="submit"
+            
+            disabled={this.state.isSigningIn} />
+
+          {/* CHANGE PATH TO REGISTER */}
+        <p className="signin__noaccount"> Not a member? Click here! </p>
         </Form>
       </div>
     )

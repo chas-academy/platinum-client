@@ -805,8 +805,17 @@ label {
   to {
     transform: rotate(360deg); } }
 
-.sign-in-view .form-wrapper {
+.sign-in-view .form-wrapper, .sign-in-view p, .sign-in-view .button__signin, .sign-in-view .page-title {
   width: 400px; }
-  @media (max-width: 430px) {
-    .sign-in-view .form-wrapper {
-      width: 100%; } }
+  @media (max-width: 500px) {
+    .sign-in-view .form-wrapper, .sign-in-view p, .sign-in-view .button__signin, .sign-in-view .page-title {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: auto; } }
+  .sign-in-view .form-wrapper .form-control, .sign-in-view p .form-control, .sign-in-view .button__signin .form-control, .sign-in-view .page-title .form-control {
+    width: 20rem; }
+  .sign-in-view .form-wrapper p, .sign-in-view p p, .sign-in-view .button__signin p, .sign-in-view .page-title p {
+    margin-top: 2rem; }
