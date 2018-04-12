@@ -11,7 +11,7 @@ class Header extends Component {
 
     return (
       <header className="header">
-        <Navbar inverse>
+        <Navbar >
           <Navbar.Header>
             <Link to="/" className="navbar-brand">{process.env.REACT_APP_SITE_NAME}</Link>
             <Navbar.Toggle id="js-navbar-toggle-btn" />
@@ -20,8 +20,11 @@ class Header extends Component {
             <ul className="navbar-nav nav navbar-right">
               <NavLink title="Redux" to="/redux" path={path} />
               <NavLink title="Sign In" to="/sign-in" path={path} isSignedOut />
+              <NavLink title="Register" to="/register" path={path} isSignedOut />
+              <NavLink title="About us" to="/about" path={path} />
               <AuthNavLink title="Admin" to="/admin/dashboard" />
               <AuthNavLink title="My Profile" to="/my-profile" path={path} />
+              <AuthNavLink title="Created polls" to="/created-polls" path={path} />
               <SignOutButton referrer={referrer} />
             </ul>
           </Navbar.Collapse>
