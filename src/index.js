@@ -9,7 +9,11 @@ import Routes from './Components/Routes'
 import registerServiceWorker from './registerServiceWorker'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Assets/Styles/Style.css'
+<<<<<<< HEAD
 import 'semantic-ui-css/semantic.min.css'
+=======
+import 'semantic-ui-css/semantic.min.css';
+>>>>>>> add GetStarted button to Pricing view
 
 const composeEnhancers = initReduxDevTools()
 const appReducer = combineReducers(reducers)
