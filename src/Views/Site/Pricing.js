@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { Header, Table, Icon } from 'semantic-ui-react'
+import { Header, Table, Icon, Button } from 'semantic-ui-react'
 
 const Pricing = () => (
-  <div>
+  <div className='ui center aligned segment'>
 
-    <h2 textAlign='center' className='headline'>Pricing</h2>
+    <h2 className='headline'>Pricing</h2>
 
-  <Table celled padded unstackable className='pricingTable'>
+  <Table celled padded unstackable>
   
     <Table.Header>
       <Table.Row>
@@ -67,10 +67,6 @@ const Pricing = () => (
     </Table.Body>
 
   </Table>
-
-  <Button centered size='large'>
-      Go back
-  </Button>
 
   </div>
 )
