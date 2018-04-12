@@ -6190,6 +6190,7 @@ semantic-ui-css@^2.3.1:
   dependencies:
     jquery x.*
 
+<<<<<<< HEAD
 semantic-ui-react@^0.79.1:
   version "0.79.1"
   resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.79.1.tgz#80bd0ccfb3b3c1184a1b1b3f6067ab1225aed5f0"
@@ -6200,6 +6201,8 @@ semantic-ui-react@^0.79.1:
     lodash "^4.17.4"
     prop-types "^15.5.10"
 
+=======
+>>>>>>> add table to pricing-table view
 semver-diff@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/semver-diff/-/semver-diff-2.1.0.tgz#4bbb8437c8d37e4b0cf1a68fd726ec6d645d6d36"
