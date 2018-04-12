@@ -3,6 +3,10 @@ import { Link, withRouter } from 'react-router-dom'
 import { Navbar } from 'react-bootstrap'
 import { NavLink, AuthNavLink } from '../../../Lib/Common/Views'
 import SignOutButton from '../../../Redux/Containers/Sessions/SignOutButton'
+//import Logo from '../../../Assets/Images/Logo.jpg'
+
+//do not remove just yet. ask Jonas why tho
+//{process.env.REACT_APP_SITE_NAME}
 
 class Header extends Component {
   render() {
@@ -13,14 +17,13 @@ class Header extends Component {
       <header className="header">
         <Navbar >
           <Navbar.Header>
-            <Link to="/" className="navbar-brand">{process.env.REACT_APP_SITE_NAME}</Link>
+            <Link to="/" className="navbar-brand">Platinum</Link>
             <Navbar.Toggle id="js-navbar-toggle-btn" />
           </Navbar.Header>
           <Navbar.Collapse>
             <ul className="navbar-nav nav navbar-right">
-              <NavLink title="Redux" to="/redux" path={path} />
               <NavLink title="Sign In" to="/sign-in" path={path} isSignedOut />
-              <NavLink title="Register" to="/register" path={path} isSignedOut />
+              <NavLink title="Sign up" to="/sign-up" path={path} isSignedOut />
               <NavLink title="About us" to="/about" path={path} isSignedOut/>
               <AuthNavLink title="Admin" to="/admin/dashboard" />
               <AuthNavLink title="My Profile" to="/my-profile" path={path} />
