@@ -25,6 +25,7 @@ class Header extends Component {
               <AuthNavLink title="Admin" to="/admin/dashboard" />
               <AuthNavLink title="My Profile" to="/my-profile" path={path} />
               <AuthNavLink title="Created polls" to="/created-polls" path={path} />
+              <NavLink title="Pricing" to="/pricing" path={path} />
               <SignOutButton referrer={referrer} />
             </ul>
           </Navbar.Collapse>
