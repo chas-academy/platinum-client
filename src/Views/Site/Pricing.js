@@ -1,5 +1,5 @@
 import React from 'react';
-import GetStarted from './GetStarted'
+import GetStarted from '../../Components/Buttons/GetStarted'
 
 import { Header, Table, Icon, Button } from 'semantic-ui-react'
 
