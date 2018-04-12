@@ -1,0 +1,15 @@
+.create-question-view {
+  max-width:90%;
+  width:90%;
+
+  .center-content-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .pd-bt-2 {
+    padding-bottom:2em;
+  }
+}
