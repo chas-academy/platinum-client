@@ -68,6 +68,10 @@ const Pricing = () => (
 
   </Table>
 
+  <Button centered size='large'>
+      Go back
+  </Button>
+
   </div>
 )
 
