@@ -1,9 +1,10 @@
 import React from 'react';
+import GetStarted from './GetStarted'
 
 import { Header, Table, Icon, Button } from 'semantic-ui-react'
 
 const Pricing = () => (
-  <div className='ui center aligned segment'>
+  <div className='ui center aligned basic segment'>
 
     <h2 className='headline'>Pricing</h2>
 
@@ -68,6 +69,8 @@ const Pricing = () => (
 
   </Table>
 
+  <GetStarted />
+  
   </div>
 )
 
