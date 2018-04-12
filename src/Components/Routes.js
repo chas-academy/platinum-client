@@ -14,7 +14,6 @@ export default class Routes extends Component {
           <SiteRoute exact path="/sign-in" component={Site.SignIn} />
           <SiteRoute exact path="/pricing" component={Site.Pricing} />        
           <AuthSiteRoute exact path="/my-profile" component={Site.MyProfile} />
-
           <AdminRoute exact path="/admin" component={() => <Redirect to="/admin/dashboard" />} />
           <AdminRoute exact path="/admin/dashboard" component={Admin.Dashboard} />
           <AdminRoute exact path="/admin/users" component={Admin.Users.List} />
