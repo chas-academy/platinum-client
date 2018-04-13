@@ -21,11 +21,11 @@ class Header extends Component {
             <ul className="navbar-nav nav navbar-right">
               <NavLink title="Sign In" to="/sign-in" path={path} isSignedOut />
               <NavLink title="Sign up" to="/sign-up" path={path} isSignedOut />
-              <NavLink title="About us" to="/about" path={path} isSignedOut/>
               <AuthNavLink title="Admin" to="/admin/dashboard" />
               <AuthNavLink title="My Profile" to="/my-profile" path={path} />
               <AuthNavLink title="Created polls" to="/created-polls" path={path} />
               <NavLink title="Pricing" to="/pricing" path={path} />
+              <NavLink title="About us" to="/about" path={path} isSignedOut/>
               <SignOutButton referrer={referrer} />
             </ul>
           </Navbar.Collapse>
