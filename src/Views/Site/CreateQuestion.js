@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form, Button, Container} from 'semantic-ui-react'
+import {Form, Button } from 'semantic-ui-react'
 
 export default class CreateQuestion extends Component {
   constructor(props) {
