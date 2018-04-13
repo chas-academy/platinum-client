@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: column; 
   }
 
   .padding-tb-2 {
@@ -24,7 +24,7 @@
   div .ui .basic .icon .bottom .attached .right .floated .right .labeled .button .pos-absolute-b-6-r-2{
     position: absolute;
     bottom:6em;
-    right:2em
+    right:2em;
   }
   
 }
@@ -48,7 +48,7 @@
 @media only screen and (min-height:825px ) {
   .create-question-view {
     .min-height {
-      min-height: 80vh;
+      min-height: 77vh;
     }
   }
 }
@@ -56,7 +56,7 @@
 @media only screen and (min-height: 1050px ) {
   .create-question-view {
     .min-height {
-      min-height: 85vh;
+      min-height: 77vh;
     }
   }
 }
