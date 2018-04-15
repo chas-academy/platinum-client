@@ -7,6 +7,7 @@ import Axios from '../../Lib/Common/Axios'
 import * as FormHelper from '../../Lib/Helpers/Form'
 import * as Session from '../../Lib/Helpers/Session'
 import { Button } from 'semantic-ui-react'
+import { Link } from "react-router-dom"
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -121,8 +122,9 @@ export default class SignIn extends Component {
             
             disabled={this.state.isSigningIn} />
 
-          {/* CHANGE PATH TO REGISTER */}
-        <p className="signin__noaccount"> Not a member? Click here! </p>
+
+          <Link to ="/sign-up">Not a member? Click here!</Link>
+        
         </Form>
       </div>
     )
