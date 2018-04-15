@@ -1,31 +1,36 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Icon, List } from 'semantic-ui-react'
+import { Icon, List, Grid, Container } from 'semantic-ui-react'
 
 export default class Footer extends Component {
   render() {
     return (
         <footer className="footer">
-            <div class="ui center aligned stackable grid">
-                <div class="four column row">
-                    <div class="left floated column">
-                        <b>PLATINUM</b>
-                    </div>
-                    <div class="center floated column">
-                        <Icon circular name='large facebook square' />
-                        <Icon circular name='large twitter square' />
-                        <Icon circular name='large slack' />
-                        <Icon circular name='large instagram' />
-                    </div>
-                    <div class="right floated column">
-                        <List>
-                            <List.Item icon='marker' content='Elektravägen 29' />
-                            <List.Item icon='mail' content={<a href='mailto:mail@mail.com'>mail@mail.com</a>} />
-                            <List.Item icon='phone' content='070-000 00 00'/>
-                        </List>
-                    </div>
-                </div>
-            </div> 
+            <Grid centered stackable columns={3}>
+                <Grid.Column textAlign="center">
+                    <b>PLATINUM</b>
+                </Grid.Column>
+
+                <Grid.Column textAlign="center">
+                    <Icon circular size="large" name='facebook square' />
+                    <Icon circular size="large" name='twitter square' />
+                    <Icon circular size="large" name='slack' />
+                    <Icon circular size="large" name='instagram' />
+                </Grid.Column>
+
+                <Grid.Column textAlign="center">
+                    <Grid columns={2} centered>
+                        <Grid.Row centered>                            
+                            <Grid.Column>
+                                <List>
+                                    <List.Item icon="marker" content="Elektravägen 29" />
+                                    <List.Item icon='mail' content={<a href='mailto:mail@mail.com'>mail@mail.com</a>} />
+                                    <List.Item icon='phone' content='070-000 00 00'/>
+                                </List>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>                    
+                </Grid.Column>
+            </Grid>
         </footer>
 
 
