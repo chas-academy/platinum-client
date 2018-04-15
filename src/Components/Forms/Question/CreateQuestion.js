@@ -28,6 +28,11 @@ export default class CreateQuestion extends Component {
     };
     this.addOption = this.addOption.bind(this);
     this.removeOption = this.removeOption.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e, { name, value }) {
+    this.setState({ [name]: value });
   }
 
   addOption() {
