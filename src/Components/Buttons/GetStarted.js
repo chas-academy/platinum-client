@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Header, Table, Icon, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 //onClick={this.redirect('/start') basically linking to the start spage.
 //maybe there's a better way than using this one-line crap
