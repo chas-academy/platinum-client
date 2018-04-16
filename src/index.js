@@ -8,7 +8,7 @@ import reducers from './Redux/Reducers'
 import Routes from './Components/Routes'
 import registerServiceWorker from './registerServiceWorker'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './Assets/Styles/Style.css'
+import './Assets/Styles/Style.scss'
 
 import 'semantic-ui-css/semantic.min.css';
 
