@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 
-export default class List extends Component {
+export default class ListView extends Component {
     render() {
-        return <Poll />;
+        return <MyQuestion />;
     }
-}s
+}
