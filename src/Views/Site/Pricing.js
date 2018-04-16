@@ -1,7 +1,7 @@
 import React from 'react';
 import GetStarted from '../../Components/Buttons/GetStarted'
 
-import { Header, Table, Icon, Button } from 'semantic-ui-react'
+import { Header, Table, Icon } from 'semantic-ui-react'
 
 const Pricing = () => (
   <div className='ui center aligned basic segment'>
