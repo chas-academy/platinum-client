@@ -8,7 +8,7 @@ export default class Home extends Component {
     return (
       <div className="home-view">
         <header className="home-view-header">
-			<Button>Click Here</Button>
+			
           <img src={ReactLogo} className="home-view-logo" alt="React Logo" />
           <PageTitle />
         </header>
