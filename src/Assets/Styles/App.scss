@@ -1,19 +1,20 @@
-html, body {
+html,
+body {}
 
-}
 html {
   min-height: 100%;
   position: relative;
 }
+
 body {
   height: 100%;
   margin-bottom: 60px;
-  background-image: url('../Images/background.jpeg') !important;
-  background-size: cover !important;
 }
+
 .navbar-inverse {
   border-radius: 0;
 }
+
 .footer {
   bottom: 0;
   height: 60px;
@@ -21,15 +22,17 @@ body {
   position: absolute;
   width: 100%;
   background-color: #eee;
-  > .container {
+  >.container {
     padding-left: 15px;
     padding-right: 15px;
     text-align: center;
   }
 }
+
 .no-padding {
   padding: 0;
 }
+
 .columns-2 {
   column-count: 2;
 }
