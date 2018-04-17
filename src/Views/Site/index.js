@@ -4,7 +4,7 @@ import PageNotFound from './PageNotFound'
 import Redux from './Redux'
 import SignIn from './SignIn'
 import Pricing from './Pricing'
-
+import CreateQuestion from './CreateQuestion'
 
 export default {
   Home,
@@ -12,5 +12,6 @@ export default {
   PageNotFound,
   Redux,
   SignIn,
-  Pricing
+  Pricing,
+  CreateQuestion
 }
