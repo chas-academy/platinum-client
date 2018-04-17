@@ -10,16 +10,34 @@ body {
   border-radius: 0; }
 
 .footer {
-  bottom: 0;
-  height: 80px;
-  line-height: 60px;
-  position: absolute;
   width: 100%;
-  background-color: white; }
-  .footer > .container {
-    padding-left: 15px;
-    padding-right: 15px;
-    text-align: center; }
+  line-height: normal;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  margin-top: 70px;
+  border-top: 1px solid #E5E5E5;
+  margin: 5em 0em 0em;
+  padding: 5em 0em; }
+
+@media only screen and (max-height: 640px) and (orientation: landscape) {
+  .footer {
+    position: relative; }
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; } }
+
+@media only screen and (max-width: 480px) and (orientation: portrait) {
+  .footer {
+    position: relative; }
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; } }
 
 .no-padding {
   padding: 0; }
