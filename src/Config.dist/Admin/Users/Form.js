@@ -1,134 +1,134 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-import _ from 'lodash';
-import Paths from '../../Paths';
+import _ from "lodash";
+import Paths from "../../Paths";
 
 /* eslint-enable import/no-extraneous-dependencies */
 
-const SUPER_ADMIN_PATH_NAMES = _.map(Paths.SuperAdmin, 'name');
-const SUPER_ADMIN_PATHS = _.map(Paths.SuperAdmin, 'path');
-const USER_PATHS = _.map(Paths.User, 'path');
+const SUPER_ADMIN_PATH_NAMES = _.map(Paths.SuperAdmin, "name");
+const SUPER_ADMIN_PATHS = _.map(Paths.SuperAdmin, "path");
+const USER_PATHS = _.map(Paths.User, "path");
 
-const ROLES = ['Super Admin', 'Admin', 'Developer', 'User'];
+const ROLES = ["Super Admin", "Admin", "Developer", "User"];
 
 const STATUS = [
-  { name: 'Active', value: 'active' },
-  { name: 'Inactive', value: 'inactive' },
-  { name: 'Pending', value: 'pending' },
-  { name: 'Blocked', value: 'blocked' },
+  { name: "Active", value: "active" },
+  { name: "Inactive", value: "inactive" },
+  { name: "Pending", value: "pending" },
+  { name: "Blocked", value: "blocked" }
 ];
 
 const initData = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  role: 'User',
-  status: 'pending',
-  redirect: '',
+  firstName: "",
+  lastName: "",
+  email: "",
+  role: "User",
+  status: "pending",
+  redirect: "",
   allowedPaths: USER_PATHS,
-  excludedPaths: [],
+  excludedPaths: []
 };
 
 const schema = {
-  type: 'object',
-  required: ['firstName', 'lastName', 'email', 'status', 'allowedPaths'],
+  type: "object",
+  required: ["firstName", "lastName", "email", "status", "allowedPaths"],
   properties: {
     firstName: {
-      type: 'string',
-      title: 'First Name',
+      type: "string",
+      title: "First Name"
     },
     lastName: {
-      type: 'string',
-      title: 'Last Name',
+      type: "string",
+      title: "Last Name"
     },
     email: {
-      type: 'string',
-      title: 'Email',
-      default: '',
+      type: "string",
+      title: "Email",
+      default: ""
     },
     role: {
-      type: 'string',
-      title: 'Role',
-      enum: ROLES,
+      type: "string",
+      title: "Role",
+      enum: ROLES
     },
     status: {
-      type: 'string',
-      title: 'Status',
-      enum: _.map(STATUS, 'value'),
-      enumNames: _.map(STATUS, 'name'),
+      type: "string",
+      title: "Status",
+      enum: _.map(STATUS, "value"),
+      enumNames: _.map(STATUS, "name")
     },
     redirect: {
-      type: 'string',
-      title: 'Redirect Path or URL',
-    },
-  },
+      type: "string",
+      title: "Redirect Path or URL"
+    }
+  }
 };
 
 const schemaAllowedPaths = {
-  type: 'array',
-  title: 'Allowed Paths',
+  type: "array",
+  title: "Allowed Paths",
   items: {
-    type: 'string',
-    enum: _.concat(['*'], SUPER_ADMIN_PATHS),
-    enumNames: _.concat(['All'], SUPER_ADMIN_PATH_NAMES),
+    type: "string",
+    enum: _.concat(["*"], SUPER_ADMIN_PATHS),
+    enumNames: _.concat(["All"], SUPER_ADMIN_PATH_NAMES)
   },
-  uniqueItems: true,
+  uniqueItems: true
 };
 
 const schemaAllowedAllPaths = {
-  type: 'array',
-  title: 'Allowed Paths',
+  type: "array",
+  title: "Allowed Paths",
   items: {
-    type: 'string',
-    enum: ['*'],
-    enumNames: ['All'],
+    type: "string",
+    enum: ["*"],
+    enumNames: ["All"]
   },
-  uniqueItems: true,
+  uniqueItems: true
 };
 
 const schemaExcludedPaths = {
-  type: 'array',
-  title: 'Excluded Paths',
+  type: "array",
+  title: "Excluded Paths",
   items: {
-    type: 'string',
+    type: "string",
     enum: SUPER_ADMIN_PATHS,
-    enumNames: SUPER_ADMIN_PATH_NAMES,
+    enumNames: SUPER_ADMIN_PATH_NAMES
   },
-  uniqueItems: true,
+  uniqueItems: true
 };
 
 const uiSchema = {
-  'ui:rootFieldId': 'user',
+  "ui:rootFieldId": "user",
   firstName: {
-    'ui:emptyValue': '',
+    "ui:emptyValue": ""
   },
   lastName: {
-    'ui:emptyValue': '',
+    "ui:emptyValue": ""
   },
   email: {
-    'ui:widget': 'email',
+    "ui:widget": "email"
   },
   role: {
-    'ui:widget': 'radio',
-    'ui:options': { inline: true },
+    "ui:widget": "radio",
+    "ui:options": { inline: true }
   },
   status: {
-    'ui:widget': 'radio',
-    'ui:options': { inline: true },
+    "ui:widget": "radio",
+    "ui:options": { inline: true }
   },
   allowedPaths: {
-    'ui:widget': 'checkboxes',
+    "ui:widget": "checkboxes"
   },
   excludedPaths: {
-    'ui:widget': 'checkboxes',
+    "ui:widget": "checkboxes"
   },
   redirect: {
-    'ui:help': [
+    "ui:help": [
       "If there's no referrer found, the path or URL is used for user's redirection after signing in.",
-      'Enter a path without domain for internal redirection, e.i. /admin/dashboard.',
-      'Or enter a complete URL for external redirection, e.i. http://domain.com/page.',
-    ].join(' '),
-  },
+      "Enter a path without domain for internal redirection, e.i. /admin/dashboard.",
+      "Or enter a complete URL for external redirection, e.i. http://domain.com/page."
+    ].join(" ")
+  }
 };
 
 export default {
@@ -138,5 +138,5 @@ export default {
   schemaAllowedPaths,
   schemaAllowedAllPaths,
   schemaExcludedPaths,
-  uiSchema,
+  uiSchema
 };

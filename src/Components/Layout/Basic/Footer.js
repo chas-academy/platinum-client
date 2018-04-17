@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 /* eslint-disable react/prefer-stateless-function, jsx-a11y/anchor-is-valid */
 

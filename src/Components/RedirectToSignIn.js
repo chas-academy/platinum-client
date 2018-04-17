@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 
@@ -12,8 +12,8 @@ export default class RedirectToSignIn extends Component {
     return (
       <Redirect
         to={{
-          pathname: '/sign-in',
-          state: { from: this.props.location },
+          pathname: "/sign-in",
+          state: { from: this.props.location }
         }}
       />
     );

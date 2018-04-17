@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Alert } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Alert } from "react-bootstrap";
 
 /* eslint-disable react/prop-types */
 
@@ -8,7 +8,7 @@ export default class Basic extends Component {
     super(props);
 
     this.state = {
-      show: true,
+      show: true
     };
 
     this.hideAlert = this.hideAlert.bind(this);
@@ -22,7 +22,11 @@ export default class Basic extends Component {
     if (this.props.processRequest) {
       return (
         <AlertProcessRequest>
-          {this.props.children ? this.props.children : <p>Processing request...</p>}
+          {this.props.children ? (
+            this.props.children
+          ) : (
+            <p>Processing request...</p>
+          )}
         </AlertProcessRequest>
       );
     }
@@ -34,8 +38,8 @@ export default class Basic extends Component {
             this.props.children
           ) : (
             <p>
-              Unable to process your request. Please check your internet connection. If problem
-              persists, contact support.
+              Unable to process your request. Please check your internet
+              connection. If problem persists, contact support.
             </p>
           )}
         </AlertError>
@@ -45,7 +49,9 @@ export default class Basic extends Component {
     if (this.props.formError) {
       return (
         <AlertError>
-          <p>Unable to process your request. Please check the form errors below.</p>
+          <p>
+            Unable to process your request. Please check the form errors below.
+          </p>
         </AlertError>
       );
     }

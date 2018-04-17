@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-import * as Session from '../Helpers/Session';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import * as Session from "../Helpers/Session";
 
 /* eslint-disable no-use-before-define, react/prop-types, prefer-const,
 jsx-a11y/anchor-is-valid, one-var */
@@ -42,17 +42,17 @@ export const NavLink = ({ ...props }) => {
 };
 
 export const AuthNavLink = ({ ...props }) =>
-  (Session.isAuthorised(props.to) ? (
+  Session.isAuthorised(props.to) ? (
     <li className={navLinkIsActive({ ...props })}>
       <Link to={props.to}>{props.title}</Link>
     </li>
-  ) : null);
+  ) : null;
 
 export function closeNavbar() {
   const { width } = viewportDimension();
 
   if (width < 768) {
-    document.getElementById('js-navbar-toggle-btn').click();
+    document.getElementById("js-navbar-toggle-btn").click();
   }
 }
 
@@ -60,7 +60,7 @@ export function viewportDimension() {
   const w = window,
     d = document,
     e = d.documentElement,
-    g = d.getElementsByTagName('body')[0],
+    g = d.getElementsByTagName("body")[0],
     width = w.innerWidth || e.clientWidth || g.clientWidth,
     height = w.innerHeight || e.clientHeight || g.clientHeight;
 
@@ -68,11 +68,11 @@ export function viewportDimension() {
 }
 
 function navLinkIsActive({ ...props }) {
-  if (!props.path) return '';
+  if (!props.path) return "";
 
-  const path = props.path.split('/');
+  const path = props.path.split("/");
 
-  return `/${path[1]}/${path[2]}` === props.to ? 'active' : '';
+  return `/${path[1]}/${path[2]}` === props.to ? "active" : "";
 }
 
 /* eslint-enable no-use-before-define, react/prop-types, prefer-const,

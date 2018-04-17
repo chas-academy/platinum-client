@@ -4,17 +4,17 @@ react/sort-comp, prefer-arrow-callback, arrow-parens,
 react/jsx-no-bind, react/no-did-mount-set-state,
 no-shadow, no-return-assign, no-underscore-dangle, prefer-destructuring */
 
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import _ from 'lodash';
-import axios from 'axios';
-import Axios from '../../../../Lib/Common/Axios';
-import { Button } from 'react-bootstrap';
-import Alert from '../../../Alert';
-import { ucFirst } from '../../../../Lib/Helpers/Text';
-import Paths from '../../../../Config/Paths/SuperAdmin';
-import DeleteUserButton from '../../../Buttons/DeleteUser';
-import * as Session from '../../../../Lib/Helpers/Session';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import _ from "lodash";
+import axios from "axios";
+import Axios from "../../../../Lib/Common/Axios";
+import { Button } from "react-bootstrap";
+import Alert from "../../../Alert";
+import { ucFirst } from "../../../../Lib/Helpers/Text";
+import Paths from "../../../../Config/Paths/SuperAdmin";
+import DeleteUserButton from "../../../Buttons/DeleteUser";
+import * as Session from "../../../../Lib/Helpers/Session";
 
 export default class User extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export default class User extends Component {
 
     this.state = {
       formData: {},
-      loading: '',
+      loading: "",
       buttonDisabled: false,
       resourceId: null,
       axiosCancelToken: null,
@@ -30,7 +30,7 @@ export default class User extends Component {
       postRequestError: false,
       getRequestError: false,
       redirectToEdit: false,
-      errorMessage: null,
+      errorMessage: null
     };
     this.onChangeTO = 0;
   }
@@ -43,48 +43,55 @@ export default class User extends Component {
     if (!Session.decodedToken()) return Session.verifyToken();
 
     const _this = this;
-    const apiURL = [process.env.REACT_APP_API_USERS_URL, this.state.resourceId].join('/');
+    const apiURL = [
+      process.env.REACT_APP_API_USERS_URL,
+      this.state.resourceId
+    ].join("/");
     const CancelToken = axios.CancelToken;
     const cancelTokenCallback = {
       cancelToken: new CancelToken(function executor(cancel) {
         _this.setState({ axiosCancelToken: cancel });
-      }),
+      })
     };
 
     Axios.get(apiURL, cancelTokenCallback)
       .then(({ data }) => {
         this.setState({
           formData: data,
-          loading: '',
-          buttonDisabled: false,
+          loading: "",
+          buttonDisabled: false
         });
       })
       .catch(error => {
         if (axios.isCancel(error)) return true;
 
-        console.log('Error: ', error);
+        console.log("Error: ", error);
 
         this.setState({ getRequestError: true });
       });
   }
 
   componentWillUnmount() {
-    if (typeof this.state.axiosCancelToken === 'function') this.state.axiosCancelToken();
+    if (typeof this.state.axiosCancelToken === "function")
+      this.state.axiosCancelToken();
   }
 
   componentDidMount() {
     const props = this.props;
 
     if (props.resource) {
-      return this.setState({ formData: props.resource, resourceId: props.resource.userId });
+      return this.setState({
+        formData: props.resource,
+        resourceId: props.resource.userId
+      });
     }
 
     const resourceId = props.computedMatch.params.userId;
 
     this.setState({
-      loading: '-loading',
+      loading: "-loading",
       buttonDisabled: true,
-      resourceId,
+      resourceId
     });
 
     setTimeout(() => {
@@ -96,7 +103,9 @@ export default class User extends Component {
     const state = this.state;
 
     if (state.redirectToEdit) {
-      return <Redirect to={['/admin/users', state.resourceId, 'edit'].join('/')} />;
+      return (
+        <Redirect to={["/admin/users", state.resourceId, "edit"].join("/")} />
+      );
     }
 
     const props = this.props;
@@ -117,7 +126,7 @@ export default class User extends Component {
             User is not found.
           </Alert>
         ) : (
-          <div className={['form-static', state.loading].join(' ')}>
+          <div className={["form-static", state.loading].join(" ")}>
             <p>
               <strong>First name:</strong> {data.firstName}
             </p>
@@ -135,7 +144,8 @@ export default class User extends Component {
             </p>
             <RedirectText redirect={data.redirect} />
             <p>
-              <strong>Allowed paths:</strong> {allPathsAllowedText(data.allowedPaths)}
+              <strong>Allowed paths:</strong>{" "}
+              {allPathsAllowedText(data.allowedPaths)}
             </p>
             <PathList paths={data.allowedPaths} />
             <ExcludedPaths {...data} />
@@ -168,7 +178,7 @@ const ContentWrapper = props => {
 };
 
 const RedirectText = ({ redirect }) => {
-  if (redirect === '') return null;
+  if (redirect === "") return null;
 
   return (
     <p>
@@ -178,14 +188,14 @@ const RedirectText = ({ redirect }) => {
 };
 
 const ExcludedPaths = ({ excludedPaths }) =>
-  (!excludedPaths || excludedPaths.length === 0 ? null : (
+  !excludedPaths || excludedPaths.length === 0 ? null : (
     <p>
       <strong>Excluded paths:</strong>
     </p>
-  ));
+  );
 
 const PathList = ({ paths }) => {
-  if (!paths || (paths && paths[0] === '*')) return null;
+  if (!paths || (paths && paths[0] === "*")) return null;
 
   return (
     <ul className="columns-2">
@@ -195,20 +205,29 @@ const PathList = ({ paths }) => {
 };
 
 const Buttons = props => {
-  const showDeleteButton = Session.isAuthorised('/admin/users/delete');
-  const showEditButton = Session.isAuthorised('/admin/users/:userId/edit');
+  const showDeleteButton = Session.isAuthorised("/admin/users/delete");
+  const showEditButton = Session.isAuthorised("/admin/users/:userId/edit");
 
   if (!(showDeleteButton || showEditButton) && !props.isModal) return null;
 
   return (
-    <div className={props.isModal ? '' : 'form-buttons'}>
-      {props.isModal && <Button onClick={props.toggleModalHandler}>Close</Button>}
+    <div className={props.isModal ? "" : "form-buttons"}>
+      {props.isModal && (
+        <Button onClick={props.toggleModalHandler}>Close</Button>
+      )}
       {!props.isModal &&
         showDeleteButton && (
-          <DeleteUserButton resource={props.formData} disabled={props.buttonDisabled} />
+          <DeleteUserButton
+            resource={props.formData}
+            disabled={props.buttonDisabled}
+          />
         )}
       {showEditButton && (
-        <Button bsStyle="success" disabled={props.buttonDisabled} onClick={props.handleEditOnClick}>
+        <Button
+          bsStyle="success"
+          disabled={props.buttonDisabled}
+          onClick={props.handleEditOnClick}
+        >
           Edit User
         </Button>
       )}
@@ -219,7 +238,7 @@ const Buttons = props => {
 function allPathsAllowedText(paths) {
   if (!paths) return null;
 
-  return paths[0] === '*' ? 'Wildcard (*) path is assigned.' : '';
+  return paths[0] === "*" ? "Wildcard (*) path is assigned." : "";
 }
 
 /* eslint-enable react/no-unused-state, import/no-extraneous-dependencies, no-console,

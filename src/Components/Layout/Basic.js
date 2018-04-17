@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import Header from './Basic/Header';
-import Footer from './Basic/Footer';
+import React, { Component } from "react";
+import Header from "./Basic/Header";
+import Footer from "./Basic/Footer";
 
 /* eslint-disable react/prefer-stateless-function, react/prop-types */
 
