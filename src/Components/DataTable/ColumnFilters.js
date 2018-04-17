@@ -1,94 +1,103 @@
-import React, { Component } from 'react'
-import Form from 'react-jsonschema-form'
-import _ from 'lodash'
-import { Button } from 'react-bootstrap'
+/* eslint-disable react/no-unused-state, import/no-extraneous-dependencies, no-console,
+no-use-before-define, react/prop-types, consistent-return, no-param-reassign, no-unneeded-ternary,
+react/sort-comp, prefer-arrow-callback, arrow-parens, class-methods-use-this, no-unused-vars,
+react/jsx-no-bind, react/no-did-mount-set-state, dot-notation, jsx-a11y/anchor-is-valid,
+no-shadow, no-return-assign, no-underscore-dangle,
+prefer-destructuring, guard-for-in, no-restricted-syntax */
+
+import React, { Component } from 'react';
+import Form from 'react-jsonschema-form';
+import _ from 'lodash';
+import { Button } from 'react-bootstrap';
 
 export default class ColumnFilters extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       formData: {},
       initialised: true,
-      buttonsDisabled: true
-    }
+      buttonsDisabled: true,
+    };
     this.schema = {
-      'type': 'object',
-      'properties': this.props.filters
-    }
+      type: 'object',
+      properties: this.props.filters,
+    };
     this.uiSchema = {
       'ui:rootFieldId': 'column_filters',
-      'dateFrom': { 'ui:widget': 'date-time' },
-      'dateTo': { 'ui:widget': 'date-time' }
-    }
-    this.formTO = 0
+      dateFrom: { 'ui:widget': 'date-time' },
+      dateTo: { 'ui:widget': 'date-time' },
+    };
+    this.formTO = 0;
   }
 
   buttonsDisabled(filtered) {
-    if (this.props.queryString !== '') return false
+    if (this.props.queryString !== '') return false;
 
-    return Object.keys(filtered).length === 0
+    return Object.keys(filtered).length === 0;
   }
 
   setFilters() {
-    let formData = _.clone(this.props.filtered)
+    const formData = _.clone(this.props.filtered);
 
     if (Object.keys(formData).length > 0) {
       for (const key in formData) {
-        formData[key] = decodeURIComponent(formData[key])
+        formData[key] = decodeURIComponent(formData[key]);
       }
     }
 
     this.setState({
       formData,
       queryString: this.props.queryString,
-      buttonsDisabled: this.buttonsDisabled(formData)
-    })
+      buttonsDisabled: this.buttonsDisabled(formData),
+    });
   }
 
   handleOnChange({ formData }) {
-    const disabled = this.buttonsDisabled(filteredData(formData))
+    const disabled = this.buttonsDisabled(filteredData(formData));
 
     this.setState({
       formData,
-      buttonsDisabled: disabled
-    })
+      buttonsDisabled: disabled,
+    });
   }
 
   handleOnSubmit({ formData }) {
-    this.setState({ formData, initialised: false })
+    this.setState({ formData, initialised: false });
 
-    clearTimeout(this.formTO)
+    clearTimeout(this.formTO);
 
     this.formTO = setTimeout(() => {
-      if (Object.keys(filteredData(this.state.formData)).length > 0)
+      if (Object.keys(filteredData(this.state.formData)).length > 0) {
         this.props.setStateHandler({
           filtered: filteredData(formData),
-          page: 0
-        })
-      else {
-        this.setState({ buttonsDisabled: true })
-        this.handleResetFilters()
+          page: 0,
+        });
+      } else {
+        this.setState({ buttonsDisabled: true });
+        this.handleResetFilters();
       }
 
-      setTimeout(() => { this.setState({ initialised: true }) }, 100)
-    }, 100)
+      setTimeout(() => {
+        this.setState({ initialised: true });
+      }, 100);
+    }, 100);
   }
 
   handleResetFilters() {
-    this.props.setStateHandler({ filtered: {}, page: 0 })
+    this.props.setStateHandler({ filtered: {}, page: 0 });
   }
 
   componentWillReceiveProps() {
-    if (this.state.initialised) this.setFilters()
+    if (this.state.initialised) this.setFilters();
   }
 
   componentDidMount() {
-    this.setFilters()
+    this.setFilters();
   }
 
   render() {
-    if (!this.props.filters) return null
+    if (!this.props.filters) return null;
 
     return (
       <div className="column-filters">
@@ -109,20 +118,23 @@ export default class ColumnFilters extends Component {
             >
               Reset Filters
             </Button>
-            <Button
-              type="submit"
-              bsStyle="primary"
-              disabled={this.state.buttonsDisabled}
-            >
+            <Button type="submit" bsStyle="primary" disabled={this.state.buttonsDisabled}>
               Filter Records
             </Button>
           </div>
         </Form>
       </div>
-    )
+    );
   }
 }
 
 function filteredData(formData) {
-  return _.pickBy(formData, _.identity)
+  return _.pickBy(formData, _.identity);
 }
+
+/* eslint-enable react/no-unused-state, import/no-extraneous-dependencies, no-console,
+no-use-before-define, react/prop-types, consistent-return, no-param-reassign, no-unneeded-ternary,
+react/sort-comp, prefer-arrow-callback, arrow-parens, class-methods-use-this, no-unused-vars,
+react/jsx-no-bind, react/no-did-mount-set-state, dot-notation, jsx-a11y/anchor-is-valid,
+no-shadow, no-return-assign, no-underscore-dangle,
+prefer-destructuring, guard-for-in, no-restricted-syntax */

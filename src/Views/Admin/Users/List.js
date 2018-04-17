@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import { PageTitle } from '../../../Lib/Common/Views'
-import AdminUsersDataTable from '../../../Redux/Containers/Admin/Users'
+import React, { Component } from 'react';
+import { PageTitle } from '../../../Lib/Common/Views';
+import AdminUsersDataTable from '../../../Redux/Containers/Admin/Users';
 
+/* eslint-disable react/prefer-stateless-function */
 export default class List extends Component {
   render() {
     return (
@@ -9,6 +10,8 @@ export default class List extends Component {
         <PageTitle title="Users" appName="Admin" />
         <AdminUsersDataTable {...this.props} />
       </div>
-    )
+    );
   }
 }
+
+/* eslint-enable react/prefer-stateless-function */
