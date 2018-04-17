@@ -132,19 +132,23 @@ Note: To view the Docker containers, open another terminal console then enter `d
 
 Workspace settings found in .vscode/settings  
 If you are not using vs code please add corresponding settings for your editor.  
-it's alsow recomended to install the folowing plugins for vs code:  
+It's alsow recomended to install the folowing plugins for vs code:  
 
 ESLint  
 Prettier  
 Flow Language Suport  
 
+These plugins allong with the workspace settings will help you to auto-format  
+you code on save as well as gic you tipps on how to writ better code
 
 ## Flow
 
-to install flow on your machine write:  
+To install flow on your machine write:  
 `brew install flow` (for mac & linux)  
 `npm install --global flow-bin` (for windows)
 
+
 ## Husky
 
-precommit-hook added which runs eslint to autoformat (if possible) before commit, if there are mistakes in the code that prettier can't correct, you will not be allowed to commit
+Precommit-hook added which runs eslint to autoformat (if possible) before commit.  
+If there are mistakes in the code that prettier can't correct, you will not be allowed to commit
