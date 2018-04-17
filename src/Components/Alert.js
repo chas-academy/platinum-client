@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Alert } from "react-bootstrap";
+import React, { Component } from 'react';
+import { Alert } from 'react-bootstrap';
 
 /* eslint-disable react/prop-types */
 
@@ -8,7 +8,7 @@ export default class Basic extends Component {
     super(props);
 
     this.state = {
-      show: true
+      show: true,
     };
 
     this.hideAlert = this.hideAlert.bind(this);

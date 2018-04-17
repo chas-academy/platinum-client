@@ -3,7 +3,7 @@
 export function ucFirst(string) {
   if (!string) return null;
 
-  return [string.charAt(0).toUpperCase(), string.slice(1)].join("");
+  return [string.charAt(0).toUpperCase(), string.slice(1)].join('');
 }
 
 /* eslint-enable import/prefer-default-export */

@@ -1,7 +1,7 @@
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { auth } from "../../Actions/Sessions";
-import SignOutButton from "../../../Components/Buttons/SignOut";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { auth } from '../../Actions/Sessions';
+import SignOutButton from '../../../Components/Buttons/SignOut';
 
 function mapStateToProps({ IsSignedIn }) {
   return { IsSignedIn };

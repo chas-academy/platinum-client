@@ -14,7 +14,7 @@ import 'semantic-ui-css/semantic.min.css'
 /* eslint-disable no-param-reassign, no-underscore-dangle */
 
 function initReduxDevTools() {
-  return process.env.NODE_ENV === "development"
+  return process.env.NODE_ENV === 'development'
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : null;
 }
@@ -27,7 +27,7 @@ const rootReducer = (state, action) => {
   return appReducer(state, action);
 };
 const middleware =
-  typeof composeEnhancers === "function"
+  typeof composeEnhancers === 'function'
     ? composeEnhancers(applyMiddleware(thunk))
     : applyMiddleware(thunk);
 const store = createStore(rootReducer, middleware);
@@ -36,7 +36,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Routes />
   </Provider>,
-  document.getElementById("app")
+  document.getElementById('app'),
 );
 
 registerServiceWorker();

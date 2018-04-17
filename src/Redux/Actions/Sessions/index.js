@@ -1,4 +1,4 @@
-import { AUTH } from "./Types";
+import { AUTH } from './Types';
 
 /* eslint-disable import/prefer-default-export */
 

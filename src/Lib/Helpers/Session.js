@@ -1,6 +1,6 @@
-import Store from "store";
-import JWT from "jsonwebtoken";
-import Axios from "../Common/Axios";
+import Store from 'store';
+import JWT from 'jsonwebtoken';
+import Axios from '../Common/Axios';
 
 /* eslint-disable import/prefer-default-export, no-use-before-define,
 guard-for-in, no-unused-vars, no-restricted-syntax, no-unused-expressions, consistent-return */
@@ -24,7 +24,7 @@ export function isSignedOut() {
 }
 
 export function isAdmin() {
-  return userRole() === "admin";
+  return userRole() === 'admin';
 }
 
 export function adminIsSignedIn() {
@@ -32,7 +32,7 @@ export function adminIsSignedIn() {
 }
 
 export function isUser() {
-  return userRole() !== "admin";
+  return userRole() !== 'admin';
 }
 
 export function userIsSignedIn() {
@@ -41,24 +41,23 @@ export function userIsSignedIn() {
 }
 
 export function userRole() {
-  const role = Store.get("role");
+  const role = Store.get('role');
 
-  return role === "admin" ? "" : role;
+  return role === 'admin' ? '' : role;
 }
 
 /* PAGE ACCESS */
 
 export function showPage(path) {
-  const allowedPaths = tokenData("allowedPaths");
-  const excludedPaths = tokenData("excludedPaths");
+  const allowedPaths = tokenData('allowedPaths');
+  const excludedPaths = tokenData('excludedPaths');
 
   if (
     excludedPaths &&
     excludedPaths.length > 0 &&
     excludedPaths.indexOf(path) > -1
-  )
-    return false;
-  if (allowedPaths && allowedPaths.toString() === "*") return true;
+  ) { return false; }
+  if (allowedPaths && allowedPaths.toString() === '*') return true;
   return allowedPaths ? allowedPaths.indexOf(path) > -1 : false;
 }
 
@@ -67,7 +66,7 @@ export function accessDenied(path) {
 }
 
 export function isAuthorised(path) {
-  return (typeof path === "boolean" && path) || showPage(path);
+  return (typeof path === 'boolean' && path) || showPage(path);
 }
 
 /* TOKEN */
@@ -80,7 +79,7 @@ export function verifyToken() {
   clearTimeout(verifyTokenTO);
 
   verifyTokenTO = setTimeout(() => {
-    Axios.get(process.env.REACT_APP_API_VERIFY_TOKEN_URL).catch(error => {
+    Axios.get(process.env.REACT_APP_API_VERIFY_TOKEN_URL).catch((error) => {
       deleteToken();
       window.location.reload();
     });
@@ -88,11 +87,11 @@ export function verifyToken() {
 }
 
 export function token() {
-  return Store.get("token");
+  return Store.get('token');
 }
 
 export function deleteToken() {
-  Store.remove("token");
+  Store.remove('token');
 }
 
 export function decodedToken() {
@@ -107,7 +106,7 @@ export function decodedToken() {
         }
 
         return decoded;
-      }
+      },
     );
   }
 }

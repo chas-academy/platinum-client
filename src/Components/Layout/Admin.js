@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import Header from "./Admin/Header";
-import Sidebar from "./Admin/Sidebar";
-import Footer from "./Admin/Footer";
+import React, { Component } from 'react';
+import Header from './Admin/Header';
+import Sidebar from './Admin/Sidebar';
+import Footer from './Admin/Footer';
 
 /* eslint-disable react/prefer-stateless-function, react/prop-types */
 

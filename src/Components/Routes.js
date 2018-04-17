@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { BrowserRouter, Switch, Redirect } from "react-router-dom";
-import Site from "../Views/Site";
-import Admin from "../Views/Admin";
-import { SiteRoute, AuthSiteRoute, AdminRoute } from "../Lib/Common/Routes";
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import Site from '../Views/Site';
+import Admin from '../Views/Admin';
+import { SiteRoute, AuthSiteRoute, AdminRoute } from '../Lib/Common/Routes';
 
 /* eslint-disable react/prefer-stateless-function */
 
