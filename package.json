@@ -62,7 +62,6 @@
     "flow status": "flow status",
     "flow coverage": "flow coverage",
     "precommit": "lint-staged",
-    "prepush": "yarn test",
     "pretty": "prettier --write \"src/**/*.js\""
   },
   "lint-staged": {
