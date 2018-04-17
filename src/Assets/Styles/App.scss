@@ -1,5 +1,7 @@
-html,
-body {}
+html body { 
+  background: no-repeat url('../Images/background.jpeg'); 
+  background-size: cover; 
+}
 
 html {
   min-height: 100%;
