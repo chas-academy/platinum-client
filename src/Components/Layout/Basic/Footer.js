@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Icon, List, Grid, Container } from 'semantic-ui-react'
 
+/* eslint-disable react/prefer-stateless-function, jsx-a11y/anchor-is-valid */
+
 export default class Footer extends Component {
   render() {
     return (
@@ -38,3 +40,5 @@ export default class Footer extends Component {
     )
   }
 }
+
+/* eslint-enable react/prefer-stateless-function, jsx-a11y/anchor-is-valid */

@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import { Navbar } from 'react-bootstrap'
-import { NavLink, AuthNavLink } from '../../../Lib/Common/Views'
-import SignOutButton from '../../../Redux/Containers/Sessions/SignOutButton'
-//import Logo from '../../../Assets/Images/Logo.jpg'
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { Navbar } from 'react-bootstrap';
+import { NavLink, AuthNavLink } from '../../../Lib/Common/Views';
+import SignOutButton from '../../../Redux/Containers/Sessions/SignOutButton';
+
+/* eslint-disable react/prefer-stateless-function, react/prop-types,
+prefer-destructuring, jsx-a11y/anchor-is-valid */
 
 class Header extends Component {
   render() {
-    const path = this.props.match.path
-    const referrer = window.location.pathname
+    const path = this.props.match.path;
+    const referrer = window.location.pathname;
 
     return (
       <header className="header">
@@ -31,8 +33,11 @@ class Header extends Component {
           </Navbar.Collapse>
         </Navbar>
       </header>
-    )
+    );
   }
 }
 
-export default withRouter(Header)
+export default withRouter(Header);
+
+/* eslint-enable react/prefer-stateless-function, react/prop-types,
+prefer-destructuring, jsx-a11y/anchor-is-valid */
