@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import JWT from 'jsonwebtoken';
-import Form from 'react-jsonschema-form';
-import Alert from '../Alert';
-import Axios from '../../Lib/Common/Axios';
-import * as FormHelper from '../../Lib/Helpers/Form';
-import * as Session from '../../Lib/Helpers/Session';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import JWT from "jsonwebtoken";
+import Form from "react-jsonschema-form";
+import Alert from "../Alert";
+import Axios from "../../Lib/Common/Axios";
+import * as FormHelper from "../../Lib/Helpers/Form";
+import * as Session from "../../Lib/Helpers/Session";
 
 /* eslint-disable no-console, no-use-before-define, react/prop-types, consistent-return,
 no-shadow, no-return-assign, no-underscore-dangle, prefer-destructuring */
@@ -21,8 +21,8 @@ export default class SignIn extends Component {
       alertMessage: {},
       showAlertMessage: false,
       isSigningIn: false,
-      redirect: '/',
-      locationState: props.location.state,
+      redirect: "/",
+      locationState: props.location.state
     };
   }
 
@@ -31,30 +31,34 @@ export default class SignIn extends Component {
       key: Date.now(),
       formData,
       alertMessage: {
-        type: 'info',
-        message: 'Signing in...',
+        type: "info",
+        message: "Signing in..."
       },
       isSigningIn: true,
-      showAlertMessage: true,
+      showAlertMessage: true
     });
 
     const token = JWT.sign(formData, process.env.REACT_APP_API_JWT_SECRET);
 
     Axios.post(process.env.REACT_APP_API_SIGN_IN_URL, { token })
-      .then((response) => {
+      .then(response => {
         const { token, redirect } = response.data;
 
         Session.store({ token });
 
         this.setState({
           alertMessage: {
-            type: 'success',
-            message: 'Redirecting...',
+            type: "success",
+            message: "Redirecting..."
           },
-          redirect: redirect || this.state.redirect,
+          redirect: redirect || this.state.redirect
         });
 
-        if (!this.state.locationState && redirect && redirect.indexOf('http') === 0) {
+        if (
+          !this.state.locationState &&
+          redirect &&
+          redirect.indexOf("http") === 0
+        ) {
           return (window.location.href = redirect);
         }
 
@@ -63,26 +67,27 @@ export default class SignIn extends Component {
         setTimeout(() => {
           _this.setState({
             formData: initFormData,
-            isSigningIn: false,
+            isSigningIn: false
           });
           _this.props.auth(true);
         }, 500);
       })
-      .catch((error) => {
+      .catch(error => {
         let message =
-          'Unable to process your request. Please check your internet connection. If problem persists, contact support.';
+          "Unable to process your request. Please check your internet connection. If problem persists, contact support.";
 
-        if (error.response && error.response.data.message) message = error.response.data.message;
+        if (error.response && error.response.data.message)
+          message = error.response.data.message;
 
-        console.log('Error: ', error);
+        console.log("Error: ", error);
 
         this.setState({
           alertMessage: {
-            type: 'danger',
-            message,
+            type: "danger",
+            message
           },
           showAlertMessage: true,
-          isSigningIn: false,
+          isSigningIn: false
         });
       });
   }
@@ -94,7 +99,7 @@ export default class SignIn extends Component {
 
       if (locationState && locationState.from) {
         const { pathname, search } = locationState.from;
-        referrer = [pathname, search].join('');
+        referrer = [pathname, search].join("");
       }
 
       return <Redirect to={referrer} />;
@@ -132,48 +137,48 @@ export default class SignIn extends Component {
 }
 
 const initFormData = {
-  email: '',
-  password: '',
+  email: "",
+  password: ""
 };
 
 const Schema = {
-  type: 'object',
+  type: "object",
   properties: {
     email: {
-      type: 'string',
-      title: 'Email',
+      type: "string",
+      title: "Email"
     },
     password: {
-      type: 'string',
-      title: 'Password',
-    },
-  },
+      type: "string",
+      title: "Password"
+    }
+  }
 };
 
 const UISchema = {
-  'ui:rootFieldId': 'log_in',
+  "ui:rootFieldId": "log_in",
   email: {
-    'ui:widget': 'email',
-    'ui:autofocus': true,
-    'ui:placeholder': 'Enter your email',
+    "ui:widget": "email",
+    "ui:autofocus": true,
+    "ui:placeholder": "Enter your email"
   },
   password: {
-    'ui:widget': 'password',
-    'ui:placeholder': 'Enter your password',
-  },
+    "ui:widget": "password",
+    "ui:placeholder": "Enter your password"
+  }
 };
 
 function validate(formData, errors) {
   let input;
 
-  if (formData.email === undefined || formData.email === '') {
-    errors.email.addError('Email is required.');
-    input = 'email';
+  if (formData.email === undefined || formData.email === "") {
+    errors.email.addError("Email is required.");
+    input = "email";
   }
 
-  if (formData.password === undefined || formData.password === '') {
-    errors.password.addError('Password is required.');
-    input = input || 'password';
+  if (formData.password === undefined || formData.password === "") {
+    errors.password.addError("Password is required.");
+    input = input || "password";
   }
 
   FormHelper.setFocus(UISchema, input);

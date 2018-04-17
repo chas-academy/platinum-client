@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { PageTitle } from '../../../Lib/Common/Views';
-import AdminUsersDataTable from '../../../Redux/Containers/Admin/Users';
+import React, { Component } from "react";
+import { PageTitle } from "../../../Lib/Common/Views";
+import AdminUsersDataTable from "../../../Redux/Containers/Admin/Users";
 
 /* eslint-disable react/prefer-stateless-function */
 export default class List extends Component {

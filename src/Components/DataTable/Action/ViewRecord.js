@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import ViewModal from '../../Modals/Default';
+import React, { Component } from "react";
+import ViewModal from "../../Modals/Default";
 
 /* eslint-disable prefer-destructuring, no-unused-vars */
 
@@ -39,7 +39,7 @@ export default class ViewRecord extends Component {
           toggleModalHandler={this.handleToggleViewModal}
         />
         <a
-          href={[props.path, resourceId].join('/')}
+          href={[props.path, resourceId].join("/")}
           className="datatable-actions-btn"
           onClick={this.handleOpenModal}
         >

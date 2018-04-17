@@ -1,9 +1,9 @@
 /* eslint-disable react/prefer-stateless-function, react/prop-types,
 prefer-destructuring, import/no-extraneous-dependencies, react/sort-comp */
 
-import React, { Component } from 'react';
-import _ from 'lodash';
-import { Modal, Button } from 'react-bootstrap';
+import React, { Component } from "react";
+import _ from "lodash";
+import { Modal, Button } from "react-bootstrap";
 
 export default class Confirm extends Component {
   constructor(props) {
@@ -12,12 +12,12 @@ export default class Confirm extends Component {
     this.state = {
       onHide: props.closeModalHandler,
       backdrop: true,
-      title: props.title || 'Confirm Dialog',
+      title: props.title || "Confirm Dialog",
       button: {
-        title: (props.button && props.button.title) || 'Confirm',
-        style: (props.button && props.button.style) || 'primary',
-        disabled: false,
-      },
+        title: (props.button && props.button.title) || "Confirm",
+        style: (props.button && props.button.style) || "primary",
+        disabled: false
+      }
     };
     this.handleConfirmRequest = this.handleConfirmRequest.bind(this);
   }
@@ -25,8 +25,8 @@ export default class Confirm extends Component {
   toggleButton(state) {
     this.setState({
       onHide: state ? null : this.props.closeModalHandler,
-      backdrop: state ? 'static' : true,
-      button: _.merge(this.state.button, { disabled: state }),
+      backdrop: state ? "static" : true,
+      button: _.merge(this.state.button, { disabled: state })
     });
   }
 
@@ -62,7 +62,10 @@ export default class Confirm extends Component {
             <Button onClick={props.closeModalHandler}>Close</Button>
           ) : (
             <div>
-              <Button onClick={props.closeModalHandler} disabled={button.disabled}>
+              <Button
+                onClick={props.closeModalHandler}
+                disabled={button.disabled}
+              >
                 Cancel
               </Button>
               <Button

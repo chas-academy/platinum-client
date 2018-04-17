@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { AuthNavLink } from '../../../Lib/Common/Views';
-import SignOutButton from '../../../Redux/Containers/Sessions/SignOutButton';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { AuthNavLink } from "../../../Lib/Common/Views";
+import SignOutButton from "../../../Redux/Containers/Sessions/SignOutButton";
 
 /* eslint-disable react/prefer-stateless-function, jsx-a11y/anchor-is-valid,
  prefer-destructuring, react/prop-types */

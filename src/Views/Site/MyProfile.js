@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { PageTitle } from '../../Lib/Common/Views';
+import React, { Component } from "react";
+import { PageTitle } from "../../Lib/Common/Views";
 
 /* eslint-disable react/prefer-stateless-function */
 export default class MyProfile extends Component {

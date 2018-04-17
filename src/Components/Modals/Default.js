@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Modal } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Modal } from "react-bootstrap";
 
 /* eslint-disable react/prefer-stateless-function, react/prop-types, prefer-destructuring */
 

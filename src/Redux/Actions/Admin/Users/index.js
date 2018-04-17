@@ -1,4 +1,4 @@
-import { ADMIN_USERS_SAVE_QUERY } from './Types';
+import { ADMIN_USERS_SAVE_QUERY } from "./Types";
 
 /* eslint-disable import/prefer-default-export */
 

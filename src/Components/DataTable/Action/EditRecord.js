@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import ModalDefault from '../../Modals/Default';
+import React, { Component } from "react";
+import ModalDefault from "../../Modals/Default";
 
 /* eslint-disable prefer-destructuring */
 
@@ -40,7 +40,7 @@ export default class EditRecord extends Component {
           toggleModalHandler={this.handleToggleFormModal}
         />
         <a
-          href={[props.path, resourceId, 'edit'].join('/')}
+          href={[props.path, resourceId, "edit"].join("/")}
           className="datatable-actions-btn"
           onClick={this.handleOpenModal}
         >
