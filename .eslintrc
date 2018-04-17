@@ -12,7 +12,7 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
     "import/first": ["warn", "DISABLE-absolute-first"],
-    "quotes": ["warn", "singel"],
-    "jsx-quotes": ["warn", "dubble"]
+    "quotes": ["warn", "single"],
+    "jsx-quotes": ["warn", "prefer-double"]
   }
 }
