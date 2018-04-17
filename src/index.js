@@ -8,8 +8,10 @@ import reducers from './Redux/Reducers'
 import Routes from './Components/Routes'
 import registerServiceWorker from './registerServiceWorker'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'semantic-ui-css/semantic.min.css'
 import './Assets/Styles/Style.css'
 import 'semantic-ui-css/semantic.min.css';
+
 
 const composeEnhancers = initReduxDevTools()
 const appReducer = combineReducers(reducers)
