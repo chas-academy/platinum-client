@@ -11,5 +11,4 @@ services:
       traefik.frontend.rule: "Host:platinum-dev.client.chas.school"
     volumes:
       - ./:/home/node/app
-    ports:
-      - 80:7771
+
