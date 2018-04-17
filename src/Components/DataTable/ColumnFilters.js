@@ -5,10 +5,10 @@ react/jsx-no-bind, react/no-did-mount-set-state, dot-notation, jsx-a11y/anchor-i
 no-shadow, no-return-assign, no-underscore-dangle,
 prefer-destructuring, guard-for-in, no-restricted-syntax */
 
-import React, { Component } from "react";
-import Form from "react-jsonschema-form";
-import _ from "lodash";
-import { Button } from "react-bootstrap";
+import React, { Component } from 'react';
+import Form from 'react-jsonschema-form';
+import _ from 'lodash';
+import { Button } from 'react-bootstrap';
 
 export default class ColumnFilters extends Component {
   constructor(props) {
@@ -17,22 +17,22 @@ export default class ColumnFilters extends Component {
     this.state = {
       formData: {},
       initialised: true,
-      buttonsDisabled: true
+      buttonsDisabled: true,
     };
     this.schema = {
-      type: "object",
-      properties: this.props.filters
+      type: 'object',
+      properties: this.props.filters,
     };
     this.uiSchema = {
-      "ui:rootFieldId": "column_filters",
-      dateFrom: { "ui:widget": "date-time" },
-      dateTo: { "ui:widget": "date-time" }
+      'ui:rootFieldId': 'column_filters',
+      dateFrom: { 'ui:widget': 'date-time' },
+      dateTo: { 'ui:widget': 'date-time' },
     };
     this.formTO = 0;
   }
 
   buttonsDisabled(filtered) {
-    if (this.props.queryString !== "") return false;
+    if (this.props.queryString !== '') return false;
 
     return Object.keys(filtered).length === 0;
   }
@@ -49,7 +49,7 @@ export default class ColumnFilters extends Component {
     this.setState({
       formData,
       queryString: this.props.queryString,
-      buttonsDisabled: this.buttonsDisabled(formData)
+      buttonsDisabled: this.buttonsDisabled(formData),
     });
   }
 
@@ -58,7 +58,7 @@ export default class ColumnFilters extends Component {
 
     this.setState({
       formData,
-      buttonsDisabled: disabled
+      buttonsDisabled: disabled,
     });
   }
 
@@ -71,7 +71,7 @@ export default class ColumnFilters extends Component {
       if (Object.keys(filteredData(this.state.formData)).length > 0) {
         this.props.setStateHandler({
           filtered: filteredData(formData),
-          page: 0
+          page: 0,
         });
       } else {
         this.setState({ buttonsDisabled: true });

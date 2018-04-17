@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import ReactLogo from "../../Assets/Images/react-logo.svg";
-import { PageTitle } from "../../Lib/Common/Views";
+import React, { Component } from 'react';
+import ReactLogo from '../../Assets/Images/react-logo.svg';
+import { PageTitle } from '../../Lib/Common/Views';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class Home extends Component {

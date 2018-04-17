@@ -1,19 +1,18 @@
 /* eslint-disable import/prefer-default-export, no-use-before-define, no-return-assign,
  import/no-extraneous-dependencies, prefer-destructuring, consistent-return */
 
-import _ from "lodash";
+import _ from 'lodash';
 
 export function queryParams(params) {
-  const queries = Object.keys(params).map(key => {
+  const queries = Object.keys(params).map((key) => {
     if (!params[key]) return null;
-    if (typeof params[key] === "object")
-      return parseObjectQueryParams(params, key);
+    if (typeof params[key] === 'object') { return parseObjectQueryParams(params, key); }
     if (params[key]) return parseQueryParam(params, key);
 
     return null;
   });
 
-  return _.compact(queries).join("&");
+  return _.compact(queries).join('&');
 }
 
 export function queryParamsList(params) {
@@ -21,8 +20,8 @@ export function queryParamsList(params) {
 
   const object = {};
 
-  params.split(",").map(list => {
-    const item = list.split(":");
+  params.split(',').map((list) => {
+    const item = list.split(':');
 
     return (object[item[0]] = item[1]);
   });
@@ -31,24 +30,23 @@ export function queryParamsList(params) {
 }
 
 function parseQueryParam(params, key) {
-  return [key, encodeURIComponent(params[key])].join("=");
+  return [key, encodeURIComponent(params[key])].join('=');
 }
 
 function parseObjectQueryParams(params, key) {
   if (Object.keys(params[key]).length) {
     const subParams = Object.keys(params[key])
       .map(subKey => parseSubQueryParams(params, key, subKey))
-      .join(",");
+      .join(',');
 
-    return [key, encodeURIComponent(subParams)].join("=");
+    return [key, encodeURIComponent(subParams)].join('=');
   }
 
   return undefined;
 }
 
 function parseSubQueryParams(params, key, subKey) {
-  if (params[key][subKey])
-    return [subKey, encodeURIComponent(params[key][subKey])].join(":");
+  if (params[key][subKey]) { return [subKey, encodeURIComponent(params[key][subKey])].join(':'); }
 }
 
 /* eslint-enable import/prefer-default-export, no-use-before-define, no-return-assign,

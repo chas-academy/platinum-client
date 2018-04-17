@@ -1,21 +1,22 @@
 /* eslint-disable react/no-unused-state, import/no-extraneous-dependencies, no-console,
-no-use-before-define, react/prop-types, consistent-return, no-param-reassign, no-unneeded-ternary,
+no-use-before-define, react/prop-types, consistent-return, no-param-reassign,
+no-unneeded-ternary,
 react/sort-comp, prefer-arrow-callback, arrow-parens, class-methods-use-this,
 react/jsx-no-bind, react/no-did-mount-set-state, dot-notation, jsx-a11y/anchor-is-valid,
 no-shadow, no-return-assign, no-underscore-dangle, prefer-destructuring */
 
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import _ from "lodash";
-import axios from "axios";
-import Axios from "../../../Lib/Common/Axios";
-import Form from "react-jsonschema-form";
-import { Button } from "react-bootstrap";
-import Alert from "../../../Components/Alert";
-import * as FormHelper from "../../../Lib/Helpers/Form";
-import Config from "../../../Config/Admin/Users/Form";
-import DeleteUserButton from "../../Buttons/DeleteUser";
-import * as Session from "../../../Lib/Helpers/Session";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import _ from 'lodash';
+import axios from 'axios';
+import Axios from '../../../Lib/Common/Axios';
+import Form from 'react-jsonschema-form';
+import { Button } from 'react-bootstrap';
+import Alert from '../../../Components/Alert';
+import * as FormHelper from '../../../Lib/Helpers/Form';
+import Config from '../../../Config/Admin/Users/Form';
+import DeleteUserButton from '../../Buttons/DeleteUser';
+import * as Session from '../../../Lib/Helpers/Session';
 
 export default class User extends Component {
   constructor(props) {
@@ -30,21 +31,21 @@ export default class User extends Component {
       formData,
       resource,
       schema,
-      loading: "",
+      loading: '',
       buttonDisabled: false,
       resourceId: null,
-      method: "post",
+      method: 'post',
       axiosCancelToken: null,
       processRequest: false,
       payloadRequestError: false,
       getRequestError: false,
       successMessage: null,
-      errorMessage: null
+      errorMessage: null,
     };
   }
 
   handleSubmitForm() {
-    document.getElementById("jsSubmitForm").click();
+    document.getElementById('jsSubmitForm').click();
   }
 
   handleOnChange({ formData }) {
@@ -62,7 +63,7 @@ export default class User extends Component {
       formData,
       schema: setSchema(formData),
       buttonDisabled,
-      successMessage: null
+      successMessage: null,
     });
   }
 
@@ -72,13 +73,13 @@ export default class User extends Component {
     const _this = this;
     const apiURL = [
       process.env.REACT_APP_API_USERS_URL,
-      this.state.resourceId
-    ].join("/");
+      this.state.resourceId,
+    ].join('/');
     const CancelToken = axios.CancelToken;
     const cancelTokenCallback = {
       cancelToken: new CancelToken(function executor(cancel) {
         _this.setState({ axiosCancelToken: cancel });
-      })
+      }),
     };
 
     Axios.get(apiURL, cancelTokenCallback)
@@ -87,13 +88,13 @@ export default class User extends Component {
           formData: data,
           resource: data,
           schema: setSchema(data),
-          loading: ""
+          loading: '',
         });
       })
       .catch(error => {
         if (axios.isCancel(error)) return true;
 
-        console.log("Error: ", error);
+        console.log('Error: ', error);
 
         this.setState({ getRequestError: true });
       });
@@ -111,7 +112,7 @@ export default class User extends Component {
       payloadRequestError: false,
       getRequestError: false,
       successMessage: null,
-      errorMessage: null
+      errorMessage: null,
     });
 
     this.handlePayloadRequest(formData);
@@ -127,12 +128,11 @@ export default class User extends Component {
     const cancelTokenCallback = {
       cancelToken: new CancelToken(function executor(cancel) {
         _this.setState({ axiosCancelToken: cancel });
-      })
+      }),
     };
     let url = process.env.REACT_APP_API_USERS_URL;
 
-    if (resourceId)
-      url = [process.env.REACT_APP_API_USERS_URL, resourceId].join("/");
+    if (resourceId) { url = [process.env.REACT_APP_API_USERS_URL, resourceId].join('/'); }
 
     data.email = data.email.toLowerCase();
 
@@ -140,25 +140,25 @@ export default class User extends Component {
       method,
       url,
       data,
-      cancelTokenCallback
+      cancelTokenCallback,
     })
       .then(response => {
         const processRequest = false;
         const successMessage = [
-          "User has been",
-          method === "put" ? "saved." : "created."
-        ].join(" ");
+          'User has been',
+          method === 'put' ? 'saved.' : 'created.',
+        ].join(' ');
 
-        data["userId"] = response.data.userId || resourceId;
+        data['userId'] = response.data.userId || resourceId;
 
         this.setState({
           formData: data,
           resourceId: data.userId,
-          method: "put",
+          method: 'put',
           processRequest,
           successMessage,
           buttonDisabled: true,
-          errorMessage: null
+          errorMessage: null,
         });
       })
       .catch(error => {
@@ -166,16 +166,15 @@ export default class User extends Component {
 
         let message = null;
 
-        if (error.response && error.response.data.message)
-          message = error.response.data.message;
+        if (error.response && error.response.data.message) message = error.response.data.message;
 
-        console.log("Error: ", error);
+        console.log('Error: ', error);
 
         this.setState({
           buttonDisabled: false,
           processRequest: false,
           payloadRequestError: true,
-          errorMessage: message
+          errorMessage: message,
         });
       });
   }
@@ -185,14 +184,14 @@ export default class User extends Component {
     const state = this.state;
 
     if (
-      state.method === "put" &&
+      state.method === 'put' &&
       state.successMessage &&
       props.showModal &&
       props.onSuccess
     ) {
       const dataTableState = {
         page: 0,
-        sorted: { userId: "desc" }
+        sorted: { userId: 'desc' },
       };
 
       setTimeout(() => props.onSuccess(dataTableState));
@@ -200,8 +199,7 @@ export default class User extends Component {
   }
 
   componentWillUnmount() {
-    if (typeof this.state.axiosCancelToken === "function")
-      this.state.axiosCancelToken();
+    if (typeof this.state.axiosCancelToken === 'function') { this.state.axiosCancelToken(); }
   }
 
   componentDidMount() {
@@ -212,7 +210,7 @@ export default class User extends Component {
         formData: props.resource,
         resourceId: props.resource.userId,
         buttonDisabled: true,
-        method: "put"
+        method: 'put',
       });
     }
 
@@ -221,10 +219,10 @@ export default class User extends Component {
     const resourceId = props.computedMatch.params.userId;
 
     this.setState({
-      loading: "-loading",
+      loading: '-loading',
       buttonDisabled: true,
       resourceId,
-      method: "put"
+      method: 'put',
     });
 
     setTimeout(() => {
@@ -236,8 +234,8 @@ export default class User extends Component {
     const props = _.clone(this.props);
     const state = this.state;
 
-    props["handleSubmitForm"] = this.handleSubmitForm.bind(this);
-    props["buttonDisabled"] = state.buttonDisabled;
+    props['handleSubmitForm'] = this.handleSubmitForm.bind(this);
+    props['buttonDisabled'] = state.buttonDisabled;
 
     return (
       <ContentWrapper {...props} key={state.key} resourceId={state.resourceId}>
@@ -253,12 +251,12 @@ export default class User extends Component {
             onChange={this.handleOnChange.bind(this)}
             onSubmit={this.handleOnSubmit.bind(this)}
             autocomplete="off"
-            className={["form form-admin-user", state.loading].join(" ")}
+            className={['form form-admin-user', state.loading].join(' ')}
           >
-            <div className={props.isModal ? "hide" : "form-buttons"}>
+            <div className={props.isModal ? 'hide' : 'form-buttons'}>
               {state.resourceId && (
                 <Link
-                  to={["/admin/users", state.resourceId].join("/")}
+                  to={['/admin/users', state.resourceId].join('/')}
                   className="btn btn-default"
                 >
                   Cancel
@@ -288,7 +286,7 @@ const ContentWrapper = props => {
     return (
       <div>
         <div
-          className={["modal-body", "-form-content", props.className].join(" ")}
+          className={['modal-body', '-form-content', props.className].join(' ')}
         >
           {props.children}
         </div>
@@ -297,7 +295,7 @@ const ContentWrapper = props => {
           {!props.resource &&
             props.resourceId && (
               <Link
-                to={["/admin/users", props.resourceId, "edit"].join("/")}
+                to={['/admin/users', props.resourceId, 'edit'].join('/')}
                 className="btn btn-success"
               >
                 Edit User
@@ -324,7 +322,7 @@ const FormMessage = state => {
   const showProcessError = state.getRequestError || state.payloadRequestError;
   const errorMessage = state.payloadRequestError
     ? state.errorMessage
-    : "User is not found or has been deleted.";
+    : 'User is not found or has been deleted.';
 
   return (
     <div className="form-message">
@@ -349,19 +347,18 @@ function formDataString(data) {
     role: data.role,
     status: data.status,
     allowedPaths: data.allowedPaths,
-    excludedPaths: data.excludedPaths
+    excludedPaths: data.excludedPaths,
   });
 }
 
 function setAllowedPaths(formData, resource) {
-  if (allPathsAllowed(formData)) return ["*"];
+  if (allPathsAllowed(formData)) return ['*'];
 
   if (
     formData.allowedPaths.length === 0 &&
     resource &&
-    resource.allowedPaths[0] !== "*"
-  )
-    return resource.allowedPaths;
+    resource.allowedPaths[0] !== '*'
+  ) { return resource.allowedPaths; }
 
   return formData.allowedPaths;
 }
@@ -370,23 +367,23 @@ function setSchema(data) {
   const schema = _.clone(Config.schema);
 
   if (allPathsAllowed(data)) {
-    schema.properties["allowedPaths"] = Config.schemaAllowedAllPaths;
-    schema.properties["excludedPaths"] = Config.schemaExcludedPaths;
+    schema.properties['allowedPaths'] = Config.schemaAllowedAllPaths;
+    schema.properties['excludedPaths'] = Config.schemaExcludedPaths;
   } else {
-    schema.properties["allowedPaths"] = Config.schemaAllowedPaths;
-    schema.properties["excludedPaths"] = {};
+    schema.properties['allowedPaths'] = Config.schemaAllowedPaths;
+    schema.properties['excludedPaths'] = {};
   }
 
   return schema;
 }
 
 function allPathsAllowed(data) {
-  return data && data.allowedPaths && _.indexOf(data.allowedPaths, "*") > -1;
+  return data && data.allowedPaths && _.indexOf(data.allowedPaths, '*') > -1;
 }
 
 function validateForm({ status, allowedPaths }, errors) {
-  if (allowedPaths.length === 0 && status !== "blocked") {
-    errors.allowedPaths.addError("Select at least one path");
+  if (allowedPaths.length === 0 && status !== 'blocked') {
+    errors.allowedPaths.addError('Select at least one path');
   }
 
   return errors;

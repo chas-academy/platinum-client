@@ -1,25 +1,25 @@
 /* eslint-disable no-use-before-define, no-return-assign,
  import/no-extraneous-dependencies,react/prop-types */
 
-import React from "react";
-import _ from "lodash";
-import QueryString from "query-string";
-import { queryParamsList } from "./Routes";
-import Action from "../../Components/DataTable/Action";
+import React from 'react';
+import _ from 'lodash';
+import QueryString from 'query-string';
+import { queryParamsList } from './Routes';
+import Action from '../../Components/DataTable/Action';
 
-export const HEIGHT = "790px";
+export const HEIGHT = '790px';
 
 export const NewFormButton = ({
   path,
   newFormOption,
   showNewForm,
-  handleToggleFormModal
+  handleToggleFormModal,
 }) => {
   if (!showNewForm) return null;
 
   return (
     <a
-      href={[path, "new"].join("/")}
+      href={[path, 'new'].join('/')}
       className="btn btn-success"
       onClick={handleToggleFormModal}
     >
@@ -31,15 +31,17 @@ export const NewFormButton = ({
 export function initColumns(
   props,
   toggleNewFormModalHandler,
-  refreshDataHandler
+  refreshDataHandler,
 ) {
-  const { columns, showViewRecord, showEditRecord, showDeleteRecord } = props;
+  const {
+    columns, showViewRecord, showEditRecord, showDeleteRecord,
+  } = props;
 
   const clonedColumns = _.clone(columns);
 
   if (showViewRecord || showEditRecord || showDeleteRecord) {
     clonedColumns.push({
-      Header: "Action",
+      Header: 'Action',
       accessor: props.actionAccessorId,
       Cell: cellInfo => (
         <div className="datatable-actions">
@@ -58,7 +60,7 @@ export function initColumns(
       ),
       resizable: false,
       sortable: false,
-      width: 130
+      width: 130,
     });
   }
 
@@ -85,14 +87,13 @@ export function setHeight(pageSize) {
 export function parseSorted(columns) {
   const sorted = {};
 
-  columns.map(column => (sorted[column.id] = column.desc ? "desc" : "asc"));
+  columns.map(column => (sorted[column.id] = column.desc ? 'desc' : 'asc'));
 
   return sorted;
 }
 
 export function shouldPushHistory(axiosData, queryObjects) {
-  if (!axiosData.filtered && JSON.stringify(queryObjects.filtered) === "{}")
-    return false;
+  if (!axiosData.filtered && JSON.stringify(queryObjects.filtered) === '{}') { return false; }
 
   return (
     JSON.stringify(axiosData.filtered) !== JSON.stringify(queryObjects.filtered)
@@ -100,7 +101,7 @@ export function shouldPushHistory(axiosData, queryObjects) {
 }
 
 function parseQuerySearch() {
-  return _.pick(QueryString.parse(window.location.search), "filtered");
+  return _.pick(QueryString.parse(window.location.search), 'filtered');
 }
 
 /* eslint-ensable no-use-before-define, no-return-assign,

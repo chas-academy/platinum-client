@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import DeleteRecord from "../DataTable/Action/DeleteRecord";
-import * as Session from "../../Lib/Helpers/Session";
-import DELETE_USER from "../../Config/Admin/Users/DeleteUser";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import DeleteRecord from '../DataTable/Action/DeleteRecord';
+import * as Session from '../../Lib/Helpers/Session';
+import DELETE_USER from '../../Config/Admin/Users/DeleteUser';
 
 /* eslint-disable prefer-destructuring */
 export default class DeleteUser extends Component {
@@ -20,7 +20,7 @@ export default class DeleteUser extends Component {
   }
 
   render() {
-    if (!Session.isAuthorised("/admin/users/delete")) return null;
+    if (!Session.isAuthorised('/admin/users/delete')) return null;
 
     if (this.state.redirectToUsers) return <Redirect to="/admin/users" />;
 
