@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, List, Grid, Container } from 'semantic-ui-react'
+import { Icon, List, Grid } from 'semantic-ui-react'
 
 export default class Footer extends Component {
   render() {
@@ -21,7 +21,7 @@ export default class Footer extends Component {
                     <Grid columns={2} centered>
                         <Grid.Row centered>                            
                             <Grid.Column>
-                                <List>
+                                <List className="center-content">
                                     <List.Item icon="marker" content="Elektravägen 29" />
                                     <List.Item icon='mail' content={<a href='mailto:mail@mail.com'>mail@mail.com</a>} />
                                     <List.Item icon='phone' content='070-000 00 00'/>
@@ -32,9 +32,6 @@ export default class Footer extends Component {
                 </Grid.Column>
             </Grid>
         </footer>
-
-
-
     )
   }
 }
