@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import ReactTable from 'react-table';
-import { Button } from 'react-bootstrap';
-import axios from 'axios';
-import Axios from '../../Lib/Common/Axios';
-import { queryParams } from '../../Lib/Helpers/Routes';
-import * as DataTableHelper from '../../Lib/Helpers/DataTable';
-import Alert from '../../Components/Alert';
-import ColumnFilters from './ColumnFilters';
-import FormModal from '../Modals/Default';
-import * as Session from '../../Lib/Helpers/Session';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import ReactTable from "react-table";
+import { Button } from "react-bootstrap";
+import axios from "axios";
+import Axios from "../../Lib/Common/Axios";
+import { queryParams } from "../../Lib/Helpers/Routes";
+import * as DataTableHelper from "../../Lib/Helpers/DataTable";
+import Alert from "../../Components/Alert";
+import ColumnFilters from "./ColumnFilters";
+import FormModal from "../Modals/Default";
+import * as Session from "../../Lib/Helpers/Session";
 
-import 'react-table/react-table.css';
+import "react-table/react-table.css";
 
 /* eslint-disable react/no-unused-state, import/no-extraneous-dependencies, no-console,
 no-use-before-define, react/prop-types, consistent-return, no-param-reassign, no-unneeded-ternary,
@@ -30,7 +30,7 @@ class DataTable extends Component {
     const columns = DataTableHelper.initColumns(
       props,
       this.handleToggleNewFormModal.bind(this),
-      this.handleRefreshData.bind(this),
+      this.handleRefreshData.bind(this)
     );
 
     this.state = {
@@ -49,7 +49,7 @@ class DataTable extends Component {
       axiosData: {},
       axiosCancelToken: null,
       error: false,
-      ...HIDE_FILTERS_STATE,
+      ...HIDE_FILTERS_STATE
     };
     this.handleFetchDataTO = 0;
   }
@@ -74,7 +74,9 @@ class DataTable extends Component {
       return this.props.saveQueryState({ queryString });
     }
 
-    this.props.history.push([this.props.path, this.props.dataTableState.queryString].join('?'));
+    this.props.history.push(
+      [this.props.path, this.props.dataTableState.queryString].join("?")
+    );
   }
 
   saveFilters() {
@@ -90,7 +92,8 @@ class DataTable extends Component {
   }
 
   cancelPostRequest() {
-    if (typeof this.state.axiosCancelToken === 'function') this.state.axiosCancelToken();
+    if (typeof this.state.axiosCancelToken === "function")
+      this.state.axiosCancelToken();
   }
 
   handleFetchData(state, historyPush = true) {
@@ -102,18 +105,24 @@ class DataTable extends Component {
       const pagination = {
         page: this.state.page + 1,
         limit: this.state.pageSize,
-        sorted: this.state.sorted,
+        sorted: this.state.sorted
       };
       const queryObjects = { filtered: this.state.filtered };
       const axiosData = { ...pagination, ...queryObjects };
 
-      if (this.props.dataTableState.queryString) this.setState(SHOW_FILTERS_STATE);
+      if (this.props.dataTableState.queryString)
+        this.setState(SHOW_FILTERS_STATE);
 
-      if (DataTableHelper.shouldPushHistory(this.state.axiosData, queryObjects) && historyPush) {
+      if (
+        DataTableHelper.shouldPushHistory(this.state.axiosData, queryObjects) &&
+        historyPush
+      ) {
         const queryString = queryParams(queryObjects);
         this.props.saveQueryState({ queryString });
 
-        return this.props.history.push([this.props.path, queryString].join('?'));
+        return this.props.history.push(
+          [this.props.path, queryString].join("?")
+        );
       }
 
       return this.handleGetRequest(axiosData);
@@ -128,12 +137,15 @@ class DataTable extends Component {
     const cancelTokenCallback = {
       cancelToken: new CancelToken(cancel => {
         _this.setState({ axiosCancelToken: cancel });
-      }),
+      })
     };
 
     this.setState({ axiosData });
 
-    Axios.get([this.props.dataSource, queryParams(axiosData)].join('?'), cancelTokenCallback)
+    Axios.get(
+      [this.props.dataSource, queryParams(axiosData)].join("?"),
+      cancelTokenCallback
+    )
       .then(response => {
         this.saveFilters();
         this.setState({
@@ -141,20 +153,23 @@ class DataTable extends Component {
           pages: response.data.pages,
           loading: false,
           refreshData: false,
-          error: false,
+          error: false
         });
       })
       .catch(error => {
         if (axios.isCancel(error)) return true;
 
-        console.log('Error: ', error);
+        console.log("Error: ", error);
 
         this.setState({ data: [], loading: false, error: true });
       });
   }
 
   handleOnSortedChange(sorted) {
-    this.handleFetchData({ sorted: DataTableHelper.parseSorted(sorted), page: 0 });
+    this.handleFetchData({
+      sorted: DataTableHelper.parseSorted(sorted),
+      page: 0
+    });
   }
 
   handleOnPageChange(pageIndex) {
@@ -167,7 +182,7 @@ class DataTable extends Component {
     this.handleFetchData({
       pageSize,
       page,
-      height,
+      height
     });
   }
 
@@ -186,7 +201,8 @@ class DataTable extends Component {
   }
 
   componentWillReceiveProps() {
-    if (this.props.dataTableState.queryString) this.setState(SHOW_FILTERS_STATE);
+    if (this.props.dataTableState.queryString)
+      this.setState(SHOW_FILTERS_STATE);
 
     this.cancelPostRequest();
     this.setState({ error: false });

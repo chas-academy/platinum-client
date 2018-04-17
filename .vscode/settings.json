@@ -4,6 +4,6 @@
     "javascript.format.enable": false,
     "flow.useNPMPackagedFlow": true,
     "eslint.autoFixOnSave": true,
-    "prettier.singleQuote": false,
+    "prettier.singleQuote": true,
     "prettier.trailingComma": "es5",
 }
