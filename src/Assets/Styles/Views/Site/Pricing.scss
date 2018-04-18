@@ -1,12 +1,11 @@
-.parent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  resize: vertical;
-  overflow: auto;
+.parent-container {
+	height: 100%;
 }
 
-.parent .child {
-  resize: vertical;
-  overflow: auto;
+.table-container {
+  align: self;
+}
+
+.table {
+
 }

@@ -4,13 +4,13 @@ import GetStarted from '../../Components/Buttons/GetStarted'
 import { Header, Table, Icon } from 'semantic-ui-react'
 
 const Pricing = () => (
-  <div className='ui center aligned basic segment'>
+  <div className='ui center aligned basic segment parent-container'>
 
     <h2 className='headline'>Pricing</h2>
 
-    	<div className='parent'>
+    	<div className='table-container'>
 
-		  <Table celled padded unstackable className='child'>
+		  <Table celled padded unstackable className='table'>
 		  
 		    <Table.Header>
 		      <Table.Row>
