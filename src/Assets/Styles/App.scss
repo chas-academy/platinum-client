@@ -1,14 +1,18 @@
-html, body {
-
+html body { 
+  background: no-repeat url('../Images/background.jpeg'); 
+  background-size: cover; 
 }
+
 html {
   min-height: 100%;
   position: relative;
 }
+
 body {
   height: 100%;
   margin-bottom: 60px;
 }
+
 .navbar-inverse {
   border-radius: 0;
 }
@@ -39,6 +43,7 @@ body {
     }
 }
 
+<<<<<<< HEAD
 @media only screen and (max-width: 480px) and (orientation: portrait) {
     .footer {
         position: relative;
@@ -52,9 +57,12 @@ body {
         }
     }
 
+=======
+>>>>>>> 26abf36a1d2aa867f9357d2dfd4096a7ac106c19
 .no-padding {
   padding: 0;
 }
+
 .columns-2 {
   column-count: 2;
 }
