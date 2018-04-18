@@ -4,7 +4,6 @@ import { Header, Button} from 'semantic-ui-react'
 
 /* eslint-disable react/prefer-stateless-function */
 export default class Home extends Component {
-<<<<<<< HEAD
     render() {
         return (
             <div className="home-view">
@@ -26,18 +25,6 @@ export default class Home extends Component {
             </div>
         )
     }
-=======
-  render() {
-    return (
-      <div className="home-view">
-        <header className="home-view-header">
-          <img src={ReactLogo} className="home-view-logo" alt="React Logo" />
-          <PageTitle />
-        </header>
-      </div>
-    );
-  }
->>>>>>> 275ae7753088b96f634263cb535b174bd6ef1129
 }
 
 /* eslint-enable react/prefer-stateless-function */
