@@ -127,3 +127,28 @@ Note: To view the Docker containers, open another terminal console then enter `d
 | Redirect User     | `redirect@email.com`   | When `redirect` is set with complete URL, e.i. `https://github.com/anthub-services`, user shall be redirected to external page if no location path (referrer) found on the Sign In page |
 | Blocked User      | `blocked@email.com`    | User is signed in but the account is blocked |
 | Unauthorized User | `<any invalid email>`  | Simply enter wrong `email` and/or `password` |
+
+## Workspace Settings
+
+Workspace settings found in .vscode/settings  
+If you are not using vs code please add corresponding settings for your editor.  
+It's alsow recomended to install the folowing plugins for vs code:  
+
+ESLint  
+Prettier  
+Flow Language Suport  
+
+These plugins allong with the workspace settings will help you to auto-format  
+you code on save as well as gic you tipps on how to writ better code
+
+## Flow
+
+To install flow on your machine write:  
+`brew install flow` (for mac & linux)  
+`npm install --global flow-bin` (for windows)
+
+
+## Husky
+
+Precommit-hook added which runs eslint to autoformat (if possible) before commit.  
+If there are mistakes in the code that prettier can't correct, you will not be allowed to commit
