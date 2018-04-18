@@ -15,3 +15,4 @@ export default {
   Pricing,
   CreateQuestion
 }
+

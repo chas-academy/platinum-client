@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
-import { PageTitle } from '../../Lib/Common/Views'
+import React, { Component } from 'react';
+import { PageTitle } from '../../Lib/Common/Views';
+
+/* eslint-disable react/prefer-stateless-function */
 
 export default class Settings extends Component {
   render() {
@@ -7,6 +9,8 @@ export default class Settings extends Component {
       <div className="settings-view">
         <PageTitle title="Settings" appName="Admin" />
       </div>
-    )
+    );
   }
 }
+
+/* eslint-enable react/prefer-stateless-function */

@@ -1,0 +1,6 @@
+{
+    "name": "client",
+    "project": "platinum",
+    "domain": "platinum-dev.client.chas.school",
+    "template": "docker-compose"
+}
