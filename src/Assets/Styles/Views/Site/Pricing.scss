@@ -1,0 +1,12 @@
+.parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  resize: vertical;
+  overflow: auto;
+}
+
+.parent .child {
+  resize: vertical;
+  overflow: auto;
+}

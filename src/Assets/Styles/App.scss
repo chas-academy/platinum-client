@@ -23,12 +23,15 @@ body {
     height: 30px;
     position: absolute;  
     bottom: 0;
+  background-color: #eee;
+  >.container {
     text-align: center;
     margin-top: 70px;
     border-top: 1px solid #E5E5E5;
     margin: 5em 0em 0em;
     padding: 5em 0em;
     }
+}
 
 @media only screen and (max-height: 640px) and (orientation: landscape) {
 .footer {
@@ -43,7 +46,6 @@ body {
     }
 }
 
-<<<<<<< HEAD
 @media only screen and (max-width: 480px) and (orientation: portrait) {
     .footer {
         position: relative;
@@ -57,8 +59,6 @@ body {
         }
     }
 
-=======
->>>>>>> 26abf36a1d2aa867f9357d2dfd4096a7ac106c19
 .no-padding {
   padding: 0;
 }
