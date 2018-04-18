@@ -127,20 +127,23 @@ export default class SignUp extends Component {
 }
 
 const initFormData = {
+  firstName: '',
+  lastName: '',
   email: '',
-  password: ''
+  password: '',
+  confirmPassword: ''
 }
 
 const Schema = {
   'type': 'object',
   'properties': {
-    'first name': {
+    'firstName': {
       'type': 'string',
       'title': 'First Name'
     },
-    'surname': {
+    'lastName': {
       'type': 'string',
-      'title': 'Surname'
+      'title': 'Last Name'
     },
     'email': {
       'type': 'string',
@@ -150,7 +153,7 @@ const Schema = {
       'type': 'string',
       'title': 'Password'
     },
-    'confirm password': {
+    'confirmPassword': {
       'type': 'string',
       'title': 'Confirm Password'
     }
@@ -159,13 +162,12 @@ const Schema = {
 
 const UISchema = {
   'ui:rootFieldId': 'log_in',
-  'first name': {
+  'firstName': {
     'ui:autofocus': true,
-    'ui:placeholder': 'Enter your first name'
+    'ui:placeholder': 'What is your first name?'
   },
-  'surname': {
-    'ui:autofocus': true,
-    'ui:placeholder': 'Enter your surname'
+  'lastName': {
+    'ui:placeholder': 'And your last name?'
   },
   'email': {
     'ui:widget': 'email',
@@ -173,16 +175,26 @@ const UISchema = {
   },
   'password': {
     'ui:widget': 'password',
-    'ui:placeholder': 'Enter your password'
+    'ui:placeholder': 'Password'
   },
-  'confirm password': {
-    'ui:widget': 'password',
-    'ui:placeholder': 'Enter your password again'
+  'confirmPassword': {
+    
+    'ui:placeholder': 'Confirm your password'
   }
 }
 
 function validate(formData, errors) {
   let input
+
+  if (formData.firstName === undefined || formData.firstName === '') {
+    errors.firstName.addError('First name is required')
+    input = 'firstName'
+  }
+
+  if (formData.lastName === undefined || formData.lastName === '') {
+    errors.lastName.addError('Last name is required')
+    input = 'lastName'
+  }
 
   if (formData.email === undefined || formData.email === '') {
     errors.email.addError('Email is required.')
@@ -192,6 +204,11 @@ function validate(formData, errors) {
   if (formData.password === undefined || formData.password === '') {
     errors.password.addError('Password is required.')
     input = input || 'password'
+  }
+
+  if (formData.confirmPassword === undefined || formData.confirmPassword === '') {
+    errors.confirmPassword.addError('Confirm your password...')
+    input = input || 'confirmPassword'
   }
 
   FormHelper.setFocus(UISchema, input)
