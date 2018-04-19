@@ -19,7 +19,7 @@ export default class SignUp extends Component {
       formData: initFormData,
       alertMessage: {},
       showAlertMessage: false,
-      isSigningIn: false,
+      isSigningUp: false,
 
     }
   }
@@ -30,58 +30,10 @@ export default class SignUp extends Component {
       formData: formData,
       alertMessage: {
         type: 'info',
-        message: 'Signing up...'
+        message: 'It is not possible to sign up YET - but soon!...'
       },
       showAlertMessage: true
     })
-
-    const token = JWT.sign(formData, process.env.REACT_APP_API_JWT_SECRET)
-
-    Axios
-      .post(process.env.REACT_APP_API_SIGN_IN_URL, { token })
-      .then(response => {
-        const { token, redirect } = response.data
-
-        Session.store({ token })
-
-        this.setState({
-          alertMessage: {
-            type: 'success',
-            message: 'Redirecting...'
-          },
-          redirect: redirect ? redirect : this.state.redirect
-        })
-
-        if (!this.state.locationState && redirect && redirect.indexOf('http') === 0)
-          return window.location.href = redirect
-
-        const _this = this
-
-        setTimeout(function(){
-          _this.setState({
-            formData: initFormData,
-            isSigningIn: false
-          })
-          _this.props.auth(true);
-        }, 500)
-      })
-      .catch(error => {
-        let message  = 'Unable to process your request. Please check your internet connection. If problem persists, contact support.'
-
-        if (error.response && error.response.data.message)
-          message = error.response.data.message
-
-        console.log('Error: ', error)
-
-        this.setState({
-          alertMessage: {
-            type: 'danger',
-            message: message
-          },
-          showAlertMessage: true,
-          isSigningIn: false
-        })
-      })
   }
 
   render() {
@@ -166,7 +118,7 @@ const UISchema = {
     'ui:placeholder': 'Password'
   },
   'confirmPassword': {
-    
+    'ui:widget': 'password',
     'ui:placeholder': 'Confirm your password'
   }
 }
@@ -194,9 +146,10 @@ function validate(formData, errors) {
     input = input || 'password'
   }
 
-  if (formData.confirmPassword === undefined || formData.confirmPassword === '') {
-    errors.confirmPassword.addError('Confirm your password...')
-    input = input || 'confirmPassword'
+  if (formData.confirmPassword === undefined || formData.confirmPassword === '' || 
+      formData.confirmPassword !== formData.password) {
+      errors.confirmPassword.addError('Confirm your password...')
+      input = input || 'password'
   }
 
   FormHelper.setFocus(UISchema, input)
