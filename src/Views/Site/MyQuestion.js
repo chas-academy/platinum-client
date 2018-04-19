@@ -27,16 +27,21 @@ export default class MyQuestion extends Component {
 
     return (
 
-            <Accordion  className="center-content-column" >
+     
+      <div class="ui container">
+      <div class="ui styled accordion">
+     
+            <Accordion  className="center-content-grid">
         
             <Accordion.Title  className="center-content-row" active={activeIndex === 0} index={0} onClick={this.handleAccordion}>
                 <Icon name='dropdown' />
                   Do you like dogs?
+                  
                 </Accordion.Title>
                 <Accordion.Content  active={activeIndex === 0}>
                 <Poll className="center-content" />
                 </Accordion.Content>
-        
+       
               <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleAccordion}>
                   <Icon name='dropdown' />
                   Superman or Batman?
@@ -44,7 +49,7 @@ export default class MyQuestion extends Component {
                         <Accordion.Content active={activeIndex === 1}>
                         <Poll className ="center-content" />
                           </Accordion.Content>
-
+                          
                <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleAccordion}>
                     <Icon name='dropdown' />
                      Trump or Obama?
@@ -53,7 +58,9 @@ export default class MyQuestion extends Component {
                         <Poll className ="center-content" />
                         </Accordion.Content>
                        </Accordion>
-                       
+                     
+                       </div>
+                       </div>
                         
 
           

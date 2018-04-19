@@ -24,14 +24,14 @@ export default class Poll extends Component {
             <button class="ui orange basic button"   >Live results</button>
             
             { this.state.active &&
-            <div>
+            <div class="btn-wrapper">
                 <h3>Share Poll</h3>
                 <button class="ui basic button yellow" >Link</button>
                 <button class="ui basic button yellow"  >QR-Code</button>
             </div>
             }
-            
-        </div>
+          </div>  
+        
     );
   }
 }

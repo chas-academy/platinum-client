@@ -1,41 +1,38 @@
 
 
 
-.center-content-column {
+.center-content-grid {
     display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+
+
   
 
 }
-    
-   
-.header{
-    text-align: center;
-}
 
-h3{
-    
-    text-align: center;
-}
 
 .center-content-row {
     display:flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    flex-wrap: no-wrap;
+    justify-content: space-between;
+    
 
 }
 .center-content{
    
-    width: 100px;
-    margin: 10px;
-    text-align:center;
-    line-height: 75px;
-    font-size: 20px;
-
-
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: stretch;
 }
 
 
