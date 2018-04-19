@@ -1,27 +1,29 @@
-import React, { Component } from 'react'
-import DataTable from '../DataTable'
-import { isAuthorised } from '../../../Lib/Helpers/Session'
-import AdminUserForm from '../../Forms/Admin/User'
-import AdminUserStatic from '../../Forms/Static/Admin/User'
-import Config from '../../../Config/Admin/Users/DataTable'
-import DELETE_USER from '../../../Config/Admin/Users/DeleteUser'
+import React, { Component } from 'react';
+import DataTable from '../DataTable';
+import { isAuthorised } from '../../../Lib/Helpers/Session';
+import AdminUserForm from '../../Forms/Admin/User';
+import AdminUserStatic from '../../Forms/Static/Admin/User';
+import Config from '../../../Config/Admin/Users/DataTable';
+import DELETE_USER from '../../../Config/Admin/Users/DeleteUser';
 
 const NEW_FORM_OPTION = {
   title: 'New User',
-  component: AdminUserForm
-}
+  component: AdminUserForm,
+};
 const EDIT_FORM_OPTION = {
   title: 'Edit User',
-  component: AdminUserForm
-}
+  component: AdminUserForm,
+};
 const VIEW_RECORD_OPTION = {
   title: 'User',
-  component: AdminUserStatic
-}
+  component: AdminUserStatic,
+};
+
+/* eslint-disable react/prefer-stateless-function, prefer-destructuring */
 
 export default class Users extends Component {
   render() {
-    const props = this.props
+    const props = this.props;
 
     return (
       <DataTable
@@ -40,6 +42,8 @@ export default class Users extends Component {
         viewRecordOption={VIEW_RECORD_OPTION}
         confirmModal={DELETE_USER}
       />
-    )
+    );
   }
 }
+
+/* eslint-enable react/prefer-stateless-function, prefer-destructuring */
