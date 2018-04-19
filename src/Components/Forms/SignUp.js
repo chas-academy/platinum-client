@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import JWT from 'jsonwebtoken'
 import Form from 'react-jsonschema-form'
 import Alert from '../Alert'
-import Axios from '../../Lib/Common/Axios'
 import * as FormHelper from '../../Lib/Helpers/Form'
-import * as Session from '../../Lib/Helpers/Session'
 import { Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
