@@ -5,6 +5,8 @@ import Redux from './Redux'
 import SignIn from './SignIn'
 import Pricing from './Pricing'
 import CreateQuestion from './CreateQuestion'
+import About from './About'
+
 
 export default {
   Home,
@@ -13,6 +15,7 @@ export default {
   Redux,
   SignIn,
   Pricing,
-  CreateQuestion
+  CreateQuestion,
+  About
 }
 
