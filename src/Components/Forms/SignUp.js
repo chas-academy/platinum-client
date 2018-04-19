@@ -5,6 +5,8 @@ import Alert from '../Alert'
 import Axios from '../../Lib/Common/Axios'
 import * as FormHelper from '../../Lib/Helpers/Form'
 import * as Session from '../../Lib/Helpers/Session'
+import { Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 export default class SignUp extends Component {
 
@@ -83,17 +85,6 @@ export default class SignUp extends Component {
   }
 
   render() {
-    // if (Session.token() && this.props.IsSignedIn) {
-    //   const locationState = this.state.locationState
-    //   let referrer = this.state.redirect;
-
-    //   if (locationState && locationState.from) {
-    //     const { pathname, search } = locationState.from
-    //     referrer = [pathname, search].join('')
-    //   }
-
-    //   return <Redirect to={referrer} />
-    // }
 
     return (
       <div className="form-wrapper">
@@ -113,13 +104,10 @@ export default class SignUp extends Component {
           ErrorList={FormHelper.errorList}
           onSubmit={this.onSubmit}
         >
-          <button
-            type="submit"
-            className="btn btn-primary form-control"
-            disabled={this.state.isSigningIn}
-          >
-            Sign Up
-          </button>
+        <Button className="button__signup" basic color='orange' content='SIGN UP' type="submit"
+            disabled={this.state.isSigningUp} />
+
+        <Link className="sign__in-link"to ="/sign-in">Already a member? Click here!</Link>
         </Form>
       </div>
     )
