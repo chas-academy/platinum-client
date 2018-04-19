@@ -1,28 +1,33 @@
-import React, { Component } from 'react'
-import ModalDefault from '../../Modals/Default'
+import React, { Component } from 'react';
+import ModalDefault from '../../Modals/Default';
+
+/* eslint-disable prefer-destructuring */
 
 export default class EditRecord extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state = { showModal: false }
+    this.state = { showModal: false };
+
+    this.handleToggleFormModal = this.handleToggleFormModal.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
   }
 
   handleToggleFormModal() {
-    this.setState({ showModal: !this.state.showModal })
+    this.setState({ showModal: !this.state.showModal });
   }
 
   handleOpenModal(e) {
-    e.preventDefault()
-    this.setState({ showModal: true })
+    e.preventDefault();
+    this.setState({ showModal: true });
   }
 
   render() {
-    const props = this.props
+    const props = this.props;
 
-    if (!props.showEditRecord) return null
+    if (!props.showEditRecord) return null;
 
-    const resourceId = props.resource[props.resourceIdKey]
+    const resourceId = props.resource[props.resourceIdKey];
 
     return (
       <span>
@@ -32,16 +37,18 @@ export default class EditRecord extends Component {
           enableModal={props.showEditRecord}
           showModal={this.state.showModal}
           onSuccess={props.onSuccess}
-          toggleModalHandler={this.handleToggleFormModal.bind(this)}
+          toggleModalHandler={this.handleToggleFormModal}
         />
         <a
           href={[props.path, resourceId, 'edit'].join('/')}
           className="datatable-actions-btn"
-          onClick={this.handleOpenModal.bind(this)}
+          onClick={this.handleOpenModal}
         >
           Edit
         </a>
       </span>
-    )
+    );
   }
 }
+
+/* eslint-enable prefer-destructuring */

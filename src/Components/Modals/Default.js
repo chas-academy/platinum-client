@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
-import { Modal } from 'react-bootstrap'
+import React, { Component } from 'react';
+import { Modal } from 'react-bootstrap';
+
+/* eslint-disable react/prefer-stateless-function, react/prop-types, prefer-destructuring */
 
 export default class Default extends Component {
   render() {
-    const props = this.props
+    const props = this.props;
 
-    if (!props.enableModal) return null
+    if (!props.enableModal) return null;
 
-    const { title, component } = props.formOption
-    const ModalContent = component
+    const { title, component } = props.formOption;
+    const ModalContent = component;
 
     return (
       <Modal show={props.showModal} onHide={props.toggleModalHandler}>
@@ -18,6 +20,8 @@ export default class Default extends Component {
 
         <ModalContent {...props} isModal />
       </Modal>
-    )
+    );
   }
 }
+
+/* eslint-enable react/prefer-stateless-function, react/prop-types, prefer-destructuring */
