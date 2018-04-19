@@ -26,10 +26,11 @@ export default class MyQuestion extends Component {
     const { activeIndex } = this.state
 
     return (
-
-  <div className="center-content-column">
-
+<div>
+      <div class="ui fluid container">
     <h2 className="headline">Created Polls</h2>
+   
+  
    
             <Accordion  className="center-content-column" >
         
@@ -57,7 +58,9 @@ export default class MyQuestion extends Component {
                         <Poll className ="center-content" />
                         </Accordion.Content>
                        </Accordion>
-                        </div>
+                       </div>
+                       </div>
+                        
 
           
   );

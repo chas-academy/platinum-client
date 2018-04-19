@@ -17,7 +17,7 @@ export default class Poll extends Component {
 
   render() {
     return(
-        <div class="fluid" >
+        <div  >
             <button class="ui blue basic button"  >Edit</button>
             <button class="ui orange basic button"  onClick={this.togglePoll}>Activate</button>
 
