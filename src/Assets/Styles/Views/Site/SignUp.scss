@@ -1,5 +1,5 @@
 .sign-up-view {
-    .form-wrapper {
+    .form-wrapper, .button__signup {
       justify-content: center;
       align-items: center;
       margin: auto;
@@ -9,11 +9,19 @@
       }
     }
   }
-    .page-title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: auto;
-      margin-top: 1rem;
-      margin-bottom: 3rem;
+
+.page-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
   }
+
+  .sign__in-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}

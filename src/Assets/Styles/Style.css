@@ -811,13 +811,13 @@ label {
     .sign-in-view .form-wrapper {
       width: 100%; } }
 
-.sign-up-view .form-wrapper {
+.sign-up-view .form-wrapper, .sign-up-view .button__signup {
   justify-content: center;
   align-items: center;
   margin: auto;
   width: 400px; }
   @media (max-width: 430px) {
-    .sign-up-view .form-wrapper {
+    .sign-up-view .form-wrapper, .sign-up-view .button__signup {
       width: 100%; } }
 
 .page-title {
@@ -827,3 +827,9 @@ label {
   margin: auto;
   margin-top: 1rem;
   margin-bottom: 3rem; }
+
+.sign__in-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem; }
