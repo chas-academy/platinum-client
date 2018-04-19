@@ -26,8 +26,12 @@ export default class MyQuestion extends Component {
     const { activeIndex } = this.state
 
     return (
+
+  <div className="center-content-column">
+
+    <h2 className="headline">Created Polls</h2>
    
-            <Accordion fluid styled className="center-content-column" >
+            <Accordion  className="center-content-column" >
         
             <Accordion.Title  className="center-content-row" active={activeIndex === 0} index={0} onClick={this.handleAccordion}>
                 <Icon name='dropdown' />
@@ -53,7 +57,7 @@ export default class MyQuestion extends Component {
                         <Poll className ="center-content" />
                         </Accordion.Content>
                        </Accordion>
-                        
+                        </div>
 
           
   );
