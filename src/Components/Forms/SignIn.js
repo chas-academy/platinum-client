@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import JWT from 'jsonwebtoken';
-import Form from 'react-jsonschema-form';
-import Alert from '../Alert';
-import Axios from '../../Lib/Common/Axios';
-import * as FormHelper from '../../Lib/Helpers/Form';
-import * as Session from '../../Lib/Helpers/Session';
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import JWT from 'jsonwebtoken'
+import Form from 'react-jsonschema-form'
+import Alert from '../Alert'
+import Axios from '../../Lib/Common/Axios'
+import * as FormHelper from '../../Lib/Helpers/Form'
+import * as Session from '../../Lib/Helpers/Session'
+import { Button } from 'semantic-ui-react'
+import { Link } from "react-router-dom"
 
 /* eslint-disable no-console, no-use-before-define, react/prop-types, consistent-return,
 no-shadow, no-return-assign, no-underscore-dangle, prefer-destructuring */
@@ -122,13 +124,12 @@ export default class SignIn extends Component {
           ErrorList={FormHelper.errorList}
           onSubmit={this.onSubmit}
         >
-          <button
-            type="submit"
-            className="btn btn-primary form-control"
-            disabled={this.state.isSigningIn}
-          >
-            Sign In
-          </button>
+
+        <Button className="button__signin" basic color='orange' content='SIGN IN' type="submit"
+            disabled={this.state.isSigningIn} />
+
+          <Link className="sign__up-link"to ="/sign-up">Not a member? Click here!</Link>
+        
         </Form>
       </div>
     );
