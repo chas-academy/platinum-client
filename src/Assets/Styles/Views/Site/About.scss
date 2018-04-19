@@ -1,3 +1,10 @@
+.headline {
+	margin-bottom: 5%;
+}
+
+.movedownstuff {
+}
+
 .parentbox {
 	margin: 0 auto;
 	display: flex;
@@ -9,8 +16,9 @@
 .aboutbox {
 	width: 40%;
   	padding: 20px;
-  	overflow: auto;
-  	@media (max-width: 430px) {
+	overflow: auto;
+	margin: 50px;
+  	@media (max-width: 600px) {
       width: 100%;
     }
 }
