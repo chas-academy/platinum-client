@@ -6,7 +6,7 @@ import SignUpForm from "../../Components/Forms/SignUp";
 export default class SignUp extends Component {
   render() {
     return (
-      <div className="sign-in-view">
+      <div className="sign-up-view">
         <PageTitle title="Sign Up" />
         <SignUpForm />
       </div>

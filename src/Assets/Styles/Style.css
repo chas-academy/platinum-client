@@ -810,3 +810,20 @@ label {
   @media (max-width: 430px) {
     .sign-in-view .form-wrapper {
       width: 100%; } }
+
+.sign-up-view .form-wrapper {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 400px; }
+  @media (max-width: 430px) {
+    .sign-up-view .form-wrapper {
+      width: 100%; } }
+
+.page-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 3rem; }
