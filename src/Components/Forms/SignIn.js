@@ -119,11 +119,9 @@ export default class SignIn extends Component {
         >
 
         <Button className="button__signin" basic color='orange' content='SIGN IN' type="submit"
-            
             disabled={this.state.isSigningIn} />
 
-
-          <Link to ="/sign-up">Not a member? Click here!</Link>
+          <Link className="sign__up-link"to ="/sign-up">Not a member? Click here!</Link>
         
         </Form>
       </div>
