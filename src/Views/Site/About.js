@@ -1,28 +1,33 @@
-import React, { Component } from "react";
-import GetStarted from '../../Components/Buttons/GetStarted'
-import { Message } from 'semantic-ui-react'
+import React from 'react';
+import GetStarted from '../../Components/Buttons/GetStarted';
+import { Message } from 'semantic-ui-react';
 
-export default class About extends Component {
-  render() {
-    return (
-    	<div className='ui center aligned basic segment'>
-    		
-    		<h2 className='headline'>About us</h2>
+const About = () => (
+  <div className="ui center aligned basic segment">
 
-	    		<Message className='aboutbox'>
-	    			Which mood are you in today?
-					Fun or serious? Don’t worry you don’t have to choose -  because you can use this app  just for fun or also in some  serious business. Great huh?!
+    <h2 className="headline">About us</h2>
 
-					Just click the button and you 
-					are ready to create your first
-					poll for free which you can 
-					share with whoever! It’s super
-					easy, we promise. And fun too!
-	    		</Message>
+    <div className="ui center aligned basic segment parentbox">
 
-    		<GetStarted />
+      <Message compact className="aboutbox">
+        Which mood are you in today&#63;
+        Fun or serious? Don’t worry
+        you don’t have to choose -
+        because you can use this app
+        just for fun or also in some
+        serious business. Great huh?!
 
-    	</div>
-    );
-  }
-}
+        Just click the button and you
+        are ready to create your first
+        poll for free which you can
+        share with whoever! It’s super
+        easy, we promise. And fun too!
+      </Message>
+    </div>
+
+    <GetStarted />
+
+  </div>
+);
+
+export default About;
