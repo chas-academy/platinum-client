@@ -6,13 +6,13 @@ import { Icon, List, Grid } from 'semantic-ui-react';
 export default class Footer extends Component {
   render() {
     return (
-      <footer className="footer">
+      <footer className="footer" >
         <Grid centered stackable columns={3}>
-          <Grid.Column textAlign="center">
+          <Grid.Column textAlign="center" className="center-content-column">
             <b>PLATINUM</b>
           </Grid.Column>
 
-          <Grid.Column textAlign="center">
+          <Grid.Column textAlign="center" className="center-content-column">
             <Icon circular size="large" name="facebook square" />
             <Icon circular size="large" name="twitter square" />
             <Icon circular size="large" name="slack" />
@@ -23,7 +23,7 @@ export default class Footer extends Component {
             <Grid columns={2} centered>
               <Grid.Row centered>
                 <Grid.Column>
-                  <List className="center-content">
+                  <List className="center-content-column">
                     <List.Item icon="marker" content="Elektravägen 29" />
                     <List.Item icon="mail" content={<a href="mailto:mail@mail.com">mail@mail.com</a>} />
                     <List.Item icon="phone" content="070-000 00 00" />
