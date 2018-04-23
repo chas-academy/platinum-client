@@ -5,7 +5,7 @@ import { PageTitle } from '../../Lib/Common/Views'
 export default class MyQuestionnaires extends Component {
   render() {
     return (
-      <div className="center-content-grid">
+      <div className="center-content-grid max-width-25 margin-auto">
         <PageTitle title="My Polls" />
         <Questionnaires />;
       </div>

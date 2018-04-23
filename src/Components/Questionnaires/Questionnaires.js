@@ -7,7 +7,7 @@ export default class Questionnaires extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      activeIndex: 0,
+      activeIndex: -1,
       questionnaires:
       [
         {title: 'Exempel 1'},
@@ -38,11 +38,9 @@ export default class Questionnaires extends Component {
     });
 
     return (
-     
-      <Accordion  fluid>
-        {myQuestionnaires}
-      </Accordion>
-                     
+        <Accordion fluid>
+          {myQuestionnaires}
+        </Accordion>       
           
   );
 
