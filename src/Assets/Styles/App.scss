@@ -1,6 +1,3 @@
-html, body {
-
-}
 html {
   min-height: 100%;
   position: relative;
@@ -30,4 +27,8 @@ body {
 }
 .columns-2 {
   column-count: 2;
+}
+
+p {
+  margin: 0;
 }
