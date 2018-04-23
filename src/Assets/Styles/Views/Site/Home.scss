@@ -1,18 +1,13 @@
 .home-view {
-  text-align: center;
-  &-logo {
-    animation: home-logo-spin infinite 20s linear;
-    height: 200px;
-  }
-  &-header {
-    padding: 20px;
-  }
-  .page-title {
-    font-size: 1.5em;
-    font-weight: normal;
-  }
-}
-@keyframes home-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    text-align: center;
+
+    width: 100%;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
 }
