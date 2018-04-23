@@ -7,7 +7,7 @@ export default class MyQuestionnaires extends Component {
     return (
       <div className="center-content-grid max-width-25 margin-auto">
         <PageTitle title="My Polls" />
-        <Questionnaires />;
+        <Questionnaires />
       </div>
     )
   }
