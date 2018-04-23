@@ -6,6 +6,7 @@ import SignIn from './SignIn'
 import ListView from './ListView'
 import CreateQuestion from './CreateQuestion'
 import MyQuestion from './MyQuestion'
+import ResultView from './ResultView'
 
 export default {
   Home,
@@ -15,6 +16,7 @@ export default {
   SignIn,
   CreateQuestion,
   ListView,
-  MyQuestion
+  MyQuestion,
+  ResultView
 
 }
