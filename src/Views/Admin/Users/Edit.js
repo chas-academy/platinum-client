@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
-import { PageTitle } from '../../../Lib/Common/Views'
-import AdminUserForm from '../../../Components/Forms/Admin/User'
+import React, { Component } from 'react';
+import { PageTitle } from '../../../Lib/Common/Views';
+import AdminUserForm from '../../../Components/Forms/Admin/User';
+
+/* eslint-disable react/prefer-stateless-function */
 
 export default class Edit extends Component {
   render() {
@@ -11,6 +13,8 @@ export default class Edit extends Component {
           <AdminUserForm {...this.props} />
         </div>
       </div>
-    )
+    );
   }
 }
+
+/* eslint-enable react/prefer-stateless-function */

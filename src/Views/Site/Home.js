@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Header, Button} from 'semantic-ui-react'
+import { Header, Button } from 'semantic-ui-react'
 
+/* eslint-disable react/prefer-stateless-function */
 export default class Home extends Component {
     render() {
         return (
@@ -24,3 +25,5 @@ export default class Home extends Component {
         )
     }
 }
+
+/* eslint-enable react/prefer-stateless-function */

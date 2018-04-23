@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import { PageTitle } from '../../Lib/Common/Views'
-import StudentList from '../../Redux/Containers/Students/StudentList'
+import React, { Component } from 'react';
+import { PageTitle } from '../../Lib/Common/Views';
+import StudentList from '../../Redux/Containers/Students/StudentList';
 
+/* eslint-disable react/prefer-stateless-function */
 export default class Redux extends Component {
   render() {
     return (
@@ -12,6 +13,8 @@ export default class Redux extends Component {
           <StudentList />
         </div>
       </div>
-    )
+    );
   }
 }
+
+/* eslint-enable react/prefer-stateless-function */
