@@ -5,7 +5,7 @@ import Redux from './Redux'
 import SignIn from './SignIn'
 import ListView from './ListView'
 import CreateQuestion from './CreateQuestion'
-import MyQuestion from './MyQuestion'
+import MyQuestionnaires from './MyQuestionnaires'
 
 export default {
   Home,
@@ -15,6 +15,6 @@ export default {
   SignIn,
   CreateQuestion,
   ListView,
-  MyQuestion
+  MyQuestionnaires
 
 }
