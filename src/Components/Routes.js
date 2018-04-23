@@ -15,8 +15,9 @@ export default class Routes extends Component {
           <SiteRoute exact path="/redux" component={Site.Redux} />
           <SiteRoute exact path="/sign-in" component={Site.SignIn} />
           <SiteRoute exact path="/sign-up" component={Site.SignUp} />
-          <SiteRoute exact path="/pricing" component={Site.Pricing} />        
-
+          <SiteRoute exact path="/pricing" component={Site.Pricing} />
+          <SiteRoute exact path="/create-question" component={Site.CreateQuestion} />
+          <SiteRoute exact path="/my-questionnaires" component={Site.MyQuestionnaires} />
           <AuthSiteRoute exact path="/my-profile" component={Site.MyProfile} />
 
           <AdminRoute
