@@ -18,7 +18,6 @@ export default class Footer extends Component {
             <Icon circular size="large" name="slack" />
             <Icon circular size="large" name="instagram" />
           </Grid.Column>
-
           <Grid.Column textAlign="center">
             <Grid columns={2} centered>
               <Grid.Row centered>

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Button } from 'semantic-ui-react';
 
 // onClick={this.redirect('/start') basically linking to the start spage.

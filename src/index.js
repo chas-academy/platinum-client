@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'semantic-ui-css/semantic.min.css';
 import './Assets/Styles/Style.css';
 
-
 /* eslint-disable no-param-reassign, no-underscore-dangle */
 
 function initReduxDevTools() {

@@ -7,6 +7,8 @@ import SignUp from './SignUp';
 import Pricing from './Pricing';
 import CreateQuestion from './CreateQuestion';
 import MyQuestionnaires from './MyQuestionnaires';
+import About from './About';
+
 
 export default {
   Home,
@@ -18,4 +20,6 @@ export default {
   Pricing,
   CreateQuestion,
   MyQuestionnaires,
+  About,
 };
+

@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   react_client:
-    container_name: react_client
+    container_name: platinum-dev-react_client
     build: .
     image: react_client
     working_dir: /home/node/app
