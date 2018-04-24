@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/chas-academy/project-app-boilerplate/issues"
   },
-  "homepage": "https://github.com/chas-academy/project-app-boilerplate/tree/master",
+  "homepage": "",
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "3.3.7",
