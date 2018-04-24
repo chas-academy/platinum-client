@@ -6,7 +6,7 @@ import { Header, Table, Icon } from 'semantic-ui-react';
 const Pricing = () => (
   <div className="ui center aligned basic segment parent-container">
 
-    <PageTitle title="Sign In" className="headline" />
+    <PageTitle title="Pricing" className="headline" />
 
     <div className="table-container">
 
