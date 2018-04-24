@@ -7,7 +7,7 @@ import { Button } from 'semantic-ui-react';
 const GetStarted = () => (
   <div className="ui center aligned basic segment">
 
-    <Button padded centered size="huge" className="centered">{'Let\'s get started!'}</Button>
+    <Button size="huge" className="centered">{'Let\'s get started!'}</Button>
 
   </div>
 );
