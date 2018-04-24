@@ -1,6 +1,6 @@
 {
-    "Name": "PROJECT_NAME",
-    "Project": "Platinum-Client",
-    "Domain": "TRAEFIK_ENV.chas.school",
-    "Template": "dockerfile"
+    "name": "PROJECT_NAME",
+    "project": "platinum-client",
+    "domain": "TRAEFIK_ENV.chas.school",
+    "template": "dockerfile"
 }
