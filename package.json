@@ -11,9 +11,11 @@
   "bugs": {
     "url": "https://github.com/chas-academy/project-app-boilerplate/issues"
   },
-  "homepage": "https://github.com/chas-academy/project-app-boilerplate/tree/master",
+  "homepage": "",
   "dependencies": {
     "axios": "^0.17.1",
+    "bootstrap": "3.3.7",
+    "immutable": "^3.8.2",
     "jsonwebtoken": "^8.1.1",
     "moment": "^2.21.0",
     "node-sass-chokidar": "^0.0.3",
@@ -29,11 +31,22 @@
     "react-table": "^6.8.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "store": "^2.0.12"
+    "semantic-ui-css": "^2.3.1",
+    "semantic-ui-react": "^0.79.1",
+    "socket.io-client": "^2.1.0",
+    "store": "^2.0.12",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "bootstrap": "3.3.7",
+    "babel-eslint": "^8.2.3",
+    "babel-preset-flow": "^6.23.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "flow-bin": "^0.70.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
     "node-sass": "^4.7.2",
+    "prettier-eslint": "^8.8.1",
     "rebuild-node-sass": "^1.1.0"
   },
   "scripts": {
@@ -43,6 +56,19 @@
     "start": "PORT=7771 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "flow": "flow",
+    "flow start": "flow start",
+    "flow stop": "flow stop",
+    "flow status": "flow status",
+    "flow coverage": "flow coverage",
+    "precommit": "lint-staged",
+    "pretty": "eslint --fix"
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn pretty",
+      "git add"
+    ]
   }
 }

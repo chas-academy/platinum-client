@@ -1,0 +1,80 @@
+.my-questionaires {
+
+    &.center-content-grid {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    
+    .center-content-row {
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: no-wrap;
+        justify-content: space-between;
+        
+    
+    }
+    .center-content{
+        display:flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-content: space-between;
+        align-items: center;
+    }
+    
+    .center-content-column {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    
+    .frame {
+        border: 2px solid #FE9A76;
+        border-radius: 4px;
+    }
+    
+    .margin-tb-1 {
+        margin: 1em 0;
+    } 
+    
+    .space-between  {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width:100%;
+    }
+    
+    .padding-1 {
+        padding: 1em;
+    }
+    
+    .padding-05 {
+        padding: 0.5em;
+    }
+    
+    .margin-t-1 {
+        padding-top: 1em; 
+    }
+    
+    &.max-width-25 {
+        max-width: 35em;
+    }
+    
+    &.margin-auto {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+
+
+
