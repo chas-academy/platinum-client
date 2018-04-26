@@ -27,3 +27,4 @@ render(){
 }
 }
 
+export default ResultView
