@@ -4,38 +4,26 @@ import {Container, Header} from 'semantic-ui-react'
 
 class ResultView extends React.Component{
 
+constructor(props){
+
+    super(props)
+
+    this.state ={
+        active: false
+    }
+}
 render(){
-
-    const result = this.props.result;
     return(
-        <tr>
-            <th colspan="">
-            {result}
-            </th>
-            </tr>
-
+        <div className="margin-tb-1 padding-05">
+        <Container fluid>
+        <Header as="h2">Your {props.name}</Header>
+        <div className="space-between padding-05">
+        <p>{this.props.result.title}</p>
+        </div>
+            </Container>
+                </div>
+                
     );
 }
 }
-
-class ResultView extends React.Component{
-    rendeer(){
-        const result = this.props.product;
-        const poll = poll.result ?
-        result.poll :
-        <span style={{color: 'black'}}>
-        {{poll.result}}
-        </span>;
-
-        return(
-
-            <tr>
-                <td>{result}</td>
-                <td>{result.poll}</td>
-</tr>
-        );
-    }
-}
-
-
 
