@@ -4,9 +4,7 @@ import {Container, Header} from 'semantic-ui-react'
 
 class Result extends React.Component{
 
-const Result = 
-    }
-}
+ 
 render(){
     return(
         <div className="form-wrapper">
