@@ -18,6 +18,8 @@
 @import "./Components/Form.scss";
 @import "./Components/Forms/Admin/User.scss";
 @import "./Components/Modal.scss";
+@import "./Components/Poll/Answer/Vote/Vote.scss";
+@import "./Components/Poll/Answer/Vote/Option.scss";
 
 // Containers
 @import "./Containers/GospelAuthors.scss";
@@ -31,5 +33,6 @@
 @import './Views/Site/SignUp.scss';
 @import './Views/Site/Pricing.scss';
 @import './Views/Site/About.scss';
+@import './Views/Site/Polls.scss';
 
 
