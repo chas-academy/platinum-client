@@ -8,6 +8,7 @@ import Pricing from './Pricing';
 import CreateQuestion from './CreateQuestion';
 import MyQuestionnaires from './MyQuestionnaires';
 import About from './About';
+import Polls from './Polls';
 
 
 export default {
@@ -21,5 +22,6 @@ export default {
   CreateQuestion,
   MyQuestionnaires,
   About,
+  Polls,
 };
 
