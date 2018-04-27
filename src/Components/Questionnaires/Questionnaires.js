@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Accordion } from 'semantic-ui-react';
-import Questionnaire from './Questionnaire';
+import Questionnaire from '../../Redux/Containers/Polls/Questionnaire';
 import uuidv1 from 'uuid/v1';
 
 /* eslint-disable react/prop-types */
@@ -12,11 +12,10 @@ export default class Questionnaires extends Component {
       activeIndex: -1,
       questionnaires:
       [
-        { title: 'Exempel 1' },
-        { title: 'Exempel 2' },
-        { title: 'Exempel 3' },
+        { id: 1, title: 'Exempel 1' },
+        { id: 2, title: 'Exempel 2' },
 
-      ],
+      ], // will be replaced with data fetched from api
     };
   }
 
