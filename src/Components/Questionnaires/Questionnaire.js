@@ -9,12 +9,25 @@ export default class Questionnaire extends Component {
 
     this.state = {
       active: false,
+      pollId: null,
+
     };
 
     this.togglePoll = this.togglePoll.bind(this);
   }
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.polls.activePolls !== this.props.polls.activePolls) {
+      this.setState({
+        pollId: nextProps.polls.activePolls.get('id'),
+      });
+    }
+  }
   togglePoll() {
+    if (this.state.active) {
+      this.props.closePoll(this.state.pollId);
+    } else {
+      this.props.activatePoll(this.props.questionnaire.id);
+    }
     this.setState({ active: !this.state.active });
   }
 
