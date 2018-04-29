@@ -2,10 +2,6 @@ import { connect } from 'react-redux';
 import { activatePoll, closePoll } from '../../Actions/Polls/';
 import Questionnaire from '../../../Components/Questionnaires/Questionnaire';
 
-function mapStateToProps(state) {
-  return { polls: state.Polls };
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     activatePoll: questionnaireId => dispatch(activatePoll(questionnaireId)),
@@ -13,4 +9,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Questionnaire);
+export default connect(null, mapDispatchToProps)(Questionnaire);
