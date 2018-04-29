@@ -48,7 +48,7 @@ export default class Vote extends Component {
     const options = [];
 
     this.props.question.options.forEach((option) => {
-      let color = 'gray';
+      let color = 'grey';
       if (option.id === this.state.selectedOption) {
         color = 'green';
       }
