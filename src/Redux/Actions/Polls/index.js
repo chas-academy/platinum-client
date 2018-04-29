@@ -24,6 +24,20 @@ export const pollClosed = () => ({
 export const rejectedClosePoll = () => ({
   type: ActionTypes.CLOSE_POLL_FAILURE,
 });
+
+export const startFetchActivePoll = () => ({
+  type: ActionTypes.FETCH_ACTIVE_POLL_START,
+});
+
+export const activePollFetched = poll => ({
+  type: ActionTypes.FETCH_ACTIVE_POLL_SUCCESS,
+  poll,
+});
+
+export const rejectedFetchActivePoll = () => ({
+  type: ActionTypes.FETCH_ACTIVE_POLL_FAILURE,
+});
+
 /* eslint-disable no-unused-vars */
 export const activatePoll = questionnaireId => (dispatch) => {
   dispatch(startActivatePoll());
@@ -48,11 +62,13 @@ export const closePoll = id => (dispatch) => {
 };
 
 export const fetchActivePoll = url => (dispatch) => {
+  dispatch(startFetchActivePoll());
   Axios.get(url)
     .then((response) => {
-      console.log(response);
+      dispatch(activePollFetched(response.data.poll));
     })
     .catch((error) => {
+      dispatch(rejectedFetchActivePoll());
       console.log(error);
     });
 };
