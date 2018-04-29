@@ -5,9 +5,8 @@ export const startActivatePoll = () => ({
   type: ActionTypes.ACTIVATE_POLL_START,
 });
 
-export const pollActivated = poll => ({
+export const pollActivated = () => ({
   type: ActionTypes.ACTIVATE_POLL_SUCCESS,
-  poll,
 });
 
 export const rejectedActivatePoll = () => ({
@@ -18,9 +17,8 @@ export const startClosePoll = () => ({
   type: ActionTypes.CLOSE_POLL_START,
 });
 
-export const pollClosed = poll => ({
+export const pollClosed = () => ({
   type: ActionTypes.CLOSE_POLL_SUCCESS,
-  poll,
 });
 
 export const rejectedClosePoll = () => ({
@@ -31,7 +29,7 @@ export const activatePoll = questionnaireId => (dispatch) => {
   dispatch(startActivatePoll());
   Axios.post('/my-polls', { questionnaireId })
     .then((response) => {
-      dispatch(pollActivated(response.data.data));
+      dispatch(pollActivated());
     })
     .catch((error) => {
       dispatch(rejectedActivatePoll());
@@ -46,6 +44,16 @@ export const closePoll = id => (dispatch) => {
     })
     .catch((error) => {
       dispatch(rejectedClosePoll());
+    });
+};
+
+export const fetchActivePoll = url => (dispatch) => {
+  Axios.get(url)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };
 
