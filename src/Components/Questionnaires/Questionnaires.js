@@ -12,8 +12,8 @@ export default class Questionnaires extends Component {
       activeIndex: -1,
       questionnaires:
       [
-        { id: 1, title: 'Exempel 1', activePolls: { id: 'fe280cbf-bdc7-42b3-8524-3f3945f95d0c' } },
-        { id: 2, title: 'Exempel 2', activePolls: [] },
+        { id: 1, title: 'Exempel 1', activePoll: { id: 'f6922090-31cc-47f3-9ba8-afe6da8fcde7' } },
+        { id: 2, title: 'Exempel 2', activePoll: { id: '1' } },
 
       ], // will be replaced with data fetched from api
     };
