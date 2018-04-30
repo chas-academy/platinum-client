@@ -7,7 +7,7 @@ import ListView from './ListView'
 import CreateQuestion from './CreateQuestion'
 import MyQuestion from './MyQuestion'
 import ResultView from './ResultView'
-import FinishedVote from '/./FinishedVote'
+import FinishedVote from './FinishedVote'
 
 export default {
   Home,

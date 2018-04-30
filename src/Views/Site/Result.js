@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import {Container, Header} from 'semantic-ui-react'
 
-class ResultView extends React.Component{
+export default class ResultView extends React.Component{
  
 
   constructor(props){
@@ -32,15 +32,22 @@ class ResultView extends React.Component{
   }
   render(){
     return (
-      <div className="chart">
-      <Bar
+      <div class="form-wrapper">
+      <Container fluid>
+
+     
+     <Header as='h2'></Header>
+      
       data={this.state.chartData}
       width={100}
       height={50}
       options={{
       }}
-      />
+      </Container>
       </div>
+      
+    
+    
     )
   }
   }
