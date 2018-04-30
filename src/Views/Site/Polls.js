@@ -1,8 +1,8 @@
 import React from 'react';
-import Poll from '../../Components/Poll/Poll';
+import Poll from '../../Redux/Containers/Polls/Poll';
 
 const Polls = () => (
-  <div className="margin-t-1">
+  <div className="center-content-column min-height-100">
     <Poll />
   </div>);
 
