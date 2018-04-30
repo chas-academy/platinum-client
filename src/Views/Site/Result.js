@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import {Container, Header} from 'semantic-ui-react'
 
-export default class ResultView extends React.Component{
+export default class Result extends React.Component{
  
 
   constructor(props){
