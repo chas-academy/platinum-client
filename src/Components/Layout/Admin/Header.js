@@ -28,7 +28,6 @@ class Header extends Component {
           <Navbar.Collapse>
             <ul className="navbar-nav nav navbar-right">
               <NavLink title="Home" to="/" />
-              <NavLink title="Redux" to="/redux" />
               <SignOutButton referrer={referrer} />
             </ul>
           </Navbar.Collapse>
