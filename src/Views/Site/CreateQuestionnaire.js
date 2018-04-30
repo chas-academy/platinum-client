@@ -1,6 +1,6 @@
 import React from 'react';
 import Question from '../../Components/Forms/Question/CreateQuestion';
 
-const CreateQuestion = () => <Question />;
+const CreateQuestionnaire = () => <Question />;
 
-export default CreateQuestion;
+export default CreateQuestionnaire;
