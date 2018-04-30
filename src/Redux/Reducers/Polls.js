@@ -26,7 +26,6 @@ export default function (state = DEFAULT_STATE, action) {
     case actionTypes.FETCH_ACTIVE_POLL_START:
       return { ...state, isFetching: true };
     case actionTypes.FETCH_ACTIVE_POLL_SUCCESS:
-      console.log(action.poll);
       return { ...state, activePoll: new Poll(action.poll), isFetching: false };
     case actionTypes.FETCH_ACTIVE_POLL_FAILURE:
       return { ...state, isFetching: false };
