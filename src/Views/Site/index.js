@@ -5,7 +5,7 @@ import Redux from './Redux';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Pricing from './Pricing';
-import CreateQuestion from './CreateQuestion';
+import CreateQuestionnaire from './CreateQuestionnaire';
 import MyQuestionnaires from './MyQuestionnaires';
 import About from './About';
 import Polls from './Polls';
@@ -19,7 +19,7 @@ export default {
   SignIn,
   SignUp,
   Pricing,
-  CreateQuestion,
+  CreateQuestionnaire,
   MyQuestionnaires,
   About,
   Polls,
