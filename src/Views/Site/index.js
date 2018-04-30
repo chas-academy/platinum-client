@@ -9,7 +9,7 @@ import CreateQuestionnaire from './CreateQuestionnaire';
 import MyQuestionnaires from './MyQuestionnaires';
 import About from './About';
 import Polls from './Polls';
-
+import Result from './Result';
 
 export default {
   Home,
@@ -23,5 +23,6 @@ export default {
   MyQuestionnaires,
   About,
   Polls,
+  Result,
 };
 
