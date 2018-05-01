@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Vote from './Vote/Vote';
-
+import { Redirect } from 'react-router-dom';
 /* eslint-disable react/prop-types, no-console */
 
 export default class Answer extends Component {
@@ -11,6 +11,7 @@ export default class Answer extends Component {
 
       ],
       currentQuestion: 0,
+      redirectToResult: false,
     };
     this.addVote = this.addVote.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
@@ -39,6 +40,9 @@ export default class Answer extends Component {
       });
     } else {
       console.log(this.state.answer);
+      this.setState({
+        redirectToResult: true,
+      });
     }
   }
 
@@ -46,6 +50,9 @@ export default class Answer extends Component {
     console.log();
     return (
       <div >
+        {this.state.redirectToResult &&
+        <Redirect to={`/polls/${this.props.pollId}/result`} />
+        }
         {this.props.questionnaire &&
         <Vote
           question={this.props.questionnaire.questions[this.state.currentQuestion]}
