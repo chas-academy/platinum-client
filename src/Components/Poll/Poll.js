@@ -14,7 +14,7 @@ export default class Poll extends Component {
 
         {
           this.props.poll.status === 'active' &&
-            <Answer questionnaire={this.props.poll.questionnaire} />
+            <Answer questionnaire={this.props.poll.questionnaire} pollId={this.props.poll.id} />
         }
         {
           this.props.poll.status === 'closed' &&
