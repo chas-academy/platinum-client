@@ -14,9 +14,9 @@ export default class Question extends Component {
       options.push(newOption);
     });
     return (
-      <div>
-        <h3> {this.props.question.name} </h3>
-        <Table celled>
+      <div className="min-width-100">
+        <h3 className="margin-b-2"> {this.props.question.name} </h3>
+        <Table unstackable celled>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Options</Table.HeaderCell>
