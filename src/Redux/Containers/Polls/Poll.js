@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-import { fetchActivePoll } from '../../Actions/Polls/';
+import { fetchPoll } from '../../Actions/Polls/';
 import Poll from '../../../Components/Poll/Poll';
 
 
 function mapStateToProps(state) {
   return {
-    poll: state.Polls.activePoll,
+    poll: state.Polls.poll,
     isFetching: state.Polls.isFetching,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchActivePoll: id => dispatch(fetchActivePoll(id)),
+    fetchPoll: id => dispatch(fetchPoll(id)),
   };
 }
 

@@ -3,7 +3,7 @@ import actionTypes from '../Actions/Polls/Types';
 import Poll from '../Models/Poll';
 
 const DEFAULT_STATE = {
-  activePoll: Immutable.Record(),
+  poll: Immutable.Record(),
   isActivatingPoll: false,
   isClosingPoll: false,
   isFetching: false,
@@ -23,11 +23,11 @@ export default function (state = DEFAULT_STATE, action) {
       return { ...state, isClosingPoll: false };
     case actionTypes.CLOSE_POLL_FAILURE:
       return { ...state, isClosingPoll: false };
-    case actionTypes.FETCH_ACTIVE_POLL_START:
+    case actionTypes.FETCH_POLL_START:
       return { ...state, isFetching: true };
-    case actionTypes.FETCH_ACTIVE_POLL_SUCCESS:
-      return { ...state, activePoll: new Poll(action.poll), isFetching: false };
-    case actionTypes.FETCH_ACTIVE_POLL_FAILURE:
+    case actionTypes.FETCH_POLL_SUCCESS:
+      return { ...state, poll: new Poll(action.poll), isFetching: false };
+    case actionTypes.FETCH_POLL_FAILURE:
       return { ...state, isFetching: false };
     default:
       return { ...state };

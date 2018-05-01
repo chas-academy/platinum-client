@@ -5,7 +5,7 @@ import Answer from './Answer/Answer';
 
 export default class Poll extends Component {
   componentWillMount() {
-    this.props.fetchActivePoll(window.location.pathname);
+    this.props.fetchPoll(window.location.pathname);
   }
 
   render() {

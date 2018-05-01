@@ -25,17 +25,17 @@ export const rejectedClosePoll = () => ({
   type: ActionTypes.CLOSE_POLL_FAILURE,
 });
 
-export const startFetchActivePoll = () => ({
-  type: ActionTypes.FETCH_ACTIVE_POLL_START,
+export const startFetchPoll = () => ({
+  type: ActionTypes.FETCH_POLL_START,
 });
 
-export const activePollFetched = poll => ({
-  type: ActionTypes.FETCH_ACTIVE_POLL_SUCCESS,
+export const pollFetched = poll => ({
+  type: ActionTypes.FETCH_POLL_SUCCESS,
   poll,
 });
 
-export const rejectedFetchActivePoll = () => ({
-  type: ActionTypes.FETCH_ACTIVE_POLL_FAILURE,
+export const rejectedFetchPoll = () => ({
+  type: ActionTypes.FETCH_POLL_FAILURE,
 });
 
 /* eslint-disable no-unused-vars */
@@ -61,15 +61,14 @@ export const closePoll = id => (dispatch) => {
     });
 };
 
-export const fetchActivePoll = url => (dispatch) => {
-  dispatch(startFetchActivePoll());
+export const fetchPoll = url => (dispatch) => {
+  dispatch(startFetchPoll());
   Axios.get(url)
     .then((response) => {
-      dispatch(activePollFetched(response.data.poll));
+      dispatch(pollFetched(response.data.poll));
     })
     .catch((error) => {
-      dispatch(rejectedFetchActivePoll());
-      console.log(error);
+      dispatch(rejectedFetchPoll());
     });
 };
 
