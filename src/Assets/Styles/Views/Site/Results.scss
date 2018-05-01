@@ -1,0 +1,49 @@
+.center-content-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.min-height-100 {
+    min-height: 70vh;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.margin-t-2 {
+    margin-top: 2em;
+}
+
+.margin-b-2 {
+    margin-bottom: 2em;
+}
+
+.align-self-end {
+    align-self: flex-end;
+}
+
+.align-self-start {
+    align-self: flex-start;
+}
+
+.min-width-100 {
+    min-width: 100%;
+}
+
+.min-width-300px {
+    min-width: 300px;
+}
+
+.max-width-670px {
+    max-width: 670px;
+}
+
+.width-100 {
+    width:100%
+}
+
+.flex {
+    display: flex;
+}
