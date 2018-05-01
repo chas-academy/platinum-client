@@ -5,6 +5,7 @@ const Option = Immutable.Record({
   questionId: Number,
   name: String,
   order: Number,
+  votes: Number,
 });
 
 export default Option;
