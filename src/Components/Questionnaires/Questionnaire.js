@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
-
+import { Redirect } from 'react-router-dom';
 /* eslint-disable react/prop-types */
 
 export default class Questionnaire extends Component {
@@ -9,9 +9,13 @@ export default class Questionnaire extends Component {
 
     this.state = {
       active: false,
+      redirectToResult: false,
+      redirectToEdit: false,
     };
 
     this.togglePoll = this.togglePoll.bind(this);
+    this.editQuestionnaire = this.editQuestionnaire.bind(this);
+    this.viewResults = this.viewResults.bind(this);
   }
 
   togglePoll() {
@@ -27,9 +31,27 @@ export default class Questionnaire extends Component {
     this.setState({ active: !this.state.active });
   }
 
+  editQuestionnaire() {
+    this.setState({
+      redirectToEdit: true,
+    });
+  }
+
+  viewResults() {
+    this.setState({
+      redirectToResult: true,
+    });
+  }
+
   render() {
     return (
       <div className="margin-tb-1 padding-05">
+        {this.state.redirectToResult &&
+        <Redirect to={`/polls/${this.props.questionnaire.activePoll.id}/result`} />
+        }
+        {this.state.redirectToEdit &&
+        <Redirect to="/create-questionnaire" /> // todo create route for editing questionnaire reuse create-question form but with initial data
+        }
         <Accordion.Title className="frame" active={this.props.activeIndex === this.props.index} index={this.props.index} onClick={this.props.handleAccordion}>
           <div className="space-between padding-05">
             <p>{this.props.questionnaire.title}</p>
@@ -39,7 +61,7 @@ export default class Questionnaire extends Component {
         <Accordion.Content active={this.props.activeIndex === this.props.index}>
           <div className="center-content-column padding-1">
             <div className="center content-row">
-              <button className="ui blue basic button"> {this.state.active ? 'Live results' : 'Edit' }</button>
+              <button className="ui blue basic button" onClick={this.state.active ? this.viewResults : this.editQuestionnaire}> {this.state.active ? 'Live results' : 'Edit' }</button>
               <button className="ui orange basic button" onClick={this.togglePoll}>{ this.state.active ? 'End' : 'Activate' }</button>
             </div>
             { this.state.active &&
