@@ -6,7 +6,7 @@ export default class Option extends Component {
     return (
       <Table.Row>
         <Table.Cell>{this.props.option.name}</Table.Cell>
-        <Table.Cell>{this.props.option.votes.length}</Table.Cell>
+        <Table.Cell>{this.props.option.votes}</Table.Cell>
       </Table.Row>
     );
   }
