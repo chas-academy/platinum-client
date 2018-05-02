@@ -10,13 +10,11 @@ export default class Questionnaires extends Component {
     super(props);
     this.state = {
       activeIndex: -1,
-      questionnaires:
-      [
-        { id: 1, title: 'Exempel 1', activePoll: { id: 'f6922090-31cc-47f3-9ba8-afe6da8fcde7' } },
-        { id: 2, title: 'Exempel 2', activePoll: { id: '1' } },
-
-      ], // will be replaced with data fetched from api
     };
+  }
+
+  componentWillMount() {
+    this.props.fetchQuestionnaires();
   }
 
 
@@ -32,17 +30,19 @@ export default class Questionnaires extends Component {
     const { activeIndex } = this.state;
     const myQuestionnaires = [];
 
-    this.state.questionnaires.forEach((questionnaire, index) => {
-      const myQuestionnaire = (
-        <Questionnaire
-          key={uuidv1()}
-          questionnaire={questionnaire}
-          handleAccordion={this.handleAccordion}
-          activeIndex={activeIndex}
-          index={index}
-        />);
-      myQuestionnaires.push(myQuestionnaire);
-    });
+    if (this.props.questionnaires[0]) {
+      this.props.questionnaires.forEach((questionnaire, index) => {
+        const myQuestionnaire = (
+          <Questionnaire
+            key={uuidv1()}
+            questionnaire={questionnaire}
+            handleAccordion={this.handleAccordion}
+            activeIndex={activeIndex}
+            index={index}
+          />);
+        myQuestionnaires.push(myQuestionnaire);
+      });
+    }
 
     return (
       <Accordion fluid>
