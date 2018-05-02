@@ -6,6 +6,7 @@ const Questionnaire = Immutable.Record({
   title: String,
   userId: Number,
   questions: [new Question()],
+  activePoll: {},
 });
 
 export default Questionnaire;
