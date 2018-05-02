@@ -1,5 +1,5 @@
 import React from 'react';
-import Questionnaires from '../../Components/Questionnaires/Questionnaires';
+import Questionnaires from '../../Redux/Containers/Questionnaires/Questionnaires';
 import { PageTitle } from '../../Lib/Common/Views';
 
 const MyQuestionnaires = () => (
@@ -10,3 +10,4 @@ const MyQuestionnaires = () => (
 
 export default MyQuestionnaires;
 
+// Den connectade hämtas sen från containern ist för components
