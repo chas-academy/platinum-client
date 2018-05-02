@@ -9,5 +9,3 @@ const MyQuestionnaires = () => (
   </div>);
 
 export default MyQuestionnaires;
-
-// Den connectade hämtas sen från containern ist för components
