@@ -1,13 +1,11 @@
 import ActionTypes from './Types';
 import Axios from '../../../Lib/Common/Axios';
 
-// funktionen för att sedan hämta datan i containern-.
-
 export const questionnairesFetched = questionnaires => ({
   type: ActionTypes.FETCH_QUESTIONNAIRES,
   questionnaires,
 });
-
+/* eslint-disable no-console */
 export const fetchQuestionnaires = () => (dispatch) => {
   Axios.get('/my-questionnaires')
     .then((response) => {
