@@ -11,7 +11,6 @@ export const questionnairesFetched = questionnaires => ({
 export const fetchQuestionnaires = () => (dispatch) => {
   Axios.get('/my-questionnaires')
     .then((response) => {
-      console.log(response.data[0].title);
       dispatch(questionnairesFetched(response.data));
     })
     .catch((error) => {
