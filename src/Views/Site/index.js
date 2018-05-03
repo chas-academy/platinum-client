@@ -10,6 +10,7 @@ import MyQuestionnaires from './MyQuestionnaires';
 import About from './About';
 import Polls from './Polls';
 import Result from './Result';
+import HowDoesItWork from './HowDoesItWork';
 
 export default {
   Home,
@@ -24,5 +25,6 @@ export default {
   About,
   Polls,
   Result,
+  HowDoesItWork,
 };
 
