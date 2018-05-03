@@ -8,7 +8,7 @@ export default class Questionnaire extends Component {
     super(props);
 
     this.state = {
-      active: false,
+      active: !!this.props.questionnaire.activePoll.status,
       redirectToResult: false,
       redirectToEdit: false,
     };
@@ -21,14 +21,10 @@ export default class Questionnaire extends Component {
   togglePoll() {
     if (this.state.active) {
       this.props.closePoll(this.props.questionnaire.activePoll.id);
-      /* becous the poll.id is created on hte backend side when the poll is activated
-      we won't beable to close the poll untill we get the actual
-      data about the targeted questionnaire from the api (it will
-      contien the column activeQuestionaire if the questionnaire has been activated) */
     } else {
       this.props.activatePoll(this.props.questionnaire.id);
     }
-    this.setState({ active: !this.state.active });
+    setTimeout(this.props.fetchQuestionnaires, 50);
   }
 
   editQuestionnaire() {
