@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Alert from '../Alert';
 /* eslint-disable react/prop-types */
 
 export default class Questionnaire extends Component {
@@ -11,6 +13,12 @@ export default class Questionnaire extends Component {
       active: !!this.props.questionnaire.activePoll.status,
       redirectToResult: false,
       redirectToEdit: false,
+      value: this.props.questionnaire.activePoll.link,
+      copied: false,
+      alertMessage: {
+        type: 'info',
+        message: 'Link copied to clipboard!',
+      },
     };
 
     this.togglePoll = this.togglePoll.bind(this);
@@ -64,8 +72,25 @@ export default class Questionnaire extends Component {
               <div className="center-content-column padding-1">
                 <h3>Share Poll</h3>
                 <div className="center-content-row">
-                  <button className="ui basic button yellow" >Link</button>
+
+                  <CopyToClipboard
+                    text={this.state.value}
+                    onCopy={() => this.setState({ copied: true })}
+                  >
+                    <button className="ui basic button yellow" >Link</button>
+                  </CopyToClipboard>
+
                   <button className="ui basic button yellow" >QR-Code</button>
+                </div>
+                <div className="share__poll-link margin-t-1">
+                  {this.state.copied && (
+                    <Alert type={this.state.alertMessage.type} >
+                      <p>{this.state.alertMessage.message}</p>
+                    </Alert>
+                  )}
+
+                  {this.state.copied ? <a href={this.state.value}>{this.state.value}</a> : null}
+
                 </div>
               </div>
               }
