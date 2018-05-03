@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Vote from './Vote/Vote';
+import Vote from '../../../Redux/Containers/Polls/Vote';
 import { Redirect } from 'react-router-dom';
 /* eslint-disable react/prop-types, no-console */
 
@@ -15,6 +15,9 @@ export default class Answer extends Component {
     };
     this.addVote = this.addVote.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
+  }
+  componentWillMount() {
+    this.props.createAnswer(this.props.pollId);
   }
   addVote(questionId, optionId) {
     const answer = [...this.state.answer];
@@ -32,7 +35,7 @@ export default class Answer extends Component {
         { questionId, optionId },
       ],
     });
-  }
+  } // this should probaly be removed, has no real use
   nextQuestion() {
     if (this.state.currentQuestion < this.props.questionnaire.questions.length - 1) {
       this.setState({
@@ -47,17 +50,17 @@ export default class Answer extends Component {
   }
 
   render() {
-    console.log();
     return (
       <div >
         {this.state.redirectToResult &&
         <Redirect to={`/polls/${this.props.pollId}/result`} />
         }
-        {this.props.questionnaire &&
+        {this.props.questionnaire && this.props.answer &&
         <Vote
           question={this.props.questionnaire.questions[this.state.currentQuestion]}
-          addVote={this.addVote}
+          addVote={this.addVote} // this should probaly be removed, has no real use
           nextQuestion={this.nextQuestion}
+          answer={this.props.answer}
         />
         }
       </div>
