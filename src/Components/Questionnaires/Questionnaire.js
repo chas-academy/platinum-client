@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Alert from '../Alert';
 /* eslint-disable react/prop-types */
 
 export default class Questionnaire extends Component {
@@ -14,6 +15,10 @@ export default class Questionnaire extends Component {
       redirectToEdit: false,
       value: this.props.questionnaire.activePoll.link,
       copied: false,
+      alertMessage: {
+        type: 'success',
+        message: 'Link copied to clipboard!',
+      },
     };
 
     this.togglePoll = this.togglePoll.bind(this);
@@ -43,6 +48,7 @@ export default class Questionnaire extends Component {
   }
 
   render() {
+    console.log(this.state.copied);
     return (
       <div className="margin-tb-1 padding-05">
         {this.state.redirectToResult &&
@@ -78,7 +84,14 @@ export default class Questionnaire extends Component {
                   <button className="ui basic button yellow" >QR-Code</button>
                 </div>
                 <div className="share__poll-link margin-t-1">
+                  {this.state.copied && (
+                    <Alert type={this.state.alertMessage.type} >
+                      <p>{this.state.alertMessage.message}</p>
+                    </Alert>
+                  )}
+
                   {this.state.copied ? <a href={this.state.value}>{this.state.value}</a> : null}
+
                 </div>
               </div>
               }
