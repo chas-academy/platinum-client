@@ -1,5 +1,5 @@
 import React from 'react';
-import Question from '../../Components/Forms/Question/CreateQuestion';
+import Question from '../../Redux/Containers/Polls/CreateQuestions';
 
 const CreateQuestionnaire = () => <Question />;
 
