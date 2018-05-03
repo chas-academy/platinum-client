@@ -5,7 +5,6 @@ import * as Session from '../../Lib/Helpers/Session';
 /* eslint-disable react/prefer-stateless-function */
 export default class Home extends Component {
   render() {
-    // fixa med ! innan för if not
     return (
       <div>
         <div>
