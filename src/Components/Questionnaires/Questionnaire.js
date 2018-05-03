@@ -75,8 +75,10 @@ export default class Questionnaire extends Component {
                     <button className="ui basic button yellow" >Link</button>
                   </CopyToClipboard>
 
-                  {this.state.copied ? <span style={{ color: 'red' }}>{this.state.value}</span> : null}
                   <button className="ui basic button yellow" >QR-Code</button>
+                </div>
+                <div className="share__poll-link">
+                  {this.state.copied ? <a href={this.state.value}>{this.state.value}</a> : null}
                 </div>
               </div>
               }
