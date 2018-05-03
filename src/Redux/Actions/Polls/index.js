@@ -72,5 +72,15 @@ export const fetchPoll = url => (dispatch) => {
     });
 };
 
+export const createQuestionnaire = data => (dispatch) => {
+  Axios.post('/my-questionnaires', data)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 /* todo update backend to beable to fetch closed/active polls
 and then create func to get thoes polls to the store */
