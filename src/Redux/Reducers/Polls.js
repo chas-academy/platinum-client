@@ -1,12 +1,16 @@
 import Immutable from 'immutable';
 import actionTypes from '../Actions/Polls/Types';
 import Poll from '../Models/Poll';
+import Answer from '../Models/Answer';
 
 const DEFAULT_STATE = {
   poll: Immutable.Record(),
+  answer: Immutable.Record(),
   isActivatingPoll: false,
   isClosingPoll: false,
   isFetching: false,
+  isCreatingAnswer: false,
+  isCastingVote: false,
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -29,6 +33,18 @@ export default function (state = DEFAULT_STATE, action) {
       return { ...state, poll: new Poll(action.poll), isFetching: false };
     case actionTypes.FETCH_POLL_FAILURE:
       return { ...state, isFetching: false };
+    case actionTypes.CREATE_ANSWER_START:
+      return { ...state, isCreatingAnswer: true };
+    case actionTypes.CREATE_ANSWER_SUCCESS:
+      return { ...state, answer: new Answer(action.answer), isCreatingAnswer: false };
+    case actionTypes.CREATE_ANSWER_FAILURE:
+      return { ...state, isCreatingAnswer: false };
+    case actionTypes.CAST_VOTE_START:
+      return { ...state, isCastingVote: true };
+    case actionTypes.CAST_VOTE_SUCCESS:
+      return { ...state, isCastingVote: false };
+    case actionTypes.CAST_VOTE_FAILURE:
+      return { ...state, isCastingVote: false };
     default:
       return { ...state };
   }
