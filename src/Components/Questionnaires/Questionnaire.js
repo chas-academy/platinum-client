@@ -16,7 +16,7 @@ export default class Questionnaire extends Component {
       value: this.props.questionnaire.activePoll.link,
       copied: false,
       alertMessage: {
-        type: 'success',
+        type: 'info',
         message: 'Link copied to clipboard!',
       },
     };
@@ -48,7 +48,6 @@ export default class Questionnaire extends Component {
   }
 
   render() {
-    console.log(this.state.copied);
     return (
       <div className="margin-tb-1 padding-05">
         {this.state.redirectToResult &&
