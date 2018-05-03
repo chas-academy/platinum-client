@@ -1,6 +1,6 @@
 import React from 'react';
-import Question from '../../Redux/Containers/Polls/CreateQuestions';
+import Questionnaire from '../../Redux/Containers/Questionnaires/CreateQuestionnaire';
 
-const CreateQuestionnaire = () => <Question />;
+const CreateQuestionnaire = () => <Questionnaire />;
 
 export default CreateQuestionnaire;

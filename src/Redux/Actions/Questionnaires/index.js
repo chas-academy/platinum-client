@@ -5,7 +5,7 @@ export const questionnairesFetched = questionnaires => ({
   type: ActionTypes.FETCH_QUESTIONNAIRES,
   questionnaires,
 });
-/* eslint-disable no-console */
+/* eslint-disable no-console, no-unused-vars */
 export const fetchQuestionnaires = () => (dispatch) => {
   Axios.get('/my-questionnaires')
     .then((response) => {
@@ -16,3 +16,12 @@ export const fetchQuestionnaires = () => (dispatch) => {
     });
 };
 
+export const createQuestionnaire = data => (dispatch) => {
+  Axios.post('/my-questionnaires', data)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
