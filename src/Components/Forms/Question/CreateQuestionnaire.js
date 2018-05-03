@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import Option from './Option/CreateOption';
 import uuidv1 from 'uuid/v1';
+import { Redirect } from 'react-router-dom';
 /* eslint-disable react/prop-types */
 export default class CreateQuestion extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class CreateQuestion extends Component {
       option2: '',
       options: [
       ],
+      redirectToQuestionnaires: false,
     };
     this.addOption = this.addOption.bind(this);
     this.removeOption = this.removeOption.bind(this);
@@ -60,6 +62,9 @@ export default class CreateQuestion extends Component {
     };
 
     this.props.createQuestionnaire(data);
+    setTimeout(this.setState({
+      redirectToQuestionnaires: true,
+    }), 50);
   }
   handleChange(e, { name, value }) {
     this.setState({ [name]: value });
@@ -102,6 +107,9 @@ export default class CreateQuestion extends Component {
   render() {
     return (
       <div className="create-question-view">
+        { this.state.redirectToQuestionnaires &&
+        <Redirect to="/my-questionnaires" />
+        }
         <div className="min-height">
           <Form id="creat-question-form">
             <div className="padding-tb-2">
