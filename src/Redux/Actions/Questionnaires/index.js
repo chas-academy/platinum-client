@@ -1,27 +1,46 @@
 import ActionTypes from './Types';
 import Axios from '../../../Lib/Common/Axios';
 
+export const startFetchingQuestionnaires = () => ({
+  type: ActionTypes.FETCH_QUESTIONNAIRES_START,
+});
 export const questionnairesFetched = questionnaires => ({
-  type: ActionTypes.FETCH_QUESTIONNAIRES,
+  type: ActionTypes.FETCH_QUESTIONNAIRES_SUCCESS,
   questionnaires,
 });
-/* eslint-disable no-console, no-unused-vars */
+export const rejectedFetchingQuestionnaires = () => ({
+  type: ActionTypes.FETCH_QUESTIONNAIRES_FAILURE,
+});
+export const questionnaireCreated = () => ({
+  type: ActionTypes.CREATE_QUESTIONNAIRE_SUCCESS,
+});
+export const startCreateQuestionnaire = () => ({
+  type: ActionTypes.CREATE_QUESTIONNAIRE_START,
+});
+export const rejectedCreateQuestionnaire = () => ({
+  type: ActionTypes.CREATE_QUESTIONNAIRE_FAILURE,
+});
+
+
+/* eslint-disable no-console */
 export const fetchQuestionnaires = () => (dispatch) => {
+  dispatch(startFetchingQuestionnaires());
   Axios.get('/my-questionnaires')
     .then((response) => {
       dispatch(questionnairesFetched(response.data));
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
+      dispatch(rejectedFetchingQuestionnaires());
     });
 };
 
 export const createQuestionnaire = data => (dispatch) => {
+  dispatch(startCreateQuestionnaire());
   Axios.post('/my-questionnaires', data)
-    .then((response) => {
-      console.log(response);
+    .then(() => {
+      dispatch(questionnaireCreated());
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
+      dispatch(rejectedCreateQuestionnaire());
     });
 };
