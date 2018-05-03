@@ -71,7 +71,7 @@ export const fetchPoll = url => (dispatch) => {
       dispatch(rejectedFetchPoll());
     });
 };
-
+/* eslint-disable no-console */
 export const createQuestionnaire = data => (dispatch) => {
   Axios.post('/my-questionnaires', data)
     .then((response) => {

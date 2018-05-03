@@ -13,7 +13,7 @@ export default class CreateOption extends Component {
   }
 
   handleChange(e, { name, value }) {
-    this.setState({ [name]: value });
+    this.props.onChange(e, { name, value });
   }
 
   render() {
@@ -22,7 +22,7 @@ export default class CreateOption extends Component {
         width={this.props.width}
         onChange={this.handleChange}
         name={this.props.name}
-        value={this.state[this.props.name]}
+        value={this.state[this.props.value]}
         placeholder="Option"
         required
         type="text"
