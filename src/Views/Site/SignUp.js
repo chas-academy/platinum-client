@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import { PageTitle } from '../../Lib/Common/Views'
-import SignUpForm from "../../Components/Forms/SignUp";
-
-
+import React, { Component } from 'react';
+import { PageTitle } from '../../Lib/Common/Views';
+import SignUpForm from '../../Redux/Containers/Users/SignUp';
+/* eslint-disable react/prefer-stateless-function */
 export default class SignUp extends Component {
   render() {
     return (
@@ -10,6 +9,6 @@ export default class SignUp extends Component {
         <PageTitle title="Sign Up" />
         <SignUpForm />
       </div>
-    )
+    );
   }
 }
