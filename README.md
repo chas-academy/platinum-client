@@ -1,4 +1,5 @@
 # App Boilerplate
+# Platinum
 This is the App boilerplate which will get you started. For any questions regarding the stack, please use our [#help](https://chasacademy.slack.com/messages/C61J8A678/#help) channel in Slack.
 
 Table of contents
