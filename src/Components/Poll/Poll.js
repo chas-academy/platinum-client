@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Answer from './Answer/Answer';
+import Answer from '../../Redux/Containers/Polls/Answer';
 
 /* eslint-disable react/prop-types */
 

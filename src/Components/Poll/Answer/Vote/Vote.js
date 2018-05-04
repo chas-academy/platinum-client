@@ -25,6 +25,7 @@ export default class Vote extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.selectedOption !== this.state.selectedOption) {
       this.props.addVote(this.props.question.id, this.state.selectedOption);
+      // this should probaly be removed, has no real use
     }
   }
   toggleOption(id) {
@@ -34,6 +35,13 @@ export default class Vote extends Component {
   }
   castVote() {
     if (this.state.selectedOption !== null) {
+      const vote = {
+        questionId: this.props.question.id,
+        optionId: this.state.selectedOption,
+        answerId: this.props.answer.id,
+        pollId: this.props.answer.pollId,
+      };
+      this.props.castVote(vote);
       this.props.nextQuestion();
       this.setState({
         errorMessage: '',
@@ -46,7 +54,6 @@ export default class Vote extends Component {
   }
   render() {
     const options = [];
-
     this.props.question.options.forEach((option) => {
       let color = 'grey';
       if (option.id === this.state.selectedOption) {

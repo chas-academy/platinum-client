@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchPoll } from '../../Actions/Polls/';
+import { fetchPoll, createAnswer } from '../../Actions/Polls/';
 import Poll from '../../../Components/Poll/Poll';
 
 
@@ -13,6 +13,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchPoll: id => dispatch(fetchPoll(id)),
+    createAnswer: id => dispatch(createAnswer(id)),
   };
 }
 

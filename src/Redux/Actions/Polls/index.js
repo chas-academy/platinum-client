@@ -38,6 +38,31 @@ export const rejectedFetchPoll = () => ({
   type: ActionTypes.FETCH_POLL_FAILURE,
 });
 
+export const startCreateAnswer = () => ({
+  type: ActionTypes.CREATE_ANSWER_START,
+});
+
+export const AnswerCreated = answer => ({
+  type: ActionTypes.CREATE_ANSWER_SUCCESS,
+  answer,
+});
+
+export const rejectedCreateAnswer = () => ({
+  type: ActionTypes.CREATE_ANSWER_FAILURE,
+});
+
+export const startCastVote = () => ({
+  type: ActionTypes.CAST_VOTE_START,
+});
+
+export const VoteCast = () => ({
+  type: ActionTypes.CAST_VOTE_SUCCESS,
+});
+
+export const rejectedCastVote = () => ({
+  type: ActionTypes.CAST_VOTE_FAILURE,
+});
+
 /* eslint-disable no-unused-vars */
 export const activatePoll = questionnaireId => (dispatch) => {
   dispatch(startActivatePoll());
@@ -69,5 +94,27 @@ export const fetchPoll = url => (dispatch) => {
     })
     .catch((error) => {
       dispatch(rejectedFetchPoll());
+    });
+};
+
+export const createAnswer = pollId => (dispatch) => {
+  dispatch(startCreateAnswer());
+  Axios.post('/my-answer', { pollId })
+    .then((response) => {
+      dispatch(AnswerCreated(response.data.data));
+    })
+    .catch((error) => {
+      dispatch(rejectedCreateAnswer());
+    });
+};
+
+export const castVote = vote => (dispatch) => {
+  dispatch(startCastVote());
+  Axios.post('/my-vote', vote)
+    .then((response) => {
+      dispatch(VoteCast());
+    })
+    .catch((error) => {
+      dispatch(rejectedCastVote());
     });
 };
