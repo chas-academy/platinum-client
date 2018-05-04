@@ -21,7 +21,7 @@ export default class Home extends Component {
                 </div>
               </div>
               <div className="two column middle aligned">
-                <Button href="/howdoesitwork" fluid inverted color="orange">ABOUT US</Button>
+                <Button href="/howdoesitwork" fluid inverted color="orange">HOW DOES IT WORK?</Button>
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@ export default class Home extends Component {
               <div className="ui two column centered grid stackable columns">
                 <div className="four column centered row">
                   <div className="column middle aligned">
-                    <Button href="/create-questionnaire" fluid inverted color="orange">WHAT WE DO!</Button>
+                    <Button href="/create-questionnaire" fluid inverted color="orange">LET&apos;S GET STARTED!</Button>
                   </div>
                 </div>
               </div>
