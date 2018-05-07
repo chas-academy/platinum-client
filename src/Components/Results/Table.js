@@ -8,7 +8,7 @@ export default class QuestionTable extends Component {
   render() {
     const options = [];
 
-    this.props.question.options.forEach((option) => {
+    this.props.options.forEach((option) => {
       const newOption = <TableRow key={uuidv4()} option={option} />;
 
       options.push(newOption);
