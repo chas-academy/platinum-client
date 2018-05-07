@@ -21,7 +21,7 @@ export default class Question extends Component {
         render: () =>
           (
             <Tab.Pane>
-              <BarChartResult />
+              <BarChartResult options={this.props.question.options} />
             </Tab.Pane>
           ),
       },
