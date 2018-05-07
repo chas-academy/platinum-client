@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import QuestionTable from './Table';
 import { Tab } from 'semantic-ui-react';
+import BarChartResult from './BarChart';
 
 /* eslint-disable react/prop-types, react/prefer-stateless-function */
 export default class Question extends Component {
@@ -15,7 +16,15 @@ export default class Question extends Component {
             </Tab.Pane>
           ),
       },
-      { menuItem: 'Tab 2', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
+      {
+        menuItem: 'Bar',
+        render: () =>
+          (
+            <Tab.Pane>
+              <BarChartResult />
+            </Tab.Pane>
+          ),
+      },
       { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
     ];
 
