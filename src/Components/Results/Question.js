@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
 import uuidv4 from 'uuid/v4';
 import TableRow from './TableRow';
+import QuestionTable from './Table';
 
 /* eslint-disable react/prop-types, react/prefer-stateless-function */
 export default class Question extends Component {
@@ -16,17 +16,7 @@ export default class Question extends Component {
     return (
       <div className="min-width-100">
         <h3 className="margin-b-2"> {this.props.question.name} </h3>
-        <Table unstackable celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Options</Table.HeaderCell>
-              <Table.HeaderCell>Votes</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {options}
-          </Table.Body>
-        </Table>
+        <QuestionTable />
       </div>
     );
   }
