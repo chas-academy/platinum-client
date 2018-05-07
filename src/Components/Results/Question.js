@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 import uuidv4 from 'uuid/v4';
-import Option from './Option';
+import TableRow from './TableRow';
 
 /* eslint-disable react/prop-types, react/prefer-stateless-function */
 export default class Question extends Component {
@@ -9,7 +9,7 @@ export default class Question extends Component {
     const options = [];
 
     this.props.question.options.forEach((option) => {
-      const newOption = <Option key={uuidv4()} option={option} />;
+      const newOption = <TableRow key={uuidv4()} option={option} />;
 
       options.push(newOption);
     });

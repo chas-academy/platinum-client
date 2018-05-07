@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 /* eslint-disable react/prop-types, react/prefer-stateless-function */
-export default class Option extends Component {
+export default class TableRow extends Component {
   render() {
     return (
       <Table.Row>
