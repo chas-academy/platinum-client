@@ -11,8 +11,9 @@ export const questionnairesFetched = questionnaires => ({
 export const rejectedFetchingQuestionnaires = () => ({
   type: ActionTypes.FETCH_QUESTIONNAIRES_FAILURE,
 });
-export const questionnaireCreated = () => ({
+export const questionnaireCreated = questionnaire => ({
   type: ActionTypes.CREATE_QUESTIONNAIRE_SUCCESS,
+  questionnaire,
 });
 export const startCreateQuestionnaire = () => ({
   type: ActionTypes.CREATE_QUESTIONNAIRE_START,
@@ -37,8 +38,9 @@ export const fetchQuestionnaires = () => (dispatch) => {
 export const createQuestionnaire = data => (dispatch) => {
   dispatch(startCreateQuestionnaire());
   Axios.post('/my-questionnaires', data)
-    .then(() => {
-      dispatch(questionnaireCreated());
+    .then((res) => {
+      console.log(res);
+      dispatch(questionnaireCreated(res.data));
     })
     .catch(() => {
       dispatch(rejectedCreateQuestionnaire());
