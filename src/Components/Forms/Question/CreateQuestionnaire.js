@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
+import CreateQuestion from '../../../Redux/Containers/Questionnaires/CreateQuestion';
+import ListableQuestion from '../../Questions/ListableQuestion';
+import uuidv4 from 'uuid/v4';
+
 /* eslint-disable react/prop-types */
-export default class CreateQuestion extends Component {
+export default class CreateQuestionnaire extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
       redirectToQuestionnaires: false,
+      addingQuestion: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.activeQuestion = this.activeQuestion.bind(this);
     this.createQuestionnaire = this.createQuestionnaire.bind(this);
+    this.triggerRedirect = this.triggerRedirect.bind(this);
   }
 
   createQuestionnaire() {
@@ -18,15 +25,32 @@ export default class CreateQuestion extends Component {
       title: this.state.title,
       type: 'premium',
     };
-
     this.props.createQuestionnaire(data);
   }
+
+  activeQuestion() {
+    this.setState({ addingQuestion: !this.state.addingQuestion });
+  }
+
   handleChange(e, { name, value }) {
     this.setState({ [name]: value });
   }
+  triggerRedirect() {
+    this.setState({
+      redirectToQuestionnaires: true,
+    });
+  }
 
   render() {
-    console.log(this.props);
+    const questions = [];
+
+    if (this.props.activeQuestionnaire.questions) {
+      this.props.activeQuestionnaire.questions.map((question) => {
+        const newQuestion = <ListableQuestion key={uuidv4()} name={question.name} />;
+        questions.push(newQuestion);
+        return questions;
+      });
+    }
     return (
       <div className="create-question-view">
         { this.state.redirectToQuestionnaires &&
@@ -68,17 +92,42 @@ export default class CreateQuestion extends Component {
           </div>
         }
 
+
         {
           this.props.activeQuestionnaire.id &&
           <div>
             <h2>{this.state.title}</h2>
-            <Button
-              basic
-              content="Add question"
-              icon="plus"
-              labelPosition="right"
-            />
           </div>
+
+        }
+        {questions}
+        {
+          this.state.addingQuestion &&
+          <CreateQuestion
+            questionnaireId={this.props.activeQuestionnaire.id}
+            onSubmit={this.activeQuestion}
+          />
+        }
+
+        {
+          this.props.activeQuestionnaire.id && !this.state.addingQuestion &&
+          <Button
+            basic
+            content="Add question"
+            icon="plus"
+            labelPosition="right"
+            onClick={this.activeQuestion}
+          />
+        }
+        {
+          this.props.activeQuestionnaire.id &&
+          <Button
+            basic
+            className="pos-absolute-b-6-r-2"
+            content="Done"
+            attached="bottom"
+            onClick={this.triggerRedirect}
+          />
         }
       </div>
     );
