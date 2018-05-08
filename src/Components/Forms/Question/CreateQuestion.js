@@ -19,7 +19,8 @@ export default class CreateQuestion extends Component {
     this.addOption = this.addOption.bind(this);
     this.removeOption = this.removeOption.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.createQuestionnaire = this.createQuestionnaire.bind(this);
+    this.createQuestion = this.createQuestion.bind(this);
+    this.triggerFetchQuestionnaire = this.triggerFetchQuestionnaire.bind(this);
   }
   componentWillMount() {
     this.setState({
@@ -43,7 +44,7 @@ export default class CreateQuestion extends Component {
       ],
     });
   }
-  createQuestionnaire() {
+  createQuestion() {
     const options = [];
 
     this.state.options.map((option, index) => {
@@ -51,20 +52,19 @@ export default class CreateQuestion extends Component {
       return option;
     });
     const data = {
-      title: this.state.title,
-      type: 'premium',
-      question: {
-        name: this.state.question,
-        type: 'select-one',
-        order: 1,
-        options,
-      },
+      questionnaireId: this.props.questionnaireId,
+      name: this.state.question,
+      type: 'select-one',
+      order: 1,
+      options,
     };
 
-    this.props.createQuestionnaire(data);
-    setTimeout(this.setState({
-      redirectToQuestionnaires: true,
-    }), 50);
+    this.props.createQuestion(data);
+    this.props.onSubmit();
+    setTimeout(this.triggerFetchQuestionnaire, 50);
+  }
+  triggerFetchQuestionnaire() {
+    this.props.fetchQuestionnaire(this.props.questionnaireId);
   }
   handleChange(e, { name, value }) {
     this.setState({ [name]: value });
@@ -119,16 +119,6 @@ export default class CreateQuestion extends Component {
                 unstackable
               >
                 <Form.Input
-                  className="center padding-b-1"
-                  onChange={this.handleChange}
-                  name="title"
-                  value={this.state.title}
-                  placeholder="Questionnaire Title"
-                  required
-                  type="text"
-                  width={11}
-                />
-                <Form.Input
                   className="center"
                   onChange={this.handleChange}
                   name="question"
@@ -154,12 +144,12 @@ export default class CreateQuestion extends Component {
         <Button
           basic
           className="pos-absolute-b-6-r-2"
-          content="NEXT"
+          content="Add"
           floated="right"
           icon="arrow right"
           attached="bottom"
           labelPosition="right"
-          onClick={this.createQuestionnaire}
+          onClick={this.createQuestion}
         />
       </div>
     );
