@@ -2,11 +2,21 @@ import React, { Component } from 'react';
 import QuestionTable from './Table';
 import { Tab } from 'semantic-ui-react';
 import BarChartResult from './BarChart';
+import PieChartResult from './PieChart';
 
 /* eslint-disable react/prop-types, react/prefer-stateless-function */
 export default class Question extends Component {
   render() {
     const panes = [
+      {
+        menuItem: 'Pie',
+        render: () =>
+          (
+            <Tab.Pane>
+              <PieChartResult options={this.props.question.options} />
+            </Tab.Pane>
+          ),
+      },
       {
         menuItem: 'Bar',
         render: () =>
@@ -25,7 +35,6 @@ export default class Question extends Component {
             </Tab.Pane>
           ),
       },
-      { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
     ];
 
     return (
