@@ -9,20 +9,20 @@ export default class Question extends Component {
   render() {
     const panes = [
       {
-        menuItem: 'Pie',
-        render: () =>
-          (
-            <Tab.Pane>
-              <PieChartResult options={this.props.question.options} />
-            </Tab.Pane>
-          ),
-      },
-      {
         menuItem: 'Bar',
         render: () =>
           (
             <Tab.Pane>
               <BarChartResult options={this.props.question.options} />
+            </Tab.Pane>
+          ),
+      },
+      {
+        menuItem: 'Pie',
+        render: () =>
+          (
+            <Tab.Pane>
+              <PieChartResult options={this.props.question.options} />
             </Tab.Pane>
           ),
       },
