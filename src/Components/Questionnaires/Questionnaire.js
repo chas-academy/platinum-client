@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Accordion, Icon } from 'semantic-ui-react';
+import { Accordion, Icon, Button, Header, Modal } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Alert from '../Alert';
@@ -47,6 +47,14 @@ export default class Questionnaire extends Component {
     });
   }
 
+  deleteQuestionnaire() {
+    this.setState({
+
+    });
+    console.log(this.deleteQuestionnaire);
+  }
+
+
   render() {
     return (
       <div className="margin-tb-1 padding-05">
@@ -68,6 +76,27 @@ export default class Questionnaire extends Component {
               <button className="ui blue basic button" onClick={this.state.active ? this.viewResults : this.editQuestionnaire}> {this.state.active ? 'Live results' : 'Edit' }</button>
               <button className="ui orange basic button" onClick={this.togglePoll}>{ this.state.active ? 'End' : 'Activate' }</button>
             </div>
+            <div className="column padding-1">
+
+              <Modal className="scrolling" trigger={<button className="ui black basic button">Delete</button>} basic size="small">
+                <Header icon="archive" content="DELETE QUESTIONNAIRE" />
+                <Modal.Content>
+                  <p>Are you sure you want to delete this questionnaire?</p>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button basic color="red" inverted>
+                    <Icon name="remove" /> No
+                  </Button>
+                  <Button color="green" inverted onClick={this.deleteQuestionnaire}>
+                    <Icon name="checkmark" /> Yes
+                  </Button>
+                </Modal.Actions>
+              </Modal>
+
+
+            </div>
+
+
             { this.state.active &&
               <div className="center-content-column padding-1">
                 <h3>Share Poll</h3>
