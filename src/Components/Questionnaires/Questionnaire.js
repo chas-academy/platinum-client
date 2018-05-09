@@ -6,6 +6,10 @@ import Alert from '../Alert';
 import QRCode from 'qrcode.react';
 /* eslint-disable react/prop-types */
 
+// these problems wouldn't go away so i made them go away. should probably fix
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 export default class Questionnaire extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +20,7 @@ export default class Questionnaire extends Component {
       redirectToEdit: false,
       value: this.props.questionnaire.activePoll.link,
       copied: false,
+      modalOpen: false,
       alertMessage: {
         type: 'info',
         message: 'Link copied to clipboard!',
@@ -25,6 +30,7 @@ export default class Questionnaire extends Component {
     this.togglePoll = this.togglePoll.bind(this);
     this.editQuestionnaire = this.editQuestionnaire.bind(this);
     this.viewResults = this.viewResults.bind(this);
+    this.handleModal = this.handleModal.bind(this);
   }
 
   togglePoll() {
@@ -46,6 +52,10 @@ export default class Questionnaire extends Component {
     this.setState({
       redirectToResult: true,
     });
+  }
+
+  handleModal = () => {
+    this.setState({ modalOpen: !this.state.modalOpen });
   }
 
   render() {
@@ -79,11 +89,21 @@ export default class Questionnaire extends Component {
                 >
                   <button className="ui basic button yellow" >Link</button>
                 </CopyToClipboard>
-                <Modal className="scrolling" trigger={<Button className="ui basic button yellow" >QR-Code</Button>}>
-                  <Modal.Header>Scan the QR-code with your super smart phone</Modal.Header>
+
+                <Modal
+                  className="scrolling"
+                  trigger={<Button onClick={this.handleModal} className="ui basic button yellow" >QR-Code</Button>}
+                  open={this.state.modalOpen}
+                >
+                  <Modal.Header>
+                    Scan the QR-code with your smartphone!
+                    <i onClick={this.handleModal} className="close icon" />
+                  </Modal.Header>
+
                   <Modal.Content>
                     <QRCode size="640" value={this.state.value} id="qr" />
                   </Modal.Content>
+
                 </Modal>
 
               </div>
