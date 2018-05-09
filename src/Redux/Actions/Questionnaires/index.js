@@ -53,3 +53,14 @@ export const createQuestionnaire = data => (dispatch) => {
       dispatch(rejectedCreateQuestionnaire());
     });
 };
+
+export const deleteQuestionnaire = data => (dispatch) => {
+  dispatch(startDeleteQuestionnaire());
+  Axios.delete('/my-questionnaires/:questionnaireId', data)
+    .then(() => {
+      dispatch(questionnaireDeleted());
+    })
+    .catch(() => {
+      dispatch(rejectedDeleteQuestionnaire());
+    });
+};
