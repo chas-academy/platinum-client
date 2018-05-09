@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import CreateQuestion from '../../../Redux/Containers/Questionnaires/CreateQuestion';
 import ListableQuestion from '../../Questions/ListableQuestion';
 import uuidv4 from 'uuid/v4';
+import { isNumber } from 'util';
 
 /* eslint-disable react/prop-types */
 export default class CreateQuestionnaire extends Component {
@@ -51,6 +52,7 @@ export default class CreateQuestionnaire extends Component {
         return questions;
       });
     }
+
     return (
       <div className="create-question-view">
         { this.state.redirectToQuestionnaires &&
@@ -105,6 +107,10 @@ export default class CreateQuestionnaire extends Component {
           this.state.addingQuestion &&
           <CreateQuestion
             questionnaireId={this.props.activeQuestionnaire.id}
+            countOfQuestions={
+              isNumber(this.props.activeQuestionnaire.questions[0].id)
+              ? this.props.activeQuestionnaire.questions.length
+              : 0}
             onSubmit={this.activeQuestion}
           />
         }

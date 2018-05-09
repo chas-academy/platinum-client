@@ -55,7 +55,7 @@ export default class CreateQuestion extends Component {
       questionnaireId: this.props.questionnaireId,
       name: this.state.question,
       type: 'select-one',
-      order: 1,
+      order: this.props.countOfQuestions + 1,
       options,
     };
 
