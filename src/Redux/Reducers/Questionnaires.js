@@ -5,6 +5,7 @@ import Questionnaire from '../Models/Questionnaire';
 const DEFAULT_STATE = {
   questionnaires: Immutable.OrderedMap(),
   isCreating: false,
+  isDeleting: false,
   isFetching: false,
 
 };
@@ -43,6 +44,21 @@ export default function (state = DEFAULT_STATE, action) {
       return {
         ...state,
         isCreating: false,
+      };
+    case actionTypes.DELETE_QUESTIONNAIRE_START:
+      return {
+        ...state,
+        isDeleting: true,
+      };
+    case actionTypes.DELETE_QUESTIONNAIRE_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false,
+      };
+    case actionTypes.DELETE_QUESTIONNAIRE_FAILURE:
+      return {
+        ...state,
+        isDeleting: false,
       };
     default:
       return { ...state };
