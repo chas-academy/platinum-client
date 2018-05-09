@@ -20,6 +20,15 @@ export const startCreateQuestionnaire = () => ({
 export const rejectedCreateQuestionnaire = () => ({
   type: ActionTypes.CREATE_QUESTIONNAIRE_FAILURE,
 });
+export const startDeleteQuestionnaire = () => ({
+  type: ActionTypes.DELETE_QUESTIONNAIRE_START,
+});
+export const questionnaireDeleted = () => ({
+  type: ActionTypes.DELETE_QUESTIONNAIRE_SUCCESS,
+});
+export const rejectedDeleteQuestionnaire = () => ({
+  type: ActionTypes.DELETE_QUESTIONNAIRE_FAILURE,
+});
 
 
 /* eslint-disable no-console */
