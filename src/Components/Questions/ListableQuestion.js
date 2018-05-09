@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 /* eslint-disable */
-const ListableQuestion = props => (
-  <div className="margin-tb-1">
-    <h3>{props.name}</h3>
-  </div>
-);
+export default class  ListableQuestion extends Component {
 
-export default ListableQuestion;
+  constructor(props){
+    super(props);
+    
+  }
+  render() {
+    return (
+      <div className="margin-tb-1">
+        <h3>{this.props.name}</h3>
+      </div>
+    )
+  }
+}
