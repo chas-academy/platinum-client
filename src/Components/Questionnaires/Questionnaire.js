@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Accordion, Icon } from 'semantic-ui-react';
+import { Accordion, Icon, Modal, Button } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Alert from '../Alert';
+import QRCode from 'qrcode.react';
 /* eslint-disable react/prop-types */
 
 export default class Questionnaire extends Component {
@@ -69,30 +70,34 @@ export default class Questionnaire extends Component {
               <button className="ui orange basic button" onClick={this.togglePoll}>{ this.state.active ? 'End' : 'Activate' }</button>
             </div>
             { this.state.active &&
-              <div className="center-content-column padding-1">
-                <h3>Share Poll</h3>
-                <div className="center-content-row">
+            <div className="center-content-column padding-1">
+              <h3>Share Poll</h3>
+              <div className="center-content-row">
+                <CopyToClipboard
+                  text={this.state.value}
+                  onCopy={() => this.setState({ copied: true })}
+                >
+                  <button className="ui basic button yellow" >Link</button>
+                </CopyToClipboard>
+                <Modal className="scrolling" trigger={<Button className="ui basic button yellow" >QR-Code</Button>}>
+                  <Modal.Header>Scan the QR-code with your super smart phone</Modal.Header>
+                  <Modal.Content>
+                    <QRCode size="640" value={this.state.value} id="qr" />
+                  </Modal.Content>
+                </Modal>
 
-                  <CopyToClipboard
-                    text={this.state.value}
-                    onCopy={() => this.setState({ copied: true })}
-                  >
-                    <button className="ui basic button yellow" >Link</button>
-                  </CopyToClipboard>
-
-                  <button className="ui basic button yellow" >QR-Code</button>
-                </div>
-                <div className="share__poll-link margin-t-1">
-                  {this.state.copied && (
-                    <Alert type={this.state.alertMessage.type} >
-                      <p>{this.state.alertMessage.message}</p>
-                    </Alert>
+              </div>
+              <div className="share__poll-link margin-t-1">
+                {this.state.copied && (
+                <Alert type={this.state.alertMessage.type} >
+                  <p>{this.state.alertMessage.message}</p>
+                </Alert>
                   )}
 
-                  {this.state.copied ? <a href={this.state.value}>{this.state.value}</a> : null}
+                {this.state.copied ? <a href={this.state.value}>{this.state.value}</a> : null}
 
-                </div>
               </div>
+            </div>
               }
           </div>
         </Accordion.Content>
