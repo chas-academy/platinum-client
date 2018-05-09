@@ -106,11 +106,11 @@ export default class CreateQuestion extends Component {
 
   render() {
     return (
-      <div className="create-question-view">
+      <div className="margin-tb-1">
         { this.state.redirectToQuestionnaires &&
         <Redirect to="/my-questionnaires" />
         }
-        <div className="min-height">
+        <div>
           <Form id="creat-question-form">
             <div className="padding-tb-2">
               <Form.Group
@@ -143,12 +143,8 @@ export default class CreateQuestion extends Component {
         </div>
         <Button
           basic
-          className="pos-absolute-b-6-r-2"
           content="Add"
-          floated="right"
-          icon="arrow right"
           attached="bottom"
-          labelPosition="right"
           onClick={this.createQuestion}
         />
       </div>
