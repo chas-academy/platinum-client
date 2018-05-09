@@ -11,8 +11,9 @@ export const questionnairesFetched = questionnaires => ({
 export const rejectedFetchingQuestionnaires = () => ({
   type: ActionTypes.FETCH_QUESTIONNAIRES_FAILURE,
 });
-export const questionnaireCreated = () => ({
+export const questionnaireCreated = questionnaire => ({
   type: ActionTypes.CREATE_QUESTIONNAIRE_SUCCESS,
+  questionnaire,
 });
 export const startCreateQuestionnaire = () => ({
   type: ActionTypes.CREATE_QUESTIONNAIRE_START,
@@ -20,7 +21,25 @@ export const startCreateQuestionnaire = () => ({
 export const rejectedCreateQuestionnaire = () => ({
   type: ActionTypes.CREATE_QUESTIONNAIRE_FAILURE,
 });
-
+export const startFetchingQuestionnaire = () => ({
+  type: ActionTypes.FETCH_QUESTIONNAIRE_START,
+});
+export const questionnaireFetched = questionnaire => ({
+  type: ActionTypes.FETCH_QUESTIONNAIRE_SUCCESS,
+  questionnaire,
+});
+export const rejectedFetchingQuestionnaire = () => ({
+  type: ActionTypes.FETCH_QUESTIONNAIRE_FAILURE,
+});
+export const questionCreated = () => ({
+  type: ActionTypes.CREATE_QUESTION_SUCCES,
+});
+export const startCreateQuestion = () => ({
+  type: ActionTypes.CREATE_QUESTION_START,
+});
+export const rejectedCreateQuestion = () => ({
+  type: ActionTypes.CREATE_QUESTION_FAILURE,
+});
 
 /* eslint-disable no-console */
 export const fetchQuestionnaires = () => (dispatch) => {
@@ -37,10 +56,33 @@ export const fetchQuestionnaires = () => (dispatch) => {
 export const createQuestionnaire = data => (dispatch) => {
   dispatch(startCreateQuestionnaire());
   Axios.post('/my-questionnaires', data)
-    .then(() => {
-      dispatch(questionnaireCreated());
+    .then((res) => {
+      dispatch(questionnaireCreated(res.data));
     })
     .catch(() => {
       dispatch(rejectedCreateQuestionnaire());
+    });
+};
+export const fetchQuestionnaire = id => (dispatch) => {
+  dispatch(startFetchingQuestionnaire());
+  Axios.get(`/questionnaires/${id}`)
+    .then((response) => {
+      console.log(response);
+      dispatch(questionnaireFetched(response.data));
+    })
+    .catch(() => {
+      dispatch(rejectedFetchingQuestionnaire());
+    });
+};
+
+export const createQuestion = data => (dispatch) => {
+  dispatch(startCreateQuestion());
+  Axios.post('/questions', data)
+    .then((res) => {
+      console.log(res);
+      dispatch(questionCreated());
+    })
+    .catch(() => {
+      dispatch(rejectedCreateQuestion());
     });
 };
