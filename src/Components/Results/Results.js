@@ -3,6 +3,8 @@ import Question from './Question';
 import { Button } from 'semantic-ui-react';
 import uuidv4 from 'uuid/v4';
 import { PageTitle } from '../../Lib/Common/Views';
+import openSocket from 'socket.io-client';
+
 /* eslint-disable react/prop-types */
 
 export default class Result extends Component {
@@ -13,10 +15,11 @@ export default class Result extends Component {
     };
     this.nextQuestion = this.nextQuestion.bind(this);
     this.prevQuestion = this.prevQuestion.bind(this);
+    this.subscribeToResult = this.subscribeToResult.bind(this);
   }
-
   componentWillMount() {
     this.props.fetchPoll(`/polls/${this.props.pollId}`);
+    this.subscribeToResult();
   }
   nextQuestion() {
     this.setState({
@@ -28,6 +31,13 @@ export default class Result extends Component {
       currentQuestion: this.state.currentQuestion - 1,
     });
   }
+
+  subscribeToResult() {
+    const socket = openSocket('http://localhost:7770');
+
+    socket.on(`/polls/${this.props.pollId}`, poll => this.props.pollFetched(poll));
+  }
+
   render() {
     const buttons = [];
     let button;

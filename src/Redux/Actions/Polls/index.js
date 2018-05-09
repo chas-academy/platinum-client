@@ -1,5 +1,6 @@
 import ActionTypes from './Types';
 import Axios from '../../../Lib/Common/Axios';
+import openSocket from 'socket.io-client';
 
 export const startActivatePoll = () => ({
   type: ActionTypes.ACTIVATE_POLL_START,
@@ -109,9 +110,12 @@ export const createAnswer = pollId => (dispatch) => {
 };
 
 export const castVote = vote => (dispatch) => {
+  const socket = openSocket('http://localhost:7770');
+
   dispatch(startCastVote());
   Axios.post('/my-vote', vote)
     .then((response) => {
+      socket.emit('/my-vote', vote.pollId);
       dispatch(VoteCast());
     })
     .catch((error) => {

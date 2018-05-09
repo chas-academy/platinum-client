@@ -42,7 +42,6 @@ export default class Answer extends Component {
         currentQuestion: this.state.currentQuestion + 1,
       });
     } else {
-      console.log(this.state.answer);
       this.setState({
         redirectToResult: true,
       });
