@@ -41,6 +41,10 @@ export const rejectedCreateQuestion = () => ({
   type: ActionTypes.CREATE_QUESTION_FAILURE,
 });
 
+export const removeActiveQuestionnaire = () => ({
+  type: ActionTypes.REMOVE_ACTIVEQUESTIONNAIRE,
+});
+
 /* eslint-disable no-console */
 export const fetchQuestionnaires = () => (dispatch) => {
   dispatch(startFetchingQuestionnaires());

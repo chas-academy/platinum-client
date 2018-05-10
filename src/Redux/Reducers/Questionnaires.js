@@ -77,6 +77,11 @@ export default function (state = DEFAULT_STATE, action) {
         ...state,
         isCreating: false,
       };
+    case actionTypes.REMOVE_ACTIVEQUESTIONNAIRE:
+      return {
+        ...state,
+        activeQuestionnaire: Immutable.Record(),
+      };
     default:
       return { ...state };
   }
