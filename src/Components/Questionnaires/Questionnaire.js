@@ -11,6 +11,7 @@ export default class Questionnaire extends Component {
 
     this.state = {
       active: !!this.props.questionnaire.activePoll.status,
+      delete: this.props.questionnaire,
       redirectToResult: false,
       redirectToEdit: false,
       value: this.props.questionnaire.activePoll.link,
@@ -22,6 +23,7 @@ export default class Questionnaire extends Component {
     };
 
     this.togglePoll = this.togglePoll.bind(this);
+    this.removeQuestionnaire = this.removeQuestionnaire.bind(this);
     this.editQuestionnaire = this.editQuestionnaire.bind(this);
     this.viewResults = this.viewResults.bind(this);
   }
@@ -31,6 +33,13 @@ export default class Questionnaire extends Component {
       this.props.closePoll(this.props.questionnaire.activePoll.id);
     } else {
       this.props.activatePoll(this.props.questionnaire.id);
+    }
+    setTimeout(this.props.fetchQuestionnaires, 50);
+  }
+
+  removeQuestionnaire() {
+    if (this.state.delete) {
+      this.props.deleteQuestionnaire(this.props.questionnaire.id);
     }
     setTimeout(this.props.fetchQuestionnaires, 50);
   }
@@ -46,14 +55,6 @@ export default class Questionnaire extends Component {
       redirectToResult: true,
     });
   }
-
-  deleteQuestionnaire() {
-    this.setState({
-
-    });
-    console.log(this.deleteQuestionnaire);
-  }
-
 
   render() {
     return (
@@ -78,6 +79,7 @@ export default class Questionnaire extends Component {
             </div>
             <div className="column padding-1">
 
+              { this.state.delete &&
               <Modal className="scrolling" trigger={<button className="ui black basic button">Delete</button>} basic size="small">
                 <Header icon="archive" content="DELETE QUESTIONNAIRE" />
                 <Modal.Content>
@@ -87,13 +89,12 @@ export default class Questionnaire extends Component {
                   <Button basic color="red" inverted>
                     <Icon name="remove" /> No
                   </Button>
-                  <Button color="green" inverted onClick={this.deleteQuestionnaire}>
+                  <Button color="green" inverted onClick={this.removeQuestionnaire}>
                     <Icon name="checkmark" /> Yes
                   </Button>
                 </Modal.Actions>
               </Modal>
-
-
+              }
             </div>
 
 
