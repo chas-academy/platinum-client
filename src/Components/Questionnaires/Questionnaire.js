@@ -23,6 +23,7 @@ export default class Questionnaire extends Component {
     };
 
     this.togglePoll = this.togglePoll.bind(this);
+    this.handleClose = this.handleClose.bind(this);
     this.removeQuestionnaire = this.removeQuestionnaire.bind(this);
     this.editQuestionnaire = this.editQuestionnaire.bind(this);
     this.viewResults = this.viewResults.bind(this);
@@ -35,6 +36,12 @@ export default class Questionnaire extends Component {
       this.props.activatePoll(this.props.questionnaire.id);
     }
     setTimeout(this.props.fetchQuestionnaires, 50);
+  }
+
+  handleClose() {
+    this.setState({
+      modalOpen: false,
+    });
   }
 
   removeQuestionnaire() {
@@ -80,13 +87,24 @@ export default class Questionnaire extends Component {
             <div className="column padding-1">
 
               { this.state.delete &&
-              <Modal className="scrolling" trigger={<button className="ui black basic button">Delete</button>} basic size="small">
+              <Modal
+                className="scrolling"
+                trigger={<Button
+                  className="ui black basic button"
+
+                >Delete
+                         </Button>}
+                open={this.state.modalOpen}
+                onClose={this.handleClose}
+                basic
+                size="small"
+              >
                 <Header icon="archive" content="DELETE QUESTIONNAIRE" />
                 <Modal.Content>
                   <p>Are you sure you want to delete this questionnaire?</p>
                 </Modal.Content>
                 <Modal.Actions>
-                  <Button basic color="red" inverted>
+                  <Button basic color="red" inverted onClick={this.handleClose}>
                     <Icon name="remove" /> No
                   </Button>
                   <Button color="green" inverted onClick={this.removeQuestionnaire}>
@@ -96,7 +114,6 @@ export default class Questionnaire extends Component {
               </Modal>
               }
             </div>
-
 
             { this.state.active &&
               <div className="center-content-column padding-1">
