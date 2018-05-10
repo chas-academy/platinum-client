@@ -8,12 +8,10 @@ export default class CreateQuestion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
       question: '',
       option1: '',
       option2: '',
-      options: [
-      ],
+      options: [],
       redirectToQuestionnaires: false,
     };
     this.addOption = this.addOption.bind(this);
@@ -21,28 +19,71 @@ export default class CreateQuestion extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.createQuestion = this.createQuestion.bind(this);
     this.triggerFetchQuestionnaire = this.triggerFetchQuestionnaire.bind(this);
+    this.updateQuestion = this.updateQuestion.bind(this);
   }
   componentWillMount() {
-    this.setState({
-      options: [
-        <Form.Group
-          key={uuidv1()}
-          className="center-content padding-b-1"
-          unstackable
-          widths={2}
-        >
-          <Option name="option1" width={11} value={this.state.option1} onChange={this.handleChange} />
-        </Form.Group>,
-        <Form.Group
-          key={uuidv1()}
-          className="center-content padding-b-1"
-          unstackable
-          widths={2}
-        >
-          <Option name="option2" width={11} value={this.state.option2} onChange={this.handleChange} />
-        </Form.Group>,
-      ],
-    });
+    if (!this.props.question) {
+      this.setState({
+        options: [
+          <Form.Group
+            key={uuidv1()}
+            className="center-content padding-b-1"
+            unstackable
+            widths={2}
+          >
+            <Option name="option1" width={11} value={this.state.option1} onChange={this.handleChange} />
+          </Form.Group>,
+          <Form.Group
+            key={uuidv1()}
+            className="center-content padding-b-1"
+            unstackable
+            widths={2}
+          >
+            <Option name="option2" width={11} value={this.state.option2} onChange={this.handleChange} />
+          </Form.Group>,
+        ],
+      });
+    }
+
+    if (this.props.question) {
+      this.setState({
+        question: this.props.question.name,
+      });
+      const oldOptions = [];
+      this.props.question.options.forEach((option, index) => {
+        this.setState({
+          [`option${index + 1}`]: option.name,
+        });
+
+        const oldOption =
+        (
+          <Form.Group
+            className="center-content padding-b-1"
+            key={uuidv1()}
+            unstackable
+            widths={2}
+          >
+            <Option name={`option${index + 1}`} width={10} value={option.name} onChange={this.handleChange} />
+            <Form.Button
+              width={1}
+              type="button"
+              negative
+              compact
+              content="X"
+              value={index}
+              onClick={this.removeOption}
+            />
+          </Form.Group>);
+        oldOptions.push(oldOption);
+      });
+
+      this.setState({
+        options: [
+          ...oldOptions,
+
+        ],
+      });
+    }
   }
   createQuestion() {
     const options = [];
@@ -68,6 +109,9 @@ export default class CreateQuestion extends Component {
   }
   handleChange(e, { name, value }) {
     this.setState({ [name]: value });
+  }
+  updateQuestion() {
+    console.log(this.state);
   }
 
   addOption() {
@@ -143,9 +187,9 @@ export default class CreateQuestion extends Component {
         </div>
         <Button
           basic
-          content="Add"
+          content={this.props.question ? 'Update' : 'Add'}
           attached="bottom"
-          onClick={this.createQuestion}
+          onClick={this.props.question ? this.updateQuestion : this.createQuestion}
         />
       </div>
     );
