@@ -6,15 +6,15 @@ export default class  ListableQuestion extends Component {
 
   constructor(props){
     super(props);
-    this.editQuestion = this.editQuestion.bind(this);
+    this.toggleEditQuestion = this.toggleEditQuestion.bind(this);
     this.state ={
       isBeingEdited: false,
     }
   }
 
-  editQuestion(){
+  toggleEditQuestion(){
     this.setState({
-      isBeingEdited: true,
+      isBeingEdited: !this.state.isBeingEdited,
     })
   }
   render() {
@@ -24,12 +24,12 @@ export default class  ListableQuestion extends Component {
         { !this.state.isBeingEdited &&
         <div>
         <h3>{this.props.question.name}</h3>
-        <Button basic content="edit" onClick={this.editQuestion} />
+        <Button basic content="edit" onClick={this.toggleEditQuestion} />
         </div>
         }
         { this.state.isBeingEdited &&
         <div>
-          <CreateQuestion question={this.props.question}/>
+          <CreateQuestion question={this.props.question} onSubmit={this.toggleEditQuestion}/>
         </div>
         }
       </div>
