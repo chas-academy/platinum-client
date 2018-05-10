@@ -105,13 +105,30 @@ export default class CreateQuestion extends Component {
     setTimeout(this.triggerFetchQuestionnaire, 50);
   }
   triggerFetchQuestionnaire() {
-    this.props.fetchQuestionnaire(this.props.questionnaireId);
+    if (this.props.questionnaireId) {
+      this.props.fetchQuestionnaire(this.props.questionnaireId);
+    } else {
+      this.props.fetchQuestionnaire(this.props.question.questionnaireId);
+    }
   }
   handleChange(e, { name, value }) {
     this.setState({ [name]: value });
   }
   updateQuestion() {
-    console.log(this.state);
+    const options = this.state.options.map((option, index) => {
+      const newOption = { name: this.state[`option${index + 1}`], order: index + 1 };
+      if (this.props.question.options[index]) {
+        newOption.id = this.props.question.options[index].id;
+      }
+      return newOption;
+    });
+    const data = {
+      name: this.state.question,
+      options,
+    };
+    this.props.updateQuestion(data, this.props.question.id);
+    this.props.onSubmit();
+    setTimeout(this.triggerFetchQuestionnaire, 50);
   }
 
   addOption() {
