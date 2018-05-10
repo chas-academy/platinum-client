@@ -49,6 +49,15 @@ export const startCreateQuestion = () => ({
 export const rejectedCreateQuestion = () => ({
   type: ActionTypes.CREATE_QUESTION_FAILURE,
 });
+export const questionUpdated = () => ({
+  type: ActionTypes.UPDATE_QUESTION_SUCCES,
+});
+export const startUpdateQuestion = () => ({
+  type: ActionTypes.UPDATE_QUESTION_START,
+});
+export const rejectedUpdateQuestion = () => ({
+  type: ActionTypes.UPDATE_QUESTION_FAILURE,
+});
 
 export const removeActiveQuestionnaire = () => ({
   type: ActionTypes.REMOVE_ACTIVEQUESTIONNAIRE,
@@ -107,5 +116,16 @@ export const createQuestion = data => (dispatch) => {
     })
     .catch(() => {
       dispatch(rejectedCreateQuestion());
+    });
+};
+
+export const updateQuestion = (data, id) => (dispatch) => {
+  dispatch(startUpdateQuestion());
+  Axios.put(`/questions/${id}`, data)
+    .then(() => {
+      dispatch(questionUpdated());
+    })
+    .catch(() => {
+      dispatch(rejectedUpdateQuestion());
     });
 };
