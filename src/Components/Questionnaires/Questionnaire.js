@@ -99,7 +99,7 @@ export default class Questionnaire extends Component {
                 basic
                 size="small"
               >
-                <Header icon="archive" content="DELETE QUESTIONNAIRE" />
+                <Header icon="trash" content="DELETE QUESTIONNAIRE" />
                 <Modal.Content>
                   <p>Are you sure you want to delete this questionnaire?</p>
                 </Modal.Content>
