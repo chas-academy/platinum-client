@@ -61,6 +61,7 @@ export default function (state = DEFAULT_STATE, action) {
       return {
         ...state,
         isDeleting: false,
+      };
     case actionTypes.FETCH_QUESTIONNAIRE_START:
       return {
         ...state,

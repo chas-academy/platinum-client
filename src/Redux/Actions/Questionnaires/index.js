@@ -82,6 +82,8 @@ export const deleteQuestionnaire = id => (dispatch) => {
     })
     .catch(() => {
       dispatch(rejectedDeleteQuestionnaire());
+    });
+};
 
 export const fetchQuestionnaire = id => (dispatch) => {
   dispatch(startFetchingQuestionnaire());
@@ -104,6 +106,5 @@ export const createQuestion = data => (dispatch) => {
     })
     .catch(() => {
       dispatch(rejectedCreateQuestion());
-
     });
 };
