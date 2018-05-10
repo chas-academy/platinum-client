@@ -54,9 +54,9 @@ export const createQuestionnaire = data => (dispatch) => {
     });
 };
 
-export const deleteQuestionnaire = data => (dispatch) => {
+export const deleteQuestionnaire = id => (dispatch) => {
   dispatch(startDeleteQuestionnaire());
-  Axios.delete('/my-questionnaires/:questionnaireId', data)
+  Axios.delete(`/my-questionnaires/${id}`)
     .then(() => {
       dispatch(questionnaireDeleted());
     })
