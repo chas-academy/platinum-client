@@ -20,8 +20,12 @@ export default class CreateQuestionnaire extends Component {
     this.createQuestionnaire = this.createQuestionnaire.bind(this);
     this.triggerRedirect = this.triggerRedirect.bind(this);
   }
+  componentWillMount() {
+    if (!this.props.location.state) {
+      this.props.removeActiveQuestionnaire();
+    }
+  }
   componentDidMount() {
-    this.props.removeActiveQuestionnaire();
   }
   createQuestionnaire() {
     const data = {

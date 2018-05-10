@@ -52,6 +52,7 @@ export default class Questionnaire extends Component {
   }
 
   editQuestionnaire() {
+    this.props.fetchQuestionnaire(this.props.questionnaire.id);
     this.setState({
       redirectToEdit: true,
     });
@@ -70,7 +71,11 @@ export default class Questionnaire extends Component {
         <Redirect to={`/polls/${this.props.questionnaire.activePoll.id}/result`} />
         }
         {this.state.redirectToEdit &&
-        <Redirect to="/create-questionnaire" /> // todo create route for editing questionnaire reuse create-question form but with initial data
+        <Redirect to={{
+          pathname: '/create-questionnaire',
+          state: { shouldNotReset: true },
+        }}
+        />
         }
         <Accordion.Title className="frame" active={this.props.activeIndex === this.props.index} index={this.props.index} onClick={this.props.handleAccordion}>
           <div className="space-between padding-05">
@@ -81,7 +86,11 @@ export default class Questionnaire extends Component {
         <Accordion.Content active={this.props.activeIndex === this.props.index}>
           <div className="center-content-column padding-1">
             <div className="center content-row">
-              <button className="ui blue basic button" onClick={this.state.active ? this.viewResults : this.editQuestionnaire}> {this.state.active ? 'Live results' : 'Edit' }</button>
+              <button
+                className="ui blue basic button"
+                onClick={this.state.active ? this.viewResults : this.editQuestionnaire}
+              > {this.state.active ? 'Live results' : 'Edit' }
+              </button>
               <button className="ui orange basic button" onClick={this.togglePoll}>{ this.state.active ? 'End' : 'Activate' }</button>
             </div>
             <div className="column padding-1">
