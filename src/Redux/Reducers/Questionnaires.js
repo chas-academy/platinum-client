@@ -8,6 +8,7 @@ const DEFAULT_STATE = {
   isCreating: false,
   isDeleting: false,
   isFetching: false,
+  isUpdating: false,
 
 };
 
@@ -92,6 +93,21 @@ export default function (state = DEFAULT_STATE, action) {
       return {
         ...state,
         isCreating: false,
+      };
+    case actionTypes.UPDATE_QUESTION_START:
+      return {
+        ...state,
+        isUpdating: true,
+      };
+    case actionTypes.UPDATE_QUESTION_SUCCESS:
+      return {
+        ...state,
+        isUpdating: false,
+      };
+    case actionTypes.UPDATE_QUESTION_FAILURE:
+      return {
+        ...state,
+        isUpdating: false,
       };
     case actionTypes.REMOVE_ACTIVEQUESTIONNAIRE:
       return {
