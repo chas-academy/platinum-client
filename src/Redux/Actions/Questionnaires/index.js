@@ -50,6 +50,9 @@ export const rejectedCreateQuestion = () => ({
   type: ActionTypes.CREATE_QUESTION_FAILURE,
 });
 
+export const removeActiveQuestionnaire = () => ({
+  type: ActionTypes.REMOVE_ACTIVEQUESTIONNAIRE,
+});
 
 /* eslint-disable no-console */
 export const fetchQuestionnaires = () => (dispatch) => {
@@ -89,7 +92,6 @@ export const fetchQuestionnaire = id => (dispatch) => {
   dispatch(startFetchingQuestionnaire());
   Axios.get(`/questionnaires/${id}`)
     .then((response) => {
-      console.log(response);
       dispatch(questionnaireFetched(response.data));
     })
     .catch(() => {
@@ -100,8 +102,7 @@ export const fetchQuestionnaire = id => (dispatch) => {
 export const createQuestion = data => (dispatch) => {
   dispatch(startCreateQuestion());
   Axios.post('/questions', data)
-    .then((res) => {
-      console.log(res);
+    .then(() => {
       dispatch(questionCreated());
     })
     .catch(() => {
