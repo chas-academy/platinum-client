@@ -11,6 +11,7 @@ import About from './About';
 import Polls from './Polls';
 import Result from './Result';
 import HowDoesItWork from './HowDoesItWork';
+import MyPolls from './MyPolls';
 
 export default {
   Home,
@@ -26,5 +27,6 @@ export default {
   Polls,
   Result,
   HowDoesItWork,
+  MyPolls,
 };
 

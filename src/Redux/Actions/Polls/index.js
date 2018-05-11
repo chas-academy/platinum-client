@@ -36,8 +36,22 @@ export const pollFetched = poll => ({
 });
 
 export const rejectedFetchPoll = () => ({
+  type: ActionTypes.FETCH_POLLS_FAILURE,
+});
+
+export const startFetchPolls = () => ({
+  type: ActionTypes.FETCH_POLLS_START,
+});
+
+export const pollsFetched = polls => ({
+  type: ActionTypes.FETCH_POLLS_SUCCESS,
+  polls,
+});
+
+export const rejectedFetchPolls = () => ({
   type: ActionTypes.FETCH_POLL_FAILURE,
 });
+
 
 export const startCreateAnswer = () => ({
   type: ActionTypes.CREATE_ANSWER_START,
@@ -95,6 +109,17 @@ export const fetchPoll = url => (dispatch) => {
     })
     .catch((error) => {
       dispatch(rejectedFetchPoll());
+    });
+};
+
+export const fetchPolls = () => (dispatch) => {
+  dispatch(startFetchPolls());
+  Axios.get('/my-polls')
+    .then((response) => {
+      dispatch(pollsFetched(response.data));
+    })
+    .catch((error) => {
+      dispatch(rejectedFetchPolls());
     });
 };
 
