@@ -31,7 +31,7 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name="option1" width={11} value={this.state.option1} onChange={this.handleChange} />
+            <Option name="option1" width={11} value={this.state.option1.name} order={1} onChange={this.handleChange} />
           </Form.Group>,
           <Form.Group
             key={uuidv1()}
@@ -39,7 +39,7 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name="option2" width={11} value={this.state.option2} onChange={this.handleChange} />
+            <Option name="option2" width={11} value={this.state.option2.name} order={2} onChange={this.handleChange} />
           </Form.Group>,
         ],
       });
@@ -52,7 +52,7 @@ export default class CreateQuestion extends Component {
       const oldOptions = [];
       this.props.question.options.forEach((option, index) => {
         this.setState({
-          [`option${index + 1}`]: option.name,
+          [`option${index + 1}`]: { name: option.name, order: option.order },
         });
 
         const oldOption =
@@ -63,7 +63,7 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name={`option${index + 1}`} width={10} value={option.name} onChange={this.handleChange} />
+            <Option name={`option${index + 1}`} width={10} value={option.name} order={option.order} onChange={this.handleChange} />
             <Form.Button
               width={1}
               type="button"
@@ -116,9 +116,9 @@ export default class CreateQuestion extends Component {
   }
   updateQuestion() {
     const options = this.state.options.map((option, index) => {
-      const newOption = { name: this.state[`option${index + 1}`], order: index + 1 };
-      if (this.props.question.options[index]) {
-        newOption.id = this.props.question.options[index].id;
+      const newOption = { name: this.state[`option${option.props.children[0].props.order}`], order: index + 1 };
+      if (this.props.question.options[option.props.children[0].props.order - 1]) {
+        newOption.id = this.props.question.options[option.props.children[0].props.order - 1].id;
       }
       return newOption;
     });
@@ -142,7 +142,7 @@ export default class CreateQuestion extends Component {
           unstackable
           widths={2}
         >
-          <Option name={`option${this.state.options.length + 1}`} width={10} value={this.state[`option${this.state.options.length + 1}`]} onChange={this.handleChange} />
+          <Option name={`option${this.state.options.length + 1}`} width={10} value="" order={this.state.options.length + 1} onChange={this.handleChange} />
           <Form.Button
             width={1}
             type="button"
@@ -158,6 +158,12 @@ export default class CreateQuestion extends Component {
   }
 
   removeOption(e) {
+    if (this.props.question.options[e.target.value]) {
+      this.props.deleteOption(
+        this.props.question.options[e.target.value].id,
+        this.props.question.id,
+      );
+    }
     const options = [...this.state.options];
     options.splice(e.target.value, 1);
     this.setState({
