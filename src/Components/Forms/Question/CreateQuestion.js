@@ -31,7 +31,7 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name="option1" width={11} value={this.state.option1.name} order={1} onChange={this.handleChange} />
+            <Option name="option1" width={11} value={this.state.option1} order={1} onChange={this.handleChange} />
           </Form.Group>,
           <Form.Group
             key={uuidv1()}
@@ -39,7 +39,7 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name="option2" width={11} value={this.state.option2.name} order={2} onChange={this.handleChange} />
+            <Option name="option2" width={11} value={this.state.option2} order={2} onChange={this.handleChange} />
           </Form.Group>,
         ],
       });
@@ -52,7 +52,7 @@ export default class CreateQuestion extends Component {
       const oldOptions = [];
       this.props.question.options.forEach((option, index) => {
         this.setState({
-          [`option${index + 1}`]: { name: option.name, order: option.order },
+          [`option${index + 1}`]: option.name,
         });
 
         const oldOption =
