@@ -109,6 +109,21 @@ export default function (state = DEFAULT_STATE, action) {
         ...state,
         isUpdating: false,
       };
+    case actionTypes.DELETE_OPTION_START:
+      return {
+        ...state,
+        isDeleting: true,
+      };
+    case actionTypes.DELETE_OPTION_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false,
+      };
+    case actionTypes.DELETE_OPTION_FAILURE:
+      return {
+        ...state,
+        isDeleting: false,
+      };
     case actionTypes.REMOVE_ACTIVEQUESTIONNAIRE:
       return {
         ...state,
