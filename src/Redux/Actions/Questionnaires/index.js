@@ -158,3 +158,14 @@ export const deleteOption = (id, questionId) => (dispatch) => {
       dispatch(rejectedDeleteOption());
     });
 };
+
+export const deleteQuestion = id => (dispatch) => {
+  dispatch(startDeleteQuestion());
+  Axios.delete(`/questions'${id}`)
+    .then(() => {
+      dispatch(questionDeleted());
+    })
+    .catch(() => {
+      dispatch(rejectedDeleteQuestion());
+    });
+};
