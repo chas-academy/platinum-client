@@ -26,6 +26,18 @@ export const rejectedClosePoll = () => ({
   type: ActionTypes.CLOSE_POLL_FAILURE,
 });
 
+export const startDeletePoll = () => ({
+  type: ActionTypes.DELETE_POLL_START,
+});
+
+export const pollDeleted = () => ({
+  type: ActionTypes.DELETE_POLL_SUCCESS,
+});
+
+export const rejectedDeletePoll = () => ({
+  type: ActionTypes.DELETE_POLL_FAILURE,
+});
+
 export const startFetchPoll = () => ({
   type: ActionTypes.FETCH_POLL_START,
 });
@@ -98,6 +110,17 @@ export const closePoll = id => (dispatch) => {
     })
     .catch((error) => {
       dispatch(rejectedClosePoll());
+    });
+};
+
+export const deletePoll = id => (dispatch) => {
+  dispatch(startDeletePoll());
+  Axios.delete(`/my-polls/${id}`)
+    .then((response) => {
+      dispatch(pollDeleted());
+    })
+    .catch((error) => {
+      dispatch(rejectedDeletePoll());
     });
 };
 
