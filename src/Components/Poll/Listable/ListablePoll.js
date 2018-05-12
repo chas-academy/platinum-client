@@ -20,7 +20,8 @@ export default class ListablePoll extends Component {
     });
   }
   deletePoll() {
-    console.log(this.props);
+    this.props.deletePoll(this.props.poll.id);
+    setTimeout(() => { this.props.fetchPolls(); }, 25);
   }
   render() {
     return (
