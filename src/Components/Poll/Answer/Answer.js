@@ -15,6 +15,7 @@ export default class Answer extends Component {
     };
     this.addVote = this.addVote.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
+    this.triggerRedirectToResult = this.triggerRedirectToResult.bind(this);
   }
   componentWillMount() {
     this.props.createAnswer(this.props.pollId);
@@ -42,24 +43,27 @@ export default class Answer extends Component {
         currentQuestion: this.state.currentQuestion + 1,
       });
     } else {
-      this.setState({
-        redirectToResult: true,
-      });
+      this.triggerRedirectToResult();
     }
   }
-
+  triggerRedirectToResult() {
+    this.setState({
+      redirectToResult: true,
+    });
+  }
   render() {
     return (
-      <div >
+      <div>
         {this.state.redirectToResult &&
         <Redirect to={`/polls/${this.props.pollId}/result`} />
         }
-        {this.props.questionnaire && this.props.answer &&
+        {this.props.questionnaire.id && this.props.answer.id &&
         <Vote
           question={this.props.questionnaire.questions[this.state.currentQuestion]}
           addVote={this.addVote} // this should probaly be removed, has no real use
           nextQuestion={this.nextQuestion}
           answer={this.props.answer}
+          redirectToResult={this.triggerRedirectToResult}
         />
         }
       </div>
