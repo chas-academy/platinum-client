@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Accordion, Icon, Button } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
-/* eslint-disable react/prop-types, no-console */
+/* eslint-disable react/prop-types */
 
 export default class ListablePoll extends Component {
   constructor(props) {
