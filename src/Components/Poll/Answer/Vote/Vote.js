@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Option from './Option';
+import { checkIfVoted } from '../../../../Lib/Helpers/Session';
 import { Button, Message } from 'semantic-ui-react';
 import uuidv4 from 'uuid/v4';
 /* eslint-disable react/prop-types */
@@ -9,16 +10,34 @@ export default class Vote extends Component {
     super(props);
     this.state = {
       selectedOption: null,
+      answered: false,
       errorMessage: '',
     };
     this.toggleOption = this.toggleOption.bind(this);
     this.castVote = this.castVote.bind(this);
   }
+
+  componentWillMount() {
+    if (checkIfVoted(this.props.answer.pollId, this.props.question.id)) {
+      this.setState({
+        answered: true,
+        errorMessage: 'You have already voted on this question',
+      });
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.question.id !== this.props.question.id) {
       this.setState({
         selectedOption: null,
+        answered: false,
         errorMessage: '',
+      });
+    }
+    if (checkIfVoted(this.props.answer.pollId, nextProps.question.id)) {
+      this.setState({
+        answered: true,
+        errorMessage: 'You have already voted on this question',
       });
     }
   }
@@ -28,6 +47,7 @@ export default class Vote extends Component {
       // this should probaly be removed, has no real use
     }
   }
+
   toggleOption(id) {
     this.setState({
       selectedOption: id,
@@ -56,7 +76,7 @@ export default class Vote extends Component {
     const options = [];
     this.props.question.options.forEach((option) => {
       let color = 'grey';
-      if (option.id === this.state.selectedOption) {
+      if (option.id === this.state.selectedOption && !this.state.answered) {
         color = 'green';
       }
       const newOption = (
@@ -65,6 +85,7 @@ export default class Vote extends Component {
           option={option}
           color={color}
           select={this.toggleOption}
+          disabled={this.state.answered}
         />);
 
       options.push(newOption);
@@ -76,8 +97,14 @@ export default class Vote extends Component {
         {options}
         <Message content={this.state.errorMessage} hidden={this.state.errorMessage === ''} />
         <div className="min-width-15 margin-t-2">
-          <Button basic size="large" color="orange" content="Vote!" onClick={this.castVote} fluid />
+          <Button basic size="large" color="orange" content={!this.state.answered ? 'Vote' : 'Next'} onClick={!this.state.answered ? this.castVote : this.props.nextQuestion} fluid />
         </div>
+
+        {this.state.answered &&
+        <div className="min-width-15 margin-t-2">
+          <Button basic size="large" color="blue" content="View Result" onClick={this.props.redirectToResult} fluid />
+        </div>
+        }
       </div>
     );
   }
