@@ -31,7 +31,10 @@ export default class ListablePoll extends Component {
         }
         <Accordion.Title className="frame" active={this.props.activeIndex === this.props.index} index={this.props.index} onClick={this.props.handleAccordion}>
           <div className="space-between padding-05">
-            <p>{this.props.poll.closedAt.substring(0, 10)}</p>
+            <div>
+              <h3>{this.props.poll.questionnaire.title}</h3>
+              <p>{this.props.poll.closedAt.substring(0, 10)}</p>
+            </div>
             <Icon name={this.props.activeIndex === this.props.index ? 'minus' : 'plus'} />
           </div>
         </Accordion.Title>
