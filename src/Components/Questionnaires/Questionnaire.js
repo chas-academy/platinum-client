@@ -3,6 +3,7 @@ import { Accordion, Icon, Button, Header, Modal } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Alert from '../Alert';
+import QRCode from 'qrcode.react';
 /* eslint-disable react/prop-types */
 
 export default class Questionnaire extends Component {
@@ -16,6 +17,7 @@ export default class Questionnaire extends Component {
       redirectToEdit: false,
       value: this.props.questionnaire.activePoll.link,
       copied: false,
+      modalOpen: false,
       alertMessage: {
         type: 'info',
         message: 'Link copied to clipboard!',
@@ -27,6 +29,7 @@ export default class Questionnaire extends Component {
     this.removeQuestionnaire = this.removeQuestionnaire.bind(this);
     this.editQuestionnaire = this.editQuestionnaire.bind(this);
     this.viewResults = this.viewResults.bind(this);
+    this.handleModal = this.handleModal.bind(this);
   }
 
   togglePoll() {
@@ -61,6 +64,10 @@ export default class Questionnaire extends Component {
     this.setState({
       redirectToResult: true,
     });
+  }
+
+  handleModal = () => {
+    this.setState({ modalOpen: !this.state.modalOpen });
   }
 
   render() {
@@ -116,30 +123,46 @@ export default class Questionnaire extends Component {
             </div>
 
             { this.state.active &&
-              <div className="center-content-column padding-1">
-                <h3>Share Poll</h3>
-                <div className="center-content-row">
+            <div className="center-content-column padding-1">
+              <h3>Share Poll</h3>
+              <div className="center-content-row">
+                <CopyToClipboard
+                  text={this.state.value}
+                  onCopy={() => this.setState({ copied: true })}
+                >
+                  <button className="ui basic button yellow" >Link</button>
+                </CopyToClipboard>
 
-                  <CopyToClipboard
-                    text={this.state.value}
-                    onCopy={() => this.setState({ copied: true })}
-                  >
-                    <button className="ui basic button yellow" >Link</button>
-                  </CopyToClipboard>
+                <Modal
+                  className="scrolling"
+                  trigger={<Button onClick={this.handleModal} className="ui basic button yellow" >QR-Code</Button>}
+                  open={this.state.modalOpen}
+                >
+                  <Modal.Header>
+                    Scan the QR-code with your smartphone!
+                    <Icon onClick={this.handleModal} className="close icon" />
+                  </Modal.Header>
 
-                  <button className="ui basic button yellow" >QR-Code</button>
-                </div>
-                <div className="share__poll-link margin-t-1">
-                  {this.state.copied && (
-                    <Alert type={this.state.alertMessage.type} >
-                      <p>{this.state.alertMessage.message}</p>
-                    </Alert>
+                  <Modal.Content>
+                    <div className="center-content-column" >
+                      <QRCode size={1280} value={this.state.value} id="qr" />
+                    </div>
+                  </Modal.Content>
+
+                </Modal>
+
+              </div>
+              <div className="share__poll-link margin-t-1">
+                {this.state.copied && (
+                <Alert type={this.state.alertMessage.type} >
+                  <p>{this.state.alertMessage.message}</p>
+                </Alert>
                   )}
 
-                  {this.state.copied ? <a href={this.state.value}>{this.state.value}</a> : null}
+                {this.state.copied ? <a href={this.state.value}>{this.state.value}</a> : null}
 
-                </div>
               </div>
+            </div>
               }
           </div>
         </Accordion.Content>
