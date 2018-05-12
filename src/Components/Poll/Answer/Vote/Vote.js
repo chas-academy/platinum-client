@@ -41,12 +41,6 @@ export default class Vote extends Component {
       });
     }
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.selectedOption !== this.state.selectedOption) {
-      this.props.addVote(this.props.question.id, this.state.selectedOption);
-      // this should probaly be removed, has no real use
-    }
-  }
 
   toggleOption(id) {
     this.setState({
