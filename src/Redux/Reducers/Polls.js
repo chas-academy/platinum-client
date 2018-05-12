@@ -12,6 +12,7 @@ const DEFAULT_STATE = {
   isFetching: false,
   isCreatingAnswer: false,
   isCastingVote: false,
+  isDeletingPoll: false,
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -28,6 +29,12 @@ export default function (state = DEFAULT_STATE, action) {
       return { ...state, isClosingPoll: false };
     case actionTypes.CLOSE_POLL_FAILURE:
       return { ...state, isClosingPoll: false };
+    case actionTypes.DELETE_POLL_START:
+      return { ...state, isDeletingPoll: true };
+    case actionTypes.DELETE_POLL_SUCCESS:
+      return { ...state, isDeletingPoll: false };
+    case actionTypes.DELETE_POLL_FAILURE:
+      return { ...state, isDeletingPoll: false };
     case actionTypes.FETCH_POLL_START:
       return { ...state, isFetching: true };
     case actionTypes.FETCH_POLL_SUCCESS:
