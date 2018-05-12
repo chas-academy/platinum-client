@@ -32,6 +32,15 @@ export default class CreateQuestion extends Component {
             widths={2}
           >
             <Option name="option1" width={11} value={this.state.option1} order={1} onChange={this.handleChange} />
+            <Form.Button
+              width={1}
+              type="button"
+              negative
+              compact
+              content="X"
+              value={0}
+              onClick={this.removeOption}
+            />
           </Form.Group>,
           <Form.Group
             key={uuidv1()}
@@ -40,6 +49,15 @@ export default class CreateQuestion extends Component {
             widths={2}
           >
             <Option name="option2" width={11} value={this.state.option2} order={2} onChange={this.handleChange} />
+            <Form.Button
+              width={1}
+              type="button"
+              negative
+              compact
+              content="X"
+              value={1}
+              onClick={this.removeOption}
+            />
           </Form.Group>,
         ],
       });
@@ -63,7 +81,7 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name={`option${index + 1}`} width={10} value={option.name} order={option.order} onChange={this.handleChange} />
+            <Option name={`option${index + 1}`} width={10} value={option.name} order={index + 1} onChange={this.handleChange} />
             <Form.Button
               width={1}
               type="button"
@@ -133,7 +151,7 @@ export default class CreateQuestion extends Component {
 
   addOption() {
     this.setState({
-      [`option${this.state.options.length + 1}`]: '',
+      [`option${this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}`]: '',
       options: [
         ...this.state.options,
         <Form.Group
@@ -142,7 +160,7 @@ export default class CreateQuestion extends Component {
           unstackable
           widths={2}
         >
-          <Option name={`option${this.state.options.length + 1}`} width={10} value="" order={this.state.options.length + 1} onChange={this.handleChange} />
+          <Option name={`option${this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}`} width={10} value="" order={this.state.options[this.state.options.length - 1].props.children[0].props.order + 1} onChange={this.handleChange} />
           <Form.Button
             width={1}
             type="button"
