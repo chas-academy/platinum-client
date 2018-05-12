@@ -6,10 +6,6 @@ import Alert from '../Alert';
 import QRCode from 'qrcode.react';
 /* eslint-disable react/prop-types */
 
-// these problems wouldn't go away so i made them go away. should probably fix
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 export default class Questionnaire extends Component {
   constructor(props) {
     super(props);
@@ -97,11 +93,13 @@ export default class Questionnaire extends Component {
                 >
                   <Modal.Header>
                     Scan the QR-code with your smartphone!
-                    <i onClick={this.handleModal} className="close icon" />
+                    <Icon onClick={this.handleModal} className="close icon" />
                   </Modal.Header>
 
                   <Modal.Content>
-                    <QRCode size="640" value={this.state.value} id="qr" />
+                    <div className="center-content-column" >
+                      <QRCode size={1280} value={this.state.value} id="qr" />
+                    </div>
                   </Modal.Content>
 
                 </Modal>
