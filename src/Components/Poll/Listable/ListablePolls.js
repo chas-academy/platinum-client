@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ListablePoll from './ListablePoll';
+import ListablePoll from '../../../Redux/Containers/Polls/ListablePoll';
 import { Accordion } from 'semantic-ui-react';
 import uuidv4 from 'uuid/v4';
 /* eslint-disable react/prop-types */
