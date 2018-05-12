@@ -24,13 +24,13 @@ export default class ListablePoll extends Component {
   }
   render() {
     return (
-      <div className="margin-tb-1 padding-05">
+      <div className="margin-tb-1 padding-05 min-width-250">
         {this.state.redirectToResult &&
         <Redirect to={`/polls/${this.props.poll.id}/result`} />
         }
         <Accordion.Title className="frame" active={this.props.activeIndex === this.props.index} index={this.props.index} onClick={this.props.handleAccordion}>
           <div className="space-between padding-05">
-            <p>{this.props.poll.id}</p>
+            <p>{this.props.poll.closedAt.substring(0, 10)}</p>
             <Icon name={this.props.activeIndex === this.props.index ? 'minus' : 'plus'} />
           </div>
         </Accordion.Title>
