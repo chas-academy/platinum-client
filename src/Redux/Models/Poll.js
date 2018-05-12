@@ -8,6 +8,8 @@ const Poll = Immutable.Record({
   link: String,
   maxNumberOfVotes: Number,
   questionnaire: new Questionnaire(),
+  createdAt: Date,
+  closedAt: Date,
 });
 
 export default Poll;
