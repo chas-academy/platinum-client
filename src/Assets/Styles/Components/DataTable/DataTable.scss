@@ -67,3 +67,21 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .datatable {
+    position: relative;
+    &-header {
+      position: relative;
+    }
+  }
+
+  .ReactTable {
+
+    .rt-tbody {
+      .rt-td:not(:nth-child(4)):not(:last-child) {
+        display: none;
+      }
+    }
+  }
+}
