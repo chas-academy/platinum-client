@@ -73,14 +73,77 @@
     position: relative;
     &-header {
       position: relative;
+      right: 0;
+      top: -43px;
+      * {
+        margin-left: 6px;
+      }
+      a {
+        transition: none;
+      }
+    }
+    &-actions {
+      text-align: center;
+      > * {
+        margin-left: 7px;
+      }
+      > :first-child {
+        margin-left: 0;
+      }
+      &-btn {
+        background: transparent;
+        color: #337ab7;
+        cursor: pointer;
+        border: none;
+        padding: 0;
+        &:hover {
+          color: #23527c;
+          text-decoration: underline;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
     }
   }
-
+  
   .ReactTable {
-
+    .rt-thead {
+      &.-header {
+        border-bottom: 2px solid rgba(0,0,0,0.1);
+        box-shadow: none;
+      }
+      .rt-th:not(:nth-child(4)):not(:last-child) {
+        font-weight: bold;
+        > div {
+          padding: 7px 5px;
+          display: none;
+          text-align: left;
+        }
+        &.rt-resizable-header {
+          &:focus {
+            outline: none;
+          }
+          display: none;
+        }
+        &:not(.-cursor-pointer) {
+          box-shadow: none;
+        }
+      }
+    }
     .rt-tbody {
       .rt-td:not(:nth-child(4)):not(:last-child) {
         display: none;
+      }
+      .rt-td:last-child {
+        width: 50%!important;
+        color: red;
+        max-width: none!important;
+      }
+    }
+    .pagination-bottom {
+      .-pagination {
+        box-shadow: none;
       }
     }
   }
