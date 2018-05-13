@@ -19,11 +19,11 @@ export default class Vote extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.question.id !== this.props.question.id) {
       this.setState({
-        selectedOptions: null,
+        selectedOptions: [],
         errorMessage: '',
       });
     }
-    if (nextProps.question.type === 'multiselect') {
+    if (nextProps.question.type === 'multi-select') {
       this.setState({
         multiselect: true,
       });
