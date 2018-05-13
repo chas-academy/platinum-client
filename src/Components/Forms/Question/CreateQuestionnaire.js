@@ -20,8 +20,12 @@ export default class CreateQuestionnaire extends Component {
     this.createQuestionnaire = this.createQuestionnaire.bind(this);
     this.triggerRedirect = this.triggerRedirect.bind(this);
   }
+  componentWillMount() {
+    if (!this.props.location.state) {
+      this.props.removeActiveQuestionnaire();
+    }
+  }
   componentDidMount() {
-    this.props.removeActiveQuestionnaire();
   }
   createQuestionnaire() {
     const data = {
@@ -48,11 +52,13 @@ export default class CreateQuestionnaire extends Component {
     const questions = [];
 
     if (this.props.activeQuestionnaire.questions) {
-      this.props.activeQuestionnaire.questions.map((question) => {
-        const newQuestion = <ListableQuestion key={uuidv4()} name={question.name} />;
-        questions.push(newQuestion);
-        return questions;
-      });
+      if (isNumber(this.props.activeQuestionnaire.questions[0].id)) {
+        this.props.activeQuestionnaire.questions.map((question) => {
+          const newQuestion = <ListableQuestion key={uuidv4()} question={question} />;
+          questions.push(newQuestion);
+          return questions;
+        });
+      }
     }
 
     return (

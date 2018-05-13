@@ -49,6 +49,24 @@ export const startCreateQuestion = () => ({
 export const rejectedCreateQuestion = () => ({
   type: ActionTypes.CREATE_QUESTION_FAILURE,
 });
+export const questionUpdated = () => ({
+  type: ActionTypes.UPDATE_QUESTION_SUCCES,
+});
+export const startUpdateQuestion = () => ({
+  type: ActionTypes.UPDATE_QUESTION_START,
+});
+export const rejectedUpdateQuestion = () => ({
+  type: ActionTypes.UPDATE_QUESTION_FAILURE,
+});
+export const OptionDeleted = () => ({
+  type: ActionTypes.DELETE_OPTION_SUCCES,
+});
+export const startDeleteOption = () => ({
+  type: ActionTypes.DELETE_OPTION_START,
+});
+export const rejectedDeleteOption = () => ({
+  type: ActionTypes.DELETE_OPTION_FAILURE,
+});
 
 export const removeActiveQuestionnaire = () => ({
   type: ActionTypes.REMOVE_ACTIVEQUESTIONNAIRE,
@@ -107,5 +125,27 @@ export const createQuestion = data => (dispatch) => {
     })
     .catch(() => {
       dispatch(rejectedCreateQuestion());
+    });
+};
+
+export const updateQuestion = (data, id) => (dispatch) => {
+  dispatch(startUpdateQuestion());
+  Axios.put(`/questions/${id}`, data)
+    .then(() => {
+      dispatch(questionUpdated());
+    })
+    .catch(() => {
+      dispatch(rejectedUpdateQuestion());
+    });
+};
+
+export const deleteOption = (id, questionId) => (dispatch) => {
+  dispatch(startDeleteOption());
+  Axios.delete(`/questions/${questionId}/options/${id}`)
+    .then(() => {
+      dispatch(OptionDeleted());
+    })
+    .catch(() => {
+      dispatch(rejectedDeleteOption());
     });
 };
