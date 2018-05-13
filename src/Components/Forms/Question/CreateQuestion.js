@@ -4,11 +4,17 @@ import Option from './Option/CreateOption';
 import uuidv1 from 'uuid/v1';
 import { Redirect } from 'react-router-dom';
 /* eslint-disable react/prop-types */
+
+const types = [
+  { key: 's', text: 'Select-One', value: 'select-one' },
+  { key: 'm', text: 'Multi-Select', value: 'multi-select' },
+];
 export default class CreateQuestion extends Component {
   constructor(props) {
     super(props);
     this.state = {
       question: '',
+      type: 'select-one',
       option1: '',
       option2: '',
       options: [],
@@ -113,7 +119,7 @@ export default class CreateQuestion extends Component {
     const data = {
       questionnaireId: this.props.questionnaireId,
       name: this.state.question,
-      type: 'select-one',
+      type: this.state.type,
       order: this.props.countOfQuestions + 1,
       options,
     };
@@ -142,6 +148,7 @@ export default class CreateQuestion extends Component {
     });
     const data = {
       name: this.state.question,
+      type: this.state.type,
       options,
     };
     this.props.updateQuestion(data, this.props.question.id);
@@ -190,6 +197,7 @@ export default class CreateQuestion extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="margin-tb-1">
         { this.state.redirectToQuestionnaires &&
@@ -211,8 +219,9 @@ export default class CreateQuestion extends Component {
                   placeholder="Question"
                   required
                   type="text"
-                  width={11}
+                  width={10}
                 />
+                <Form.Select name="type" options={types} width={1} defaultValue={types[0].value} onChange={this.handleChange} />
               </Form.Group>
               {this.state.options}
             </div>
