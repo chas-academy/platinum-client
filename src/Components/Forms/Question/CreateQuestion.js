@@ -197,7 +197,6 @@ export default class CreateQuestion extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="margin-tb-1">
         { this.state.redirectToQuestionnaires &&
