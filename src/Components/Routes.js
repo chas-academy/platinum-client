@@ -18,6 +18,7 @@ export default class Routes extends Component {
           <SiteRoute exact path="/pricing" component={Site.Pricing} />
           <SiteRoute exact path="/create-questionnaire" component={Site.CreateQuestionnaire} />
           <SiteRoute exact path="/my-questionnaires" component={Site.MyQuestionnaires} />
+          <SiteRoute exact path="/my-polls" component={Site.MyPolls} />
           <SiteRoute exact path="/about" component={Site.About} />
           <SiteRoute exact path="/howdoesitwork" component={Site.HowDoesItWork} />
           <SiteRoute exact path="/polls/:pollId" component={Site.Polls} />
