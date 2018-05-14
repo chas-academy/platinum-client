@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { activatePoll, closePoll } from '../../Actions/Polls/';
-import { fetchQuestionnaires } from '../../Actions/Questionnaires/';
+import { fetchQuestionnaires, deleteQuestionnaire, fetchQuestionnaire } from '../../Actions/Questionnaires/';
 import Questionnaire from '../../../Components/Questionnaires/Questionnaire';
 
 function mapDispatchToProps(dispatch) {
@@ -8,6 +8,8 @@ function mapDispatchToProps(dispatch) {
     activatePoll: questionnaireId => dispatch(activatePoll(questionnaireId)),
     closePoll: id => dispatch(closePoll(id)),
     fetchQuestionnaires: () => dispatch(fetchQuestionnaires()),
+    deleteQuestionnaire: id => dispatch(deleteQuestionnaire(id)),
+    fetchQuestionnaire: id => dispatch(fetchQuestionnaire(id)),
   };
 }
 

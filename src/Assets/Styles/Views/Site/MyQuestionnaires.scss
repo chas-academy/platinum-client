@@ -18,6 +18,7 @@
         
     
     }
+
     .center-content{
         display:flex;
         flex-direction: row;
@@ -73,8 +74,14 @@
         margin-right: auto;
     }
 
+    #container {
+        width: 100%;
+        text-align: center;
+    }
+
 }
 
-
-
-
+#qr {
+    max-width: 80%;
+    height: auto !important;
+}

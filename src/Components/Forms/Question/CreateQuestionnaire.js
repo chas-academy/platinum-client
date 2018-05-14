@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import CreateQuestion from '../../../Redux/Containers/Questionnaires/CreateQuestion';
 import ListableQuestion from '../../Questions/ListableQuestion';
 import uuidv4 from 'uuid/v4';
+import { isNumber } from 'util';
 
 /* eslint-disable react/prop-types */
 export default class CreateQuestionnaire extends Component {
@@ -19,7 +20,13 @@ export default class CreateQuestionnaire extends Component {
     this.createQuestionnaire = this.createQuestionnaire.bind(this);
     this.triggerRedirect = this.triggerRedirect.bind(this);
   }
-
+  componentWillMount() {
+    if (!this.props.location.state) {
+      this.props.removeActiveQuestionnaire();
+    }
+  }
+  componentDidMount() {
+  }
   createQuestionnaire() {
     const data = {
       title: this.state.title,
@@ -45,12 +52,15 @@ export default class CreateQuestionnaire extends Component {
     const questions = [];
 
     if (this.props.activeQuestionnaire.questions) {
-      this.props.activeQuestionnaire.questions.map((question) => {
-        const newQuestion = <ListableQuestion key={uuidv4()} name={question.name} />;
-        questions.push(newQuestion);
-        return questions;
-      });
+      if (isNumber(this.props.activeQuestionnaire.questions[0].id)) {
+        this.props.activeQuestionnaire.questions.map((question) => {
+          const newQuestion = <ListableQuestion key={uuidv4()} question={question} />;
+          questions.push(newQuestion);
+          return questions;
+        });
+      }
     }
+
     return (
       <div className="create-question-view">
         { this.state.redirectToQuestionnaires &&
@@ -105,6 +115,10 @@ export default class CreateQuestionnaire extends Component {
           this.state.addingQuestion &&
           <CreateQuestion
             questionnaireId={this.props.activeQuestionnaire.id}
+            countOfQuestions={
+              isNumber(this.props.activeQuestionnaire.questions[0].id)
+              ? this.props.activeQuestionnaire.questions.length
+              : 0}
             onSubmit={this.activeQuestion}
           />
         }

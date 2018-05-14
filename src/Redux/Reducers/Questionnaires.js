@@ -6,7 +6,9 @@ const DEFAULT_STATE = {
   questionnaires: Immutable.OrderedMap(),
   activeQuestionnaire: Immutable.Record(),
   isCreating: false,
+  isDeleting: false,
   isFetching: false,
+  isUpdating: false,
 
 };
 
@@ -46,6 +48,21 @@ export default function (state = DEFAULT_STATE, action) {
         ...state,
         isCreating: false,
       };
+    case actionTypes.DELETE_QUESTIONNAIRE_START:
+      return {
+        ...state,
+        isDeleting: true,
+      };
+    case actionTypes.DELETE_QUESTIONNAIRE_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false,
+      };
+    case actionTypes.DELETE_QUESTIONNAIRE_FAILURE:
+      return {
+        ...state,
+        isDeleting: false,
+      };
     case actionTypes.FETCH_QUESTIONNAIRE_START:
       return {
         ...state,
@@ -76,6 +93,41 @@ export default function (state = DEFAULT_STATE, action) {
       return {
         ...state,
         isCreating: false,
+      };
+    case actionTypes.UPDATE_QUESTION_START:
+      return {
+        ...state,
+        isUpdating: true,
+      };
+    case actionTypes.UPDATE_QUESTION_SUCCESS:
+      return {
+        ...state,
+        isUpdating: false,
+      };
+    case actionTypes.UPDATE_QUESTION_FAILURE:
+      return {
+        ...state,
+        isUpdating: false,
+      };
+    case actionTypes.DELETE_OPTION_START:
+      return {
+        ...state,
+        isDeleting: true,
+      };
+    case actionTypes.DELETE_OPTION_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false,
+      };
+    case actionTypes.DELETE_OPTION_FAILURE:
+      return {
+        ...state,
+        isDeleting: false,
+      };
+    case actionTypes.REMOVE_ACTIVEQUESTIONNAIRE:
+      return {
+        ...state,
+        activeQuestionnaire: Immutable.Record(),
       };
     default:
       return { ...state };

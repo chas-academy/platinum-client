@@ -21,6 +21,15 @@ export const startCreateQuestionnaire = () => ({
 export const rejectedCreateQuestionnaire = () => ({
   type: ActionTypes.CREATE_QUESTIONNAIRE_FAILURE,
 });
+export const startDeleteQuestionnaire = () => ({
+  type: ActionTypes.DELETE_QUESTIONNAIRE_START,
+});
+export const questionnaireDeleted = () => ({
+  type: ActionTypes.DELETE_QUESTIONNAIRE_SUCCESS,
+});
+export const rejectedDeleteQuestionnaire = () => ({
+  type: ActionTypes.DELETE_QUESTIONNAIRE_FAILURE,
+});
 export const startFetchingQuestionnaire = () => ({
   type: ActionTypes.FETCH_QUESTIONNAIRE_START,
 });
@@ -39,6 +48,28 @@ export const startCreateQuestion = () => ({
 });
 export const rejectedCreateQuestion = () => ({
   type: ActionTypes.CREATE_QUESTION_FAILURE,
+});
+export const questionUpdated = () => ({
+  type: ActionTypes.UPDATE_QUESTION_SUCCES,
+});
+export const startUpdateQuestion = () => ({
+  type: ActionTypes.UPDATE_QUESTION_START,
+});
+export const rejectedUpdateQuestion = () => ({
+  type: ActionTypes.UPDATE_QUESTION_FAILURE,
+});
+export const OptionDeleted = () => ({
+  type: ActionTypes.DELETE_OPTION_SUCCES,
+});
+export const startDeleteOption = () => ({
+  type: ActionTypes.DELETE_OPTION_START,
+});
+export const rejectedDeleteOption = () => ({
+  type: ActionTypes.DELETE_OPTION_FAILURE,
+});
+
+export const removeActiveQuestionnaire = () => ({
+  type: ActionTypes.REMOVE_ACTIVEQUESTIONNAIRE,
 });
 
 /* eslint-disable no-console */
@@ -63,11 +94,22 @@ export const createQuestionnaire = data => (dispatch) => {
       dispatch(rejectedCreateQuestionnaire());
     });
 };
+
+export const deleteQuestionnaire = id => (dispatch) => {
+  dispatch(startDeleteQuestionnaire());
+  Axios.delete(`/my-questionnaires/${id}`)
+    .then(() => {
+      dispatch(questionnaireDeleted());
+    })
+    .catch(() => {
+      dispatch(rejectedDeleteQuestionnaire());
+    });
+};
+
 export const fetchQuestionnaire = id => (dispatch) => {
   dispatch(startFetchingQuestionnaire());
   Axios.get(`/questionnaires/${id}`)
     .then((response) => {
-      console.log(response);
       dispatch(questionnaireFetched(response.data));
     })
     .catch(() => {
@@ -78,11 +120,32 @@ export const fetchQuestionnaire = id => (dispatch) => {
 export const createQuestion = data => (dispatch) => {
   dispatch(startCreateQuestion());
   Axios.post('/questions', data)
-    .then((res) => {
-      console.log(res);
+    .then(() => {
       dispatch(questionCreated());
     })
     .catch(() => {
       dispatch(rejectedCreateQuestion());
+    });
+};
+
+export const updateQuestion = (data, id) => (dispatch) => {
+  dispatch(startUpdateQuestion());
+  Axios.put(`/questions/${id}`, data)
+    .then(() => {
+      dispatch(questionUpdated());
+    })
+    .catch(() => {
+      dispatch(rejectedUpdateQuestion());
+    });
+};
+
+export const deleteOption = (id, questionId) => (dispatch) => {
+  dispatch(startDeleteOption());
+  Axios.delete(`/questions/${questionId}/options/${id}`)
+    .then(() => {
+      dispatch(OptionDeleted());
+    })
+    .catch(() => {
+      dispatch(rejectedDeleteOption());
     });
 };
