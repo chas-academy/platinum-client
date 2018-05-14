@@ -26,6 +26,11 @@ export default class Vote extends Component {
         errorMessage: 'You have already voted on this question',
       });
     }
+    if (this.props.question.type === 'multi-select') {
+      this.setState({
+        multiselect: true,
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
