@@ -18,16 +18,22 @@ const VIEW_RECORD_OPTION = {
   title: 'User',
   component: AdminUserStatic,
 };
+const NewConfig = Config;
+
+if (window.innerWidth < 700) {
+  NewConfig.columns = [NewConfig.columns[3]];
+}
 
 /* eslint-disable react/prefer-stateless-function, prefer-destructuring */
+
 
 export default class Users extends Component {
   render() {
     const props = this.props;
-
+    console.log(NewConfig);
     return (
       <DataTable
-        {...Config}
+        {...NewConfig}
         dataSource={process.env.REACT_APP_API_USERS_URL}
         path={props.path}
         dataTableState={props.AdminUsers}
