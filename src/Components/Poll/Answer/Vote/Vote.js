@@ -21,6 +21,7 @@ export default class Vote extends Component {
       this.setState({
         selectedOptions: [],
         errorMessage: '',
+        multiselect: false,
       });
     }
     if (nextProps.question.type === 'multi-select') {
