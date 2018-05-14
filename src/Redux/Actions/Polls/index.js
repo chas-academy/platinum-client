@@ -1,5 +1,6 @@
 import ActionTypes from './Types';
 import Axios from '../../../Lib/Common/Axios';
+import { saveVoteToLocalStorage } from '../../../Lib/Helpers/Session';
 import openSocket from 'socket.io-client';
 
 export const startActivatePoll = () => ({
@@ -165,6 +166,7 @@ export const castVote = vote => (dispatch) => {
     .then((response) => {
       socket.emit('/my-vote', vote.pollId);
       dispatch(VoteCast());
+      saveVoteToLocalStorage(vote);
     })
     .catch((error) => {
       dispatch(rejectedCastVote());

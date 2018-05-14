@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Option from './Option';
+import { checkIfVoted } from '../../../../Lib/Helpers/Session';
 import { Button, Message } from 'semantic-ui-react';
 import uuidv4 from 'uuid/v4';
 /* eslint-disable react/prop-types */
@@ -9,6 +10,7 @@ export default class Vote extends Component {
     super(props);
     this.state = {
       selectedOptions: [],
+      answered: false,
       errorMessage: '',
       multiselect: false,
     };
@@ -16,10 +18,21 @@ export default class Vote extends Component {
     this.castVote = this.castVote.bind(this);
     this.addOption = this.addOption.bind(this);
   }
+
+  componentWillMount() {
+    if (checkIfVoted(this.props.answer.pollId, this.props.question.id)) {
+      this.setState({
+        answered: true,
+        errorMessage: 'You have already voted on this question',
+      });
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.question.id !== this.props.question.id) {
       this.setState({
         selectedOptions: [],
+        answered: false,
         errorMessage: '',
         multiselect: false,
       });
@@ -29,13 +42,14 @@ export default class Vote extends Component {
         multiselect: true,
       });
     }
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.selectedOption !== this.state.selectedOption) {
-      this.props.addVote(this.props.question.id, this.state.selectedOption);
-      // this should probaly be removed, has no real use
+    if (checkIfVoted(this.props.answer.pollId, nextProps.question.id)) {
+      this.setState({
+        answered: true,
+        errorMessage: 'You have already voted on this question',
+      });
     }
   }
+
   toggleOption(id) {
     this.setState({
       selectedOptions: [id],
@@ -91,7 +105,7 @@ export default class Vote extends Component {
     const options = [];
     this.props.question.options.forEach((option) => {
       let color = 'grey';
-      if (this.state.selectedOptions.includes(option.id)) {
+      if (this.state.selectedOptions.includes(option.id) && !this.state.answered) {
         color = 'green';
       }
       const newOption = (
@@ -100,6 +114,7 @@ export default class Vote extends Component {
           option={option}
           color={color}
           select={this.state.multiselect ? this.addOption : this.toggleOption}
+          disabled={this.state.answered}
         />);
 
       options.push(newOption);
@@ -111,8 +126,14 @@ export default class Vote extends Component {
         {options}
         <Message content={this.state.errorMessage} hidden={this.state.errorMessage === ''} />
         <div className="min-width-15 margin-t-2">
-          <Button basic size="large" color="orange" content="Vote!" onClick={this.castVote} fluid />
+          <Button basic size="large" color="orange" content={!this.state.answered ? 'Vote' : 'Next'} onClick={!this.state.answered ? this.castVote : this.props.nextQuestion} fluid />
         </div>
+
+        {this.state.answered &&
+        <div className="min-width-15 margin-t-2">
+          <Button basic size="large" color="blue" content="View Result" onClick={this.props.redirectToResult} fluid />
+        </div>
+        }
       </div>
     );
   }

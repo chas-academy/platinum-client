@@ -115,5 +115,30 @@ export function tokenData(data) {
   return decodedToken() && decodedToken()[data] ? decodedToken()[data] : null;
 }
 
+/* Voting */
+export function saveVoteToLocalStorage(vote) {
+  let answer = [];
+  if (localStorage.getItem(vote.pollId)) {
+    answer = JSON.parse(localStorage.getItem(vote.pollId));
+    answer.push(vote);
+  } else {
+    answer.push(vote);
+  }
+  localStorage.setItem(vote.pollId, JSON.stringify(answer));
+}
+
+export function checkIfVoted(pollId, questionId) {
+  let hasVoted = false;
+  if (localStorage.getItem(pollId)) {
+    const existingAnswer = JSON.parse(localStorage.getItem(pollId));
+    existingAnswer.map((answer) => {
+      if (answer.questionId === questionId) {
+        hasVoted = true;
+      }
+      return answer;
+    });
+  }
+  return hasVoted;
+}
 /* eslint-enable import/prefer-default-export, no-use-before-define,
 guard-for-in, no-unused-vars, no-restricted-syntax, no-unused-expressions, consistent-return */
