@@ -1,5 +1,6 @@
 import ActionTypes from './Types';
 import Axios from '../../../Lib/Common/Axios';
+import { saveVoteToLocalStorage } from '../../../Lib/Helpers/Session';
 import openSocket from 'socket.io-client';
 
 export const startActivatePoll = () => ({
@@ -26,6 +27,18 @@ export const rejectedClosePoll = () => ({
   type: ActionTypes.CLOSE_POLL_FAILURE,
 });
 
+export const startDeletePoll = () => ({
+  type: ActionTypes.DELETE_POLL_START,
+});
+
+export const pollDeleted = () => ({
+  type: ActionTypes.DELETE_POLL_SUCCESS,
+});
+
+export const rejectedDeletePoll = () => ({
+  type: ActionTypes.DELETE_POLL_FAILURE,
+});
+
 export const startFetchPoll = () => ({
   type: ActionTypes.FETCH_POLL_START,
 });
@@ -36,8 +49,22 @@ export const pollFetched = poll => ({
 });
 
 export const rejectedFetchPoll = () => ({
+  type: ActionTypes.FETCH_POLLS_FAILURE,
+});
+
+export const startFetchPolls = () => ({
+  type: ActionTypes.FETCH_POLLS_START,
+});
+
+export const pollsFetched = polls => ({
+  type: ActionTypes.FETCH_POLLS_SUCCESS,
+  polls,
+});
+
+export const rejectedFetchPolls = () => ({
   type: ActionTypes.FETCH_POLL_FAILURE,
 });
+
 
 export const startCreateAnswer = () => ({
   type: ActionTypes.CREATE_ANSWER_START,
@@ -87,6 +114,17 @@ export const closePoll = id => (dispatch) => {
     });
 };
 
+export const deletePoll = id => (dispatch) => {
+  dispatch(startDeletePoll());
+  Axios.delete(`/my-polls/${id}`)
+    .then((response) => {
+      dispatch(pollDeleted());
+    })
+    .catch((error) => {
+      dispatch(rejectedDeletePoll());
+    });
+};
+
 export const fetchPoll = url => (dispatch) => {
   dispatch(startFetchPoll());
   Axios.get(url)
@@ -95,6 +133,17 @@ export const fetchPoll = url => (dispatch) => {
     })
     .catch((error) => {
       dispatch(rejectedFetchPoll());
+    });
+};
+
+export const fetchPolls = () => (dispatch) => {
+  dispatch(startFetchPolls());
+  Axios.get('/my-polls')
+    .then((response) => {
+      dispatch(pollsFetched(response.data));
+    })
+    .catch((error) => {
+      dispatch(rejectedFetchPolls());
     });
 };
 
@@ -117,6 +166,7 @@ export const castVote = vote => (dispatch) => {
     .then((response) => {
       socket.emit('/my-vote', vote.pollId);
       dispatch(VoteCast());
+      saveVoteToLocalStorage(vote);
     })
     .catch((error) => {
       dispatch(rejectedCastVote());
