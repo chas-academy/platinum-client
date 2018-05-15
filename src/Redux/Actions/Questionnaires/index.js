@@ -161,7 +161,7 @@ export const deleteOption = (id, questionId) => (dispatch) => {
 
 export const deleteQuestion = id => (dispatch) => {
   dispatch(startDeleteQuestion());
-  Axios.delete(`/questions'${id}`)
+  Axios.delete(`/questions/${id}`)
     .then(() => {
       dispatch(questionDeleted());
     })
