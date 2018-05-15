@@ -52,12 +52,14 @@ export default class CreateQuestionnaire extends Component {
     const questions = [];
 
     if (this.props.activeQuestionnaire.questions) {
-      if (isNumber(this.props.activeQuestionnaire.questions[0].id)) {
-        this.props.activeQuestionnaire.questions.map((question) => {
-          const newQuestion = <ListableQuestion key={uuidv4()} question={question} />;
-          questions.push(newQuestion);
-          return questions;
-        });
+      if (this.props.activeQuestionnaire.questions[0]) {
+        if (isNumber(this.props.activeQuestionnaire.questions[0].id)) {
+          this.props.activeQuestionnaire.questions.map((question) => {
+            const newQuestion = <ListableQuestion key={uuidv4()} question={question} />;
+            questions.push(newQuestion);
+            return questions;
+          });
+        }
       }
     }
 
@@ -116,7 +118,7 @@ export default class CreateQuestionnaire extends Component {
           <CreateQuestion
             questionnaireId={this.props.activeQuestionnaire.id}
             countOfQuestions={
-              isNumber(this.props.activeQuestionnaire.questions[0].id)
+              this.props.activeQuestionnaire.questions[0]
               ? this.props.activeQuestionnaire.questions.length
               : 0}
             onSubmit={this.activeQuestion}
