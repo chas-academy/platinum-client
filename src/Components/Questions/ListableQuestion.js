@@ -6,10 +6,14 @@ export default class  ListableQuestion extends Component {
 
   constructor(props){
     super(props);
-    this.toggleEditQuestion = this.toggleEditQuestion.bind(this);
+    
     this.state ={
       isBeingEdited: false,
-    }
+      delete: this.props.question,
+    };
+    
+    this.toggleEditQuestion = this.toggleEditQuestion.bind(this);
+    this.toggleDeleteQuestion = this.toggleDeleteQuestion.bind(this);
   }
   
   toggleEditQuestion(){
@@ -17,6 +21,14 @@ export default class  ListableQuestion extends Component {
       isBeingEdited: !this.state.isBeingEdited,
     })
   }
+
+  toggleDeleteQuestion() {
+    if (this.state.delete) {
+      this.props.deleteQuestion(this.props.question.id);
+      console.log(this.props.question.id);
+    }
+  }
+
   render() {
     return (
     
@@ -24,7 +36,8 @@ export default class  ListableQuestion extends Component {
         { !this.state.isBeingEdited &&
         <div>
         <h3>{this.props.question.name}</h3>
-        <Button basic content="edit" onClick={this.toggleEditQuestion} />
+        <Button basic content="Edit" onClick={this.toggleEditQuestion} />
+        <Button basic color="red" content="Delete" onClick={this.toggleDeleteQuestion} />
         </div>
         }
         { this.state.isBeingEdited &&
