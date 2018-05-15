@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import CreateQuestion from '../../../Redux/Containers/Questionnaires/CreateQuestion';
-import ListableQuestion from '../../Questions/ListableQuestion';
+import ListableQuestion from '../../../Redux/Containers/Questionnaires/ListableQuestion';
 import uuidv4 from 'uuid/v4';
 import { isNumber } from 'util';
 
@@ -52,12 +52,14 @@ export default class CreateQuestionnaire extends Component {
     const questions = [];
 
     if (this.props.activeQuestionnaire.questions) {
-      if (isNumber(this.props.activeQuestionnaire.questions[0].id)) {
-        this.props.activeQuestionnaire.questions.map((question) => {
-          const newQuestion = <ListableQuestion key={uuidv4()} question={question} />;
-          questions.push(newQuestion);
-          return questions;
-        });
+      if (this.props.activeQuestionnaire.questions[0]) {
+        if (isNumber(this.props.activeQuestionnaire.questions[0].id)) {
+          this.props.activeQuestionnaire.questions.map((question) => {
+            const newQuestion = <ListableQuestion key={uuidv4()} question={question} />;
+            questions.push(newQuestion);
+            return questions;
+          });
+        }
       }
     }
 
@@ -116,7 +118,7 @@ export default class CreateQuestionnaire extends Component {
           <CreateQuestion
             questionnaireId={this.props.activeQuestionnaire.id}
             countOfQuestions={
-              isNumber(this.props.activeQuestionnaire.questions[0].id)
+              this.props.activeQuestionnaire.questions[0]
               ? this.props.activeQuestionnaire.questions.length
               : 0}
             onSubmit={this.activeQuestion}

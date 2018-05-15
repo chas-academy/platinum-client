@@ -71,6 +71,15 @@ export const rejectedDeleteOption = () => ({
 export const removeActiveQuestionnaire = () => ({
   type: ActionTypes.REMOVE_ACTIVEQUESTIONNAIRE,
 });
+export const startDeleteQuestion = () => ({
+  type: ActionTypes.DELETE_QUESTION_START,
+});
+export const questionDeleted = () => ({
+  type: ActionTypes.DELETE_QUESTION_SUCCESS,
+});
+export const rejectedDeleteQuestion = () => ({
+  type: ActionTypes.DELETE_QUESTION_FAILURE,
+});
 
 /* eslint-disable no-console */
 export const fetchQuestionnaires = () => (dispatch) => {
@@ -147,5 +156,16 @@ export const deleteOption = (id, questionId) => (dispatch) => {
     })
     .catch(() => {
       dispatch(rejectedDeleteOption());
+    });
+};
+
+export const deleteQuestion = id => (dispatch) => {
+  dispatch(startDeleteQuestion());
+  Axios.delete(`/questions/${id}`)
+    .then(() => {
+      dispatch(questionDeleted());
+    })
+    .catch(() => {
+      dispatch(rejectedDeleteQuestion());
     });
 };

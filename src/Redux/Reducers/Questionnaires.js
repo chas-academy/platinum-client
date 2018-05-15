@@ -129,6 +129,21 @@ export default function (state = DEFAULT_STATE, action) {
         ...state,
         activeQuestionnaire: Immutable.Record(),
       };
+    case actionTypes.DELETE_QUESTION_START:
+      return {
+        ...state,
+        isDeleting: true,
+      };
+    case actionTypes.DELETE_QUESTION_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false,
+      };
+    case actionTypes.DELETE_QUESTION_FAILURE:
+      return {
+        ...state,
+        isDeleting: false,
+      };
     default:
       return { ...state };
   }

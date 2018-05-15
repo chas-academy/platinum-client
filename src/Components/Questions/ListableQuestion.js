@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react';
+import { Icon, Button, Header, Modal } from 'semantic-ui-react';
 import CreateQuestion from '../../Redux/Containers/Questionnaires/CreateQuestion';
 /* eslint-disable */
 export default class  ListableQuestion extends Component {
 
   constructor(props){
     super(props);
-    this.toggleEditQuestion = this.toggleEditQuestion.bind(this);
+    
     this.state ={
       isBeingEdited: false,
-    }
+      delete: this.props.question,
+    };
+
+    this.handleClose = this.handleClose.bind(this);
+    this.toggleEditQuestion = this.toggleEditQuestion.bind(this);
+    this.toggleDeleteQuestion = this.toggleDeleteQuestion.bind(this);
   }
   
   toggleEditQuestion(){
@@ -17,6 +22,20 @@ export default class  ListableQuestion extends Component {
       isBeingEdited: !this.state.isBeingEdited,
     })
   }
+
+  toggleDeleteQuestion() {
+    if (this.state.delete) {
+      this.props.deleteQuestion(this.props.question.id);
+    }
+    setTimeout(() => {this.props.fetchQuestionnaire(this.props.question.questionnaireId)}, 50);
+  }
+
+  handleClose() {
+    this.setState({
+      deleteModalOpen: false,
+    });
+  }
+
   render() {
     return (
     
@@ -24,7 +43,35 @@ export default class  ListableQuestion extends Component {
         { !this.state.isBeingEdited &&
         <div>
         <h3>{this.props.question.name}</h3>
-        <Button basic content="edit" onClick={this.toggleEditQuestion} />
+        <Button basic color="blue" content="Edit" onClick={this.toggleEditQuestion} />
+        {this.state.delete &&
+        <Modal
+        className="scrolling"
+        trigger={<Button
+          className="ui red basic button"
+      
+        >Delete
+                 </Button>}
+        open={this.state.deleteModalOpen}
+        onClose={this.handleClose}
+        basic
+        size="small"
+      >
+        <Header icon="trash" content="DELETE QUESTION" />
+        <Modal.Content>
+          <p>If you delete this question all of the content and data will be deleted forever!</p>
+
+        </Modal.Content>
+        <Modal.Actions>
+          <Button basic color="red" inverted onClick={this.handleClose}>
+            <Icon name="remove" /> No
+          </Button>
+          <Button color="green" inverted onClick={this.toggleDeleteQuestion}>
+            <Icon name="checkmark" /> Yes
+          </Button>
+        </Modal.Actions>
+      </Modal>
+        }
         </div>
         }
         { this.state.isBeingEdited &&
