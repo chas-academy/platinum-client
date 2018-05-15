@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import CreateQuestion from '../../../Redux/Containers/Questionnaires/CreateQuestion';
-import ListableQuestion from '../../Questions/ListableQuestion';
+import ListableQuestion from '../../../Redux/Containers/Questionnaires/ListableQuestion';
 import uuidv4 from 'uuid/v4';
 import { isNumber } from 'util';
 
