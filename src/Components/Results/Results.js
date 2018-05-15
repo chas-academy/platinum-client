@@ -33,7 +33,7 @@ export default class Result extends Component {
   }
 
   subscribeToResult() {
-    const socket = openSocket('http://localhost:7770');
+    const socket = openSocket(process.env.REACT_APP_API_BASE_URL);
 
     socket.on(`/polls/${this.props.pollId}`, poll => this.props.pollFetched(poll));
   }
