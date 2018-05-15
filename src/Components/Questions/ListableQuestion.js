@@ -26,8 +26,8 @@ export default class  ListableQuestion extends Component {
   toggleDeleteQuestion() {
     if (this.state.delete) {
       this.props.deleteQuestion(this.props.question.id);
-      console.log(this.props.question.id);
     }
+    setTimeout(() => {this.props.fetchQuestionnaire(this.props.question.questionnaireId)}, 50);
   }
 
   handleClose() {
