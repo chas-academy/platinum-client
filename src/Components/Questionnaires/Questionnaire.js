@@ -43,7 +43,7 @@ export default class Questionnaire extends Component {
 
   handleClose() {
     this.setState({
-      modalOpen: false,
+      deleteModalOpen: false,
     });
   }
 
@@ -110,7 +110,7 @@ export default class Questionnaire extends Component {
 
                 >Delete
                          </Button>}
-                open={this.state.modalOpen}
+                open={this.state.deleteModalOpen}
                 onClose={this.handleClose}
                 basic
                 size="small"
