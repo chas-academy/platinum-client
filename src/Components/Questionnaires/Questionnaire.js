@@ -18,6 +18,8 @@ export default class Questionnaire extends Component {
       value: this.props.questionnaire.activePoll.link,
       copied: false,
       modalOpen: false,
+      hasQuestions: false,
+      hasOptions: false,
       alertMessage: {
         type: 'info',
         message: 'Link copied to clipboard!',
@@ -30,6 +32,21 @@ export default class Questionnaire extends Component {
     this.editQuestionnaire = this.editQuestionnaire.bind(this);
     this.viewResults = this.viewResults.bind(this);
     this.handleModal = this.handleModal.bind(this);
+  }
+  componentWillMount() {
+    if (this.props.questionnaire.questions[0]) {
+      this.setState({
+        hasQuestions: true,
+      });
+
+      if (this.props.questionnaire.questions[0].options[0]) {
+        if (this.props.questionnaire.questions[0].options[0].name.length !== 0) {
+          this.setState({
+            hasOptions: true,
+          });
+        }
+      }
+    }
   }
 
   togglePoll() {
@@ -98,7 +115,10 @@ export default class Questionnaire extends Component {
                 onClick={this.state.active ? this.viewResults : this.editQuestionnaire}
               > {this.state.active ? 'Live results' : 'Edit' }
               </button>
-              <button className="ui orange basic button" onClick={this.togglePoll}>{ this.state.active ? 'End' : 'Activate' }</button>
+              { this.state.hasQuestions && this.state.hasOptions &&
+                <button className="ui orange basic button" onClick={this.togglePoll}>{ this.state.active ? 'End' : 'Activate' }</button>
+              }
+
             </div>
             <div className="column padding-1">
 
