@@ -14,7 +14,7 @@ export default class CreateQuestion extends Component {
     super(props);
     this.state = {
       question: '',
-      type: 'select-one',
+      type: '',
       option1: '',
       option2: '',
       options: [],
@@ -30,6 +30,7 @@ export default class CreateQuestion extends Component {
   componentWillMount() {
     if (!this.props.question) {
       this.setState({
+        type: 'select-one',
         options: [
           <Form.Group
             key={uuidv1()}
@@ -72,6 +73,7 @@ export default class CreateQuestion extends Component {
     if (this.props.question) {
       this.setState({
         question: this.props.question.name,
+        type: this.props.question.type,
       });
       const oldOptions = [];
       this.props.question.options.forEach((option, index) => {
@@ -220,7 +222,7 @@ export default class CreateQuestion extends Component {
                   type="text"
                   width={11}
                 />
-                <Form.Select name="type" options={types} width={1} defaultValue={types[0].value} onChange={this.handleChange} />
+                <Form.Select name="type" options={types} width={1} defaultValue={this.state.type} onChange={this.handleChange} />
               </Form.Group>
               {this.state.options}
             </div>
