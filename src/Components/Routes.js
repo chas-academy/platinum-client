@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import Site from '../Views/Site';
 import Admin from '../Views/Admin';
-import { SiteRoute, AuthSiteRoute, AdminRoute } from '../Lib/Common/Routes';
+import { SiteRoute, AdminRoute } from '../Lib/Common/Routes';
 
 /* eslint-disable react/prefer-stateless-function */
 
@@ -23,7 +23,6 @@ export default class Routes extends Component {
           <SiteRoute exact path="/howdoesitwork" component={Site.HowDoesItWork} />
           <SiteRoute exact path="/polls/:pollId" component={Site.Polls} />
           <SiteRoute path="/polls/:pollId/result" component={Site.Result} />
-          <AuthSiteRoute exact path="/my-profile" component={Site.MyProfile} />
 
           <AdminRoute
             exact
