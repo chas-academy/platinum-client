@@ -159,7 +159,7 @@ export const createAnswer = pollId => (dispatch) => {
 };
 
 export const castVote = vote => (dispatch) => {
-  const socket = openSocket('http://localhost:7770');
+  const socket = openSocket(process.env.REACT_APP_API_BASE_URL);
 
   dispatch(startCastVote());
   Axios.post('/my-vote', vote)
