@@ -15,9 +15,12 @@ export default class CreateQuestionnaire extends Component {
       redirectToQuestionnaires: false,
       addingQuestion: false,
       countOfQuestions: 0,
+      editingQuestionIndex: -1,
+
     };
     this.handleChange = this.handleChange.bind(this);
     this.activeQuestion = this.activeQuestion.bind(this);
+    this.editingQuestion = this.editingQuestion.bind(this);
     this.createQuestionnaire = this.createQuestionnaire.bind(this);
     this.triggerRedirect = this.triggerRedirect.bind(this);
   }
@@ -60,6 +63,11 @@ export default class CreateQuestionnaire extends Component {
   activeQuestion() {
     this.setState({ addingQuestion: !this.state.addingQuestion });
   }
+  editingQuestion(index) {
+    const newIndex = this.state.editingQuestionIndex === index ? -1 : index;
+
+    this.setState({ editingQuestionIndex: newIndex });
+  }
 
   handleChange(e, { name, value }) {
     this.setState({ [name]: value });
@@ -76,15 +84,21 @@ export default class CreateQuestionnaire extends Component {
     if (this.props.activeQuestionnaire.questions) {
       if (this.props.activeQuestionnaire.questions[0]) {
         if (isNumber(this.props.activeQuestionnaire.questions[0].id)) {
-          this.props.activeQuestionnaire.questions.map((question) => {
-            const newQuestion = <ListableQuestion key={uuidv4()} question={question} />;
+          this.props.activeQuestionnaire.questions.map((question, index) => {
+            const newQuestion = (
+              <ListableQuestion
+                key={uuidv4()}
+                question={question}
+                index={index}
+                activeIndex={this.state.editingQuestionIndex}
+                editingQuestion={this.editingQuestion}
+              />);
             questions.push(newQuestion);
             return questions;
           });
         }
       }
     }
-
     return (
       <div className="create-question-view">
         { this.state.redirectToQuestionnaires &&
@@ -155,7 +169,10 @@ export default class CreateQuestionnaire extends Component {
           />
         }
         {
-          this.props.activeQuestionnaire.id && !this.state.addingQuestion &&
+          this.props.activeQuestionnaire.id &&
+          !this.state.addingQuestion &&
+          this.state.editingQuestionIndex === -1 &&
+
           <div className="margin-tb-1">
             <Button
               basic
