@@ -67,3 +67,48 @@
     }
   }
 }
+/*
+@media screen and (max-width: 420px) {
+  .datatable {
+    position: relative;
+    &-header {
+      position: relative;
+    }
+    &-actions {
+      text-align: left;
+    }
+  }
+  
+  .ReactTable {
+    .rt-thead {
+      .rt-th:not(:nth-child(4)):not(:last-child) {
+        &.rt-resizable-header {
+          display: none;
+        }
+      }
+      .rt-th:nth-child(4) {
+        width: 20%!important;
+        flex: none!important;
+      }
+      .rt-th:last-child {
+        width: auto!important;
+        max-width: none!important;
+        text-align: left!important;
+      }
+    }
+    .rt-tbody {
+      .rt-td:not(:nth-child(4)):not(:last-child) {
+        display: none;
+      }
+      .rt-td:nth-child(4) {
+        flex: none!important;
+        width: 20%!important;
+      }
+      .rt-td:last-child {
+        width: auto!important;
+        max-width: none!important;
+        text-align: left!important;
+      }
+    }
+  }
+}*/
