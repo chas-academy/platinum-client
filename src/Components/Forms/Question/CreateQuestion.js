@@ -87,7 +87,7 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name={`option${index + 1}`} width={10} value={option.name} order={index + 1} onChange={this.handleChange} />
+            <Option name={`option${index + 1}`} width={11} value={option.name} order={index + 1} onChange={this.handleChange} />
             <Form.Button
               width={1}
               type="button"
@@ -167,7 +167,7 @@ export default class CreateQuestion extends Component {
           unstackable
           widths={2}
         >
-          <Option name={`option${this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}`} width={10} value="" order={this.state.options[this.state.options.length - 1].props.children[0].props.order + 1} onChange={this.handleChange} />
+          <Option name={`option${this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}`} width={11} value="" order={this.state.options[this.state.options.length - 1].props.children[0].props.order + 1} onChange={this.handleChange} />
           <Form.Button
             width={1}
             type="button"
@@ -218,7 +218,7 @@ export default class CreateQuestion extends Component {
                   placeholder="Question"
                   required
                   type="text"
-                  width={10}
+                  width={11}
                 />
                 <Form.Select name="type" options={types} width={1} defaultValue={types[0].value} onChange={this.handleChange} />
               </Form.Group>
