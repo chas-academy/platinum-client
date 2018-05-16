@@ -108,7 +108,7 @@ export default class CreateQuestionnaire extends Component {
         {
           this.props.activeQuestionnaire.id &&
           <div>
-            <h2>{this.state.title}</h2>
+            <h2>{this.props.activeQuestionnaire.title}</h2>
           </div>
 
         }
