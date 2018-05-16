@@ -122,7 +122,7 @@ export default class Questionnaire extends Component {
             </div>
             <div className="column padding-1">
 
-              { this.state.delete &&
+              { this.state.delete && !this.state.active &&
               <Modal
                 className="scrolling"
                 trigger={<Button
