@@ -14,6 +14,7 @@ export default class CreateQuestionnaire extends Component {
       title: '',
       redirectToQuestionnaires: false,
       addingQuestion: false,
+      countOfQuestions: 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.activeQuestion = this.activeQuestion.bind(this);
@@ -25,7 +26,28 @@ export default class CreateQuestionnaire extends Component {
       this.props.removeActiveQuestionnaire();
     }
   }
-  componentDidMount() {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.activeQuestionnaire.questions) {
+      if (nextProps.activeQuestionnaire.questions[0]) {
+        if (isNumber(nextProps.activeQuestionnaire.questions[0].id)) {
+          this.setState({
+            countOfQuestions: nextProps.activeQuestionnaire.questions.length,
+          });
+        } else {
+          this.setState({
+            countOfQuestions: 0,
+          });
+        }
+      } else {
+        this.setState({
+          countOfQuestions: 0,
+        });
+      }
+    } else {
+      this.setState({
+        countOfQuestions: 0,
+      });
+    }
   }
   createQuestionnaire() {
     const data = {
@@ -117,10 +139,7 @@ export default class CreateQuestionnaire extends Component {
           this.state.addingQuestion &&
           <CreateQuestion
             questionnaireId={this.props.activeQuestionnaire.id}
-            countOfQuestions={
-              this.props.activeQuestionnaire.questions[0]
-              ? this.props.activeQuestionnaire.questions.length
-              : 0}
+            countOfQuestions={this.state.countOfQuestions}
             onSubmit={this.activeQuestion}
           />
         }

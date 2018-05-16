@@ -3,7 +3,7 @@ import { Form, Button } from 'semantic-ui-react';
 import Option from './Option/CreateOption';
 import uuidv1 from 'uuid/v1';
 import { Redirect } from 'react-router-dom';
-/* eslint-disable react/prop-types */
+/* eslint-disable react/prop-types, max-len */
 
 const types = [
   { key: 's', text: 'Select-One', value: 'select-one' },
@@ -157,40 +157,106 @@ export default class CreateQuestion extends Component {
   }
 
   addOption() {
-    this.setState({
-      [`option${this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}`]: '',
-      options: [
-        ...this.state.options,
+    if (this.state.options.length !== 0) {
+      this.setState({
+        [`option${this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}`]: '',
+        options: [
+          ...this.state.options,
+          <Form.Group
+            className="center-content padding-b-1"
+            key={uuidv1()}
+            unstackable
+            widths={2}
+          >
+            <Option
+              name={`option${this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}`}
+              width={10}
+              value=""
+              order={this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}
+              onChange={this.handleChange}
+            />
+            <Form.Button
+              width={1}
+              type="button"
+              negative
+              compact
+              content="X"
+              value={this.state.options.length}
+              onClick={this.removeOption}
+            />
+          </Form.Group>,
+        ],
+      });
+    } else {
+      this.setState({
+        option1: '',
+        options: [
+          ...this.state.options,
+          <Form.Group
+            className="center-content padding-b-1"
+            key={uuidv1()}
+            unstackable
+            widths={2}
+          >
+            <Option name="option1" width={10} value="" order={1} onChange={this.handleChange} />
+            <Form.Button
+              width={1}
+              type="button"
+              negative
+              compact
+              content="X"
+              value={0}
+              onClick={this.removeOption}
+            />
+          </Form.Group>,
+        ],
+      });
+    }
+  }
+
+  removeOption(e) {
+    let options = [...this.state.options];
+    options.map((option) => {
+      if (option.props.children[1].props.value === +e.target.value) {
+        if (this.props.question) {
+          if (this.props.question.options[option.props.children[0].props.order - 1]) {
+            this.props.deleteOption(
+              this.props.question.options[option.props.children[0].props.order - 1].id,
+              this.props.question.id,
+            );
+          }
+        }
+      }
+      return option;
+    });
+    options.splice(e.target.value, 1);
+    options = options.map((option, index) => {
+      const newOption = (
         <Form.Group
           className="center-content padding-b-1"
           key={uuidv1()}
           unstackable
           widths={2}
         >
-          <Option name={`option${this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}`} width={11} value="" order={this.state.options[this.state.options.length - 1].props.children[0].props.order + 1} onChange={this.handleChange} />
+          <Option
+            name={option.props.children[0].props.name}
+            width={10}
+            value={this.state[option.props.children[0].props.name]}
+            order={option.props.children[0].props.order}
+            onChange={this.handleChange}
+          />
           <Form.Button
             width={1}
             type="button"
             negative
             compact
             content="X"
-            value={this.state.options.length}
+            value={index}
             onClick={this.removeOption}
           />
-        </Form.Group>,
-      ],
+        </Form.Group>);
+      return newOption;
     });
-  }
-
-  removeOption(e) {
-    if (this.props.question.options[e.target.value]) {
-      this.props.deleteOption(
-        this.props.question.options[e.target.value].id,
-        this.props.question.id,
-      );
-    }
-    const options = [...this.state.options];
-    options.splice(e.target.value, 1);
     this.setState({
       options: [...options],
     });
