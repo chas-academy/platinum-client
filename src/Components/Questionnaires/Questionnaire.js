@@ -51,6 +51,7 @@ export default class Questionnaire extends Component {
     if (this.state.delete) {
       this.props.deleteQuestionnaire(this.props.questionnaire.id);
     }
+    this.props.handleAccordion(null, -1);
     setTimeout(this.props.fetchQuestionnaires, 50);
   }
 
