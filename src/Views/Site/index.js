@@ -1,6 +1,5 @@
 import Home from './Home';
 import PageNotFound from './PageNotFound';
-import Redux from './Redux';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Pricing from './Pricing';
@@ -15,7 +14,6 @@ import MyPolls from './MyPolls';
 export default {
   Home,
   PageNotFound,
-  Redux,
   SignIn,
   SignUp,
   Pricing,
