@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PieChart, Pie, Cell, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from 'recharts';
 import uuidv4 from 'uuid/v4';
 /* eslint-disable react/prop-types, no-mixed-operators */
 export default class PieChartResult extends Component {
@@ -36,30 +36,26 @@ export default class PieChartResult extends Component {
         </text>
       );
     };
-    const style = {
-      top: 0,
-      left: 350,
-      lineHeight: '24px',
-    };
 
     return (
-      <PieChart width={800} height={400} onMouseEnter={this.onPieEnter} >
-        <Pie
-          data={data}
-          dataKey="value"
-          cx={300}
-          cy={200}
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={80}
-          fill="#8884d8"
-        >
-          {
-        data.map((entry, index) => <Cell key={uuidv4()} fill={COLORS[index % COLORS.length]} />)
-          }
-        </Pie>
-        <Legend iconSize={10} width={120} height={140} layout="vertical" verticalAlign="middle" wrapperStyle={style} />
-      </PieChart>
+      <ResponsiveContainer height={400}>
+        <PieChart width={800} height={400} onMouseEnter={this.onPieEnter} >
+          <Pie
+            verticalAlign="middle"
+            data={data}
+            dataKey="value"
+            labelLine={false}
+            label={renderCustomizedLabel}
+            outerRadius={80}
+            fill="#8884d8"
+          >
+            {
+          data.map((entry, index) => <Cell key={uuidv4()} fill={COLORS[index % COLORS.length]} />)
+            }
+          </Pie>
+          <Legend />
+        </PieChart>
+      </ResponsiveContainer>
     );
   }
 }
