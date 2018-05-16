@@ -155,7 +155,7 @@ export default class CreateQuestionnaire extends Component {
           />
         }
         {
-          this.props.activeQuestionnaire.id &&
+          this.props.activeQuestionnaire.id && !this.state.addingQuestion &&
           <div className="margin-tb-1">
             <Button
               basic
