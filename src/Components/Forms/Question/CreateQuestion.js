@@ -170,7 +170,7 @@ export default class CreateQuestion extends Component {
           >
             <Option
               name={`option${this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}`}
-              width={10}
+              width={11}
               value=""
               order={this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}
               onChange={this.handleChange}
