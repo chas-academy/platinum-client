@@ -26,12 +26,18 @@ export default class CreateQuestionnaire extends Component {
       this.props.removeActiveQuestionnaire();
     }
   }
-  componentWillReceiveProps() {
-    if (this.props.activeQuestionnaire.questions) {
-      if (isNumber(this.props.activeQuestionnaire.questions[0].id)) {
-        this.setState({
-          countOfQuestions: this.props.activeQuestionnaire.questions.length,
-        });
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.activeQuestionnaire.questions) {
+      if (nextProps.activeQuestionnaire.questions[0]) {
+        if (isNumber(nextProps.activeQuestionnaire.questions[0].id)) {
+          this.setState({
+            countOfQuestions: nextProps.activeQuestionnaire.questions.length,
+          });
+        } else {
+          this.setState({
+            countOfQuestions: 0,
+          });
+        }
       } else {
         this.setState({
           countOfQuestions: 0,
