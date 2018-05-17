@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 /* eslint-disable react/prop-types */
 
-export default class RedirectToSignIn extends Component {
+export default class RedirectToSlash extends Component {
   componentWillMount() {
     this.props.auth(false);
   }
@@ -12,7 +12,7 @@ export default class RedirectToSignIn extends Component {
     return (
       <Redirect
         to={{
-          pathname: '/sign-in',
+          pathname: '/',
           state: { from: this.props.location },
         }}
       />
