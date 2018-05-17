@@ -16,11 +16,19 @@ export default class  ListableQuestion extends Component {
     this.toggleEditQuestion = this.toggleEditQuestion.bind(this);
     this.toggleDeleteQuestion = this.toggleDeleteQuestion.bind(this);
   }
+  componentWillMount(){
+    if(this.props.activeIndex === this.props.index) {
+      this.setState({
+        isBeingEdited:true,
+      })
+    }
+  }
   
   toggleEditQuestion(){
     this.setState({
       isBeingEdited: !this.state.isBeingEdited,
-    })
+    });
+    this.props.editingQuestion(this.props.index);
   }
 
   toggleDeleteQuestion() {
@@ -37,6 +45,8 @@ export default class  ListableQuestion extends Component {
   }
 
   render() {
+    console.log('test');
+    console.log(this.state.isBeingEdited);
     return (
     
       <div className="margin-tb-1">
