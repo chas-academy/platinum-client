@@ -32,9 +32,10 @@ export default class CreateOption extends Component {
         onChange={this.handleChange}
         name={this.props.name}
         value={this.state[this.props.name]}
-        placeholder="Option"
+        placeholder="Alternative"
         required
         type="text"
+        label="Alternative"
       />
     );
   }
