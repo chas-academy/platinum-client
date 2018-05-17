@@ -159,7 +159,9 @@ export default class CreateQuestionnaire extends Component {
         }
 
         {
-          this.props.activeQuestionnaire.id && !this.state.addingQuestion &&
+          this.props.activeQuestionnaire.id &&
+          !this.state.addingQuestion &&
+          this.state.editingQuestionIndex === -1 &&
           <Button
             basic
             content="Add question"
