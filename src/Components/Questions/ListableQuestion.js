@@ -33,9 +33,8 @@ export default class  ListableQuestion extends Component {
 
   toggleDeleteQuestion() {
     if (this.state.delete) {
-      this.props.deleteQuestion(this.props.question.id);
+      this.props.deleteQuestion(this.props.question.id, this.props.question.questionnaireId);
     }
-    setTimeout(() => {this.props.fetchQuestionnaire(this.props.question.questionnaireId)}, 50);
   }
 
   handleClose() {
@@ -45,8 +44,6 @@ export default class  ListableQuestion extends Component {
   }
 
   render() {
-    console.log('test');
-    console.log(this.state.isBeingEdited);
     return (
     
       <div className="margin-tb-1">

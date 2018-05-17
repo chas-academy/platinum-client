@@ -24,7 +24,6 @@ export default class CreateQuestion extends Component {
     this.removeOption = this.removeOption.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.createQuestion = this.createQuestion.bind(this);
-    this.triggerFetchQuestionnaire = this.triggerFetchQuestionnaire.bind(this);
     this.updateQuestion = this.updateQuestion.bind(this);
   }
   componentWillMount() {
@@ -128,15 +127,8 @@ export default class CreateQuestion extends Component {
 
     this.props.createQuestion(data);
     this.props.onSubmit();
-    setTimeout(this.triggerFetchQuestionnaire, 50);
   }
-  triggerFetchQuestionnaire() {
-    if (this.props.questionnaireId) {
-      this.props.fetchQuestionnaire(this.props.questionnaireId);
-    } else {
-      this.props.fetchQuestionnaire(this.props.question.questionnaireId);
-    }
-  }
+
   handleChange(e, { name, value }) {
     this.setState({ [name]: value });
   }
@@ -153,9 +145,8 @@ export default class CreateQuestion extends Component {
       type: this.state.type,
       options,
     };
-    this.props.updateQuestion(data, this.props.question.id);
+    this.props.updateQuestion(data, this.props.question.id, this.props.question.questionnaireId);
     this.props.onSubmit();
-    setTimeout(this.triggerFetchQuestionnaire, 50);
   }
 
   addOption() {
