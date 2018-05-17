@@ -143,6 +143,7 @@ export default class CreateQuestion extends Component {
     const data = {
       name: this.state.question,
       type: this.state.type,
+      order: this.props.question.order,
       options,
     };
     this.props.updateQuestion(data, this.props.question.id, this.props.question.questionnaireId);
