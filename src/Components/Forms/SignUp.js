@@ -150,7 +150,7 @@ export default class SignUp extends Component {
       role: 'Premium',
       redirect: '/',
       status: 'Active',
-      allowedPaths: ['/my-questionnaires', '/create-questionnaire'],
+      allowedPaths: ['/my-questionnaires', '/create-questionnaire', '/my-polls'],
       excludedPaths: [],
     };
 
