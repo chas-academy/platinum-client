@@ -35,6 +35,7 @@ export const AdminRoute = ({ component: Component, ...rest }) => {
   const { path } = { ...rest };
   let component = <Component {...rest} />;
 
+  let layout;
   if (
     path &&
     path !== '/admin/*' &&
@@ -42,9 +43,11 @@ export const AdminRoute = ({ component: Component, ...rest }) => {
     Session.accessDenied(path)
   ) {
     component = <PageNotFound {...rest} />;
+    layout = <Layout.Basic>{component}</Layout.Basic>;
+  } else {
+    layout = <Layout.Admin>{component}</Layout.Admin>;
   }
 
-  const layout = <Layout.Admin>{component}</Layout.Admin>;
 
   return <PrivateRoute {...rest} layout={layout} />;
 };
