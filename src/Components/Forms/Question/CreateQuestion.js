@@ -283,12 +283,13 @@ export default class CreateQuestion extends Component {
                   onChange={this.handleChange}
                   name="question"
                   value={this.state.question}
-                  placeholder="Question"
+                  placeholder="Question title"
                   required
                   type="text"
                   width={11}
+                  label="Question title"
                 />
-                <Form.Select name="type" options={types} width={1} defaultValue={this.state.type} onChange={this.handleChange} />
+                <Form.Select label="Type" name="type" options={types} width={1} defaultValue={this.state.type} onChange={this.handleChange} />
               </Form.Group>
               {this.state.options}
             </div>
