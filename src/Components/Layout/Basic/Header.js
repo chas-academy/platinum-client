@@ -23,7 +23,7 @@ class Header extends Component {
             <ul className="navbar-nav nav navbar-right">
               <NavLink title="Sign In" to="/sign-in" path={path} isSignedOut />
               <NavLink title="Sign up" to="/sign-up" path={path} isSignedOut />
-              <AuthNavLink title="Admin" to="/admin/dashboard" />
+              <AuthNavLink title="Admin" to="/admin/users" />
               <AuthNavLink title="My Questionnaires" to="/my-questionnaires" path={path} />
               <AuthNavLink title="Create Questionnaire" to="/create-questionnaire" path={path} />
               <AuthNavLink title="My Polls" to="/my-polls" path={path} />

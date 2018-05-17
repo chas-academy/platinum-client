@@ -10,7 +10,7 @@ export default class Footer extends Component {
         <div className="container">
           <Link to="/">{process.env.REACT_APP_SITE_NAME}</Link>
           &nbsp; • &nbsp;
-          <Link to="/admin/dashboard">Admin Theme</Link>
+          <Link to="/admin/users">Admin</Link>
         </div>
       </footer>
     );

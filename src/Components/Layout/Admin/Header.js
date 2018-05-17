@@ -3,8 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
 import { NavLink, AuthNavLink } from '../../../Lib/Common/Views';
 import SignOutButton from '../../../Redux/Containers/Sessions/SignOutButton';
-import ReactLogo from '../../../Assets/Images/react-logo.svg';
-
 
 /* eslint-disable react/prefer-stateless-function, jsx-a11y/anchor-is-valid,
 prefer-destructuring, react/prop-types */
@@ -16,14 +14,9 @@ class Header extends Component {
 
     return (
       <header className="header">
-        <Navbar inverse className="navbar-fixed-top">
+        <Navbar className="navbar-fixed-top">
           <Navbar.Header>
-            <Link to="/admin/dashboard" className="navbar-brand">
-              <img
-                src={ReactLogo}
-                className="navbar-brand-logo"
-                alt="React Logo"
-              />
+            <Link to="/admin/users" className="navbar-brand">
               <span className="text">Admin</span>
             </Link>
             <Navbar.Toggle id="js-navbar-toggle-btn" />
@@ -31,9 +24,7 @@ class Header extends Component {
           <Navbar.Collapse>
             <ul className="navbar-nav nav navbar-right">
               <NavLink title="Home" to="/" />
-              <AuthNavLink title="Dashboard" to="/admin/dashboard" path={path} />
               <AuthNavLink title="Users" to="/admin/users" path={path} />
-              <AuthNavLink title="Settings" to="/admin/settings" path={path} />
               <SignOutButton referrer={referrer} />
             </ul>
           </Navbar.Collapse>
