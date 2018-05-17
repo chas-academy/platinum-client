@@ -21,7 +21,7 @@ export default class ListablePoll extends Component {
   }
   deletePoll() {
     this.props.deletePoll(this.props.poll.id);
-    setTimeout(() => { this.props.fetchPolls(); }, 25);
+    this.props.handleAccordion(null, -1);
   }
   render() {
     return (

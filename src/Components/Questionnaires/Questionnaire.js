@@ -55,7 +55,6 @@ export default class Questionnaire extends Component {
     } else {
       this.props.activatePoll(this.props.questionnaire.id);
     }
-    setTimeout(this.props.fetchQuestionnaires, 50);
   }
 
   handleClose() {
@@ -69,7 +68,6 @@ export default class Questionnaire extends Component {
       this.props.deleteQuestionnaire(this.props.questionnaire.id);
     }
     this.props.handleAccordion(null, -1);
-    setTimeout(this.props.fetchQuestionnaires, 50);
   }
 
   editQuestionnaire() {

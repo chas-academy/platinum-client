@@ -108,6 +108,7 @@ export const deleteQuestionnaire = id => (dispatch) => {
   dispatch(startDeleteQuestionnaire());
   Axios.delete(`/my-questionnaires/${id}`)
     .then(() => {
+      dispatch(fetchQuestionnaires());
       dispatch(questionnaireDeleted());
     })
     .catch(() => {
