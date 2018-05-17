@@ -6,11 +6,31 @@ html {
 body {
   height: 100%;
   margin-bottom: 60px;
-  background: #4568DC;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #B06AB3, #4568DC);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #B06AB3, #4568DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  background: #20002c;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #cbb4d4, #20002c);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #cbb4d4, #20002c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
+body:before {
+  content: "";
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  background: #20002c;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #cbb4d4, #20002c);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #cbb4d4, #20002c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 .navbar-inverse {
   border-radius: 0;
