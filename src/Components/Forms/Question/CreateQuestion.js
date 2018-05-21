@@ -276,7 +276,6 @@ export default class CreateQuestion extends Component {
               <Form.Group
                 className="center-content padding-b-1"
                 widths={2}
-                unstackable
               >
                 <Form.Input
                   className="center"
