@@ -21,6 +21,15 @@ export const startCreateQuestionnaire = () => ({
 export const rejectedCreateQuestionnaire = () => ({
   type: ActionTypes.CREATE_QUESTIONNAIRE_FAILURE,
 });
+export const questionnaireUpdated = () => ({
+  type: ActionTypes.UPDATE_QUESTIONNAIRE_SUCCESS,
+});
+export const startUpdateQuestionnaire = () => ({
+  type: ActionTypes.UPDATE_QUESTIONNAIRE_START,
+});
+export const rejectedUpdateQuestionnaire = () => ({
+  type: ActionTypes.UPDATE_QUESTIONNAIRE_FAILURE,
+});
 export const startDeleteQuestionnaire = () => ({
   type: ActionTypes.DELETE_QUESTIONNAIRE_START,
 });
@@ -104,17 +113,6 @@ export const createQuestionnaire = data => (dispatch) => {
     });
 };
 
-export const deleteQuestionnaire = id => (dispatch) => {
-  dispatch(startDeleteQuestionnaire());
-  Axios.delete(`/my-questionnaires/${id}`)
-    .then(() => {
-      dispatch(questionnaireDeleted());
-    })
-    .catch(() => {
-      dispatch(rejectedDeleteQuestionnaire());
-    });
-};
-
 export const fetchQuestionnaire = id => (dispatch) => {
   dispatch(startFetchingQuestionnaire());
   Axios.get(`/questionnaires/${id}`)
@@ -123,6 +121,29 @@ export const fetchQuestionnaire = id => (dispatch) => {
     })
     .catch(() => {
       dispatch(rejectedFetchingQuestionnaire());
+    });
+};
+
+export const updateQuestionnaire = (id, data) => (dispatch) => {
+  dispatch(startUpdateQuestionnaire());
+  Axios.put(`/my-questionnaires/${id}`, data)
+    .then(() => {
+      dispatch(questionnaireUpdated());
+      dispatch(fetchQuestionnaire(id));
+    })
+    .catch(() => {
+      dispatch(rejectedUpdateQuestionnaire());
+    });
+};
+
+export const deleteQuestionnaire = id => (dispatch) => {
+  dispatch(startDeleteQuestionnaire());
+  Axios.delete(`/my-questionnaires/${id}`)
+    .then(() => {
+      dispatch(questionnaireDeleted());
+    })
+    .catch(() => {
+      dispatch(rejectedDeleteQuestionnaire());
     });
 };
 
