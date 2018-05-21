@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './Admin/Header';
-import Sidebar from './Admin/Sidebar';
 import Footer from './Admin/Footer';
 
 /* eslint-disable react/prefer-stateless-function, react/prop-types */
@@ -12,7 +11,6 @@ export default class Admin extends Component {
         <Header />
         <main className="container-fluid">
           <div className="wrapper">
-            <Sidebar />
             <div className="content">{this.props.children}</div>
           </div>
         </main>

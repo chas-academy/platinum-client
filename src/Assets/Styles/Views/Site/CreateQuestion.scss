@@ -24,23 +24,12 @@
   .margin-l-1 {
     margin: 1em;
   }
-
-  div
-    .ui
-    .basic
-    .icon
-    .bottom
-    .attached
-    .right
-    .floated
-    .right
-    .labeled
-    .button
-    .pos-absolute-b-6-r-2 {
-    position: absolute;
-    bottom: 6em;
-    right: 2em;
-  }
+}
+.align-bottom{
+  align-self: flex-end;
+}
+.margin-tb-1 {
+  margin: 1em 0;
 }
 
 @media only screen and (min-height: 645px) {

@@ -1,166 +1,245 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
-import Option from './Option/CreateOption';
-import uuidv1 from 'uuid/v1';
 import { Redirect } from 'react-router-dom';
+import CreateQuestion from '../../../Redux/Containers/Questionnaires/CreateQuestion';
+import ListableQuestion from '../../../Redux/Containers/Questionnaires/ListableQuestion';
+import uuidv4 from 'uuid/v4';
+import { isNumber } from 'util';
+
 /* eslint-disable react/prop-types */
-export default class CreateQuestion extends Component {
+export default class CreateQuestionnaire extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
-      question: '',
-      option1: '',
-      option2: '',
-      options: [
-      ],
       redirectToQuestionnaires: false,
+      addingQuestion: false,
+      countOfQuestions: 0,
+      editingQuestionIndex: -1,
+      editing: false,
+
     };
-    this.addOption = this.addOption.bind(this);
-    this.removeOption = this.removeOption.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.activeQuestion = this.activeQuestion.bind(this);
+    this.editingQuestion = this.editingQuestion.bind(this);
     this.createQuestionnaire = this.createQuestionnaire.bind(this);
+    this.triggerRedirect = this.triggerRedirect.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
+    this.updateQuestionnaire = this.updateQuestionnaire.bind(this);
   }
   componentWillMount() {
-    this.setState({
-      options: [
-        <Form.Group
-          key={uuidv1()}
-          className="center-content padding-b-1"
-          unstackable
-          widths={2}
-        >
-          <Option name="option1" width={11} value={this.state.option1} onChange={this.handleChange} />
-        </Form.Group>,
-        <Form.Group
-          key={uuidv1()}
-          className="center-content padding-b-1"
-          unstackable
-          widths={2}
-        >
-          <Option name="option2" width={11} value={this.state.option2} onChange={this.handleChange} />
-        </Form.Group>,
-      ],
-    });
+    if (!this.props.location.state) {
+      this.props.removeActiveQuestionnaire();
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.activeQuestionnaire.questions) {
+      if (nextProps.activeQuestionnaire.questions[0]) {
+        if (isNumber(nextProps.activeQuestionnaire.questions[0].id)) {
+          this.setState({
+            countOfQuestions: nextProps.activeQuestionnaire.questions.length,
+          });
+        } else {
+          this.setState({
+            countOfQuestions: 0,
+          });
+        }
+      } else {
+        this.setState({
+          countOfQuestions: 0,
+        });
+      }
+    } else {
+      this.setState({
+        countOfQuestions: 0,
+      });
+    }
   }
   createQuestionnaire() {
-    const options = [];
-
-    this.state.options.map((option, index) => {
-      options.push({ name: this.state[`option${index + 1}`], order: index + 1 });
-      return option;
-    });
     const data = {
       title: this.state.title,
       type: 'premium',
-      question: {
-        name: this.state.question,
-        type: 'select-one',
-        order: 1,
-        options,
-      },
     };
-
     this.props.createQuestionnaire(data);
-    setTimeout(this.setState({
-      redirectToQuestionnaires: true,
-    }), 50);
   }
+
+  activeQuestion() {
+    this.setState({ addingQuestion: !this.state.addingQuestion });
+  }
+  editingQuestion(index) {
+    const newIndex = this.state.editingQuestionIndex === index ? -1 : index;
+
+    this.setState({ editingQuestionIndex: newIndex });
+  }
+
   handleChange(e, { name, value }) {
     this.setState({ [name]: value });
   }
-
-  addOption() {
+  triggerRedirect() {
     this.setState({
-      [`option${this.state.options.length + 1}`]: '',
-      options: [
-        ...this.state.options,
-        <Form.Group
-          className="center-content padding-b-1"
-          key={uuidv1()}
-          unstackable
-          widths={2}
-        >
-          <Option name={`option${this.state.options.length + 1}`} width={10} value={this.state[`option${this.state.options.length + 1}`]} onChange={this.handleChange} />
-          <Form.Button
-            width={1}
-            type="button"
-            negative
-            compact
-            content="X"
-            value={this.state.options.length}
-            onClick={this.removeOption}
-          />
-        </Form.Group>,
-      ],
+      redirectToQuestionnaires: true,
+    });
+  }
+  toggleEdit() {
+    this.setState({
+      editing: !this.state.editing,
+      title: this.props.activeQuestionnaire.title,
     });
   }
 
-  removeOption(e) {
-    const options = [...this.state.options];
-    options.splice(e.target.value, 1);
-    this.setState({
-      options: [...options],
-    });
+  updateQuestionnaire() {
+    const data = {
+      title: this.state.title,
+    };
+    this.props.updateQuestionnaire(this.props.activeQuestionnaire.id, data);
+    this.toggleEdit();
   }
 
   render() {
+    const questions = [];
+
+    if (this.props.activeQuestionnaire.questions) {
+      if (this.props.activeQuestionnaire.questions[0]) {
+        if (isNumber(this.props.activeQuestionnaire.questions[0].id)) {
+          this.props.activeQuestionnaire.questions.map((question, index) => {
+            const newQuestion = (
+              <ListableQuestion
+                key={uuidv4()}
+                question={question}
+                index={index}
+                activeIndex={this.state.editingQuestionIndex}
+                editingQuestion={this.editingQuestion}
+                editingQuestionnaire={this.state.editing}
+              />);
+            questions.push(newQuestion);
+            return questions;
+          });
+        }
+      }
+    }
     return (
       <div className="create-question-view">
         { this.state.redirectToQuestionnaires &&
         <Redirect to="/my-questionnaires" />
         }
-        <div className="min-height">
-          <Form id="creat-question-form">
-            <div className="padding-tb-2">
-              <Form.Group
-                className="center-content padding-b-1"
-                widths={2}
-                unstackable
-              >
-                <Form.Input
-                  className="center padding-b-1"
-                  onChange={this.handleChange}
-                  name="title"
-                  value={this.state.title}
-                  placeholder="Questionnaire Title"
-                  required
-                  type="text"
-                  width={11}
-                />
-                <Form.Input
-                  className="center"
-                  onChange={this.handleChange}
-                  name="question"
-                  value={this.state.question}
-                  placeholder="Question"
-                  required
-                  type="text"
-                  width={11}
-                />
-              </Form.Group>
-              {this.state.options}
-            </div>
-          </Form>
+        {
+          !this.props.activeQuestionnaire.id &&
+          <div className="min-height">
+            <Form id="creat-question-form">
+              <div className="padding-tb-2">
+                <Form.Group
+                  className="center-content padding-b-1"
+                  widths={2}
+                  unstackable
+                >
+                  <Form.Input
+                    className="center padding-b-1"
+                    onChange={this.handleChange}
+                    name="title"
+                    value={this.state.title}
+                    placeholder="Questionnaire Title"
+                    required
+                    type="text"
+                    width={11}
+                  />
+                </Form.Group>
+              </div>
+            </Form>
+            <Button
+              basic
+              className="pos-absolute-b-6-r-2"
+              content="Create"
+              floated="right"
+              icon="arrow right"
+              attached="bottom"
+              labelPosition="right"
+              onClick={this.createQuestionnaire}
+            />
+          </div>
+        }
+
+
+        {
+          this.props.activeQuestionnaire.id && !this.state.editing &&
+          <div>
+            <h2>{this.props.activeQuestionnaire.title}</h2>
+            <Button
+              basic
+              content="Edit"
+              onClick={this.toggleEdit}
+            />
+          </div>
+
+        }
+        {
+          this.state.editing &&
+          <div className="min-height">
+            <Form id="creat-question-form">
+              <div className="padding-tb-2">
+                <Form.Group
+                  className="center-content padding-b-1"
+                  widths={2}
+                  unstackable
+                >
+                  <Form.Input
+                    className="center padding-b-1"
+                    onChange={this.handleChange}
+                    name="title"
+                    value={this.state.title}
+                    required
+                    type="text"
+                    width={11}
+                  />
+                </Form.Group>
+              </div>
+            </Form>
+            <Button
+              basic
+              content="Update"
+              attached="bottom"
+              onClick={this.updateQuestionnaire}
+            />
+          </div>
+
+        }
+        {questions}
+        {
+          this.state.addingQuestion &&
+          <CreateQuestion
+            questionnaireId={this.props.activeQuestionnaire.id}
+            countOfQuestions={this.state.countOfQuestions}
+            onSubmit={this.activeQuestion}
+          />
+        }
+
+        {
+          this.props.activeQuestionnaire.id &&
+          !this.state.addingQuestion &&
+          this.state.editingQuestionIndex === -1 &&
+          !this.state.editing &&
           <Button
             basic
-            className="margin-l-1"
-            content="add option"
+            content="Add question"
             icon="plus"
-            labelPosition="left"
-            onClick={this.addOption}
+            labelPosition="right"
+            onClick={this.activeQuestion}
           />
-        </div>
-        <Button
-          basic
-          className="pos-absolute-b-6-r-2"
-          content="NEXT"
-          floated="right"
-          icon="arrow right"
-          attached="bottom"
-          labelPosition="right"
-          onClick={this.createQuestionnaire}
-        />
+        }
+        {
+          this.props.activeQuestionnaire.id &&
+          !this.state.addingQuestion &&
+          this.state.editingQuestionIndex === -1 &&
+          !this.state.editing &&
+
+          <div className="margin-tb-1">
+            <Button
+              basic
+              content="Done"
+              attached="bottom"
+              onClick={this.triggerRedirect}
+            />
+          </div>
+        }
       </div>
     );
   }

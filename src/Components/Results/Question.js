@@ -1,32 +1,46 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
-import uuidv4 from 'uuid/v4';
-import Option from './Option';
+import QuestionTable from './Table';
+import { Tab } from 'semantic-ui-react';
+import BarChartResult from './BarChart';
+import PieChartResult from './PieChart';
 
 /* eslint-disable react/prop-types, react/prefer-stateless-function */
 export default class Question extends Component {
   render() {
-    const options = [];
+    const panes = [
+      {
+        menuItem: 'Bar',
+        render: () =>
+          (
+            <Tab.Pane>
+              <BarChartResult options={this.props.question.options} />
+            </Tab.Pane>
+          ),
+      },
+      {
+        menuItem: 'Pie',
+        render: () =>
+          (
+            <Tab.Pane>
+              <PieChartResult options={this.props.question.options} />
+            </Tab.Pane>
+          ),
+      },
+      {
+        menuItem: 'Table',
+        render: () =>
+          (
+            <Tab.Pane>
+              <QuestionTable options={this.props.question.options} />
+            </Tab.Pane>
+          ),
+      },
+    ];
 
-    this.props.question.options.forEach((option) => {
-      const newOption = <Option key={uuidv4()} option={option} />;
-
-      options.push(newOption);
-    });
     return (
       <div className="min-width-100">
         <h3 className="margin-b-2"> {this.props.question.name} </h3>
-        <Table unstackable celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Options</Table.HeaderCell>
-              <Table.HeaderCell>Votes</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {options}
-          </Table.Body>
-        </Table>
+        <Tab panes={panes} />
       </div>
     );
   }

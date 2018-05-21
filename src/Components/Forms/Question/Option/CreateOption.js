@@ -11,8 +11,17 @@ export default class CreateOption extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
-
+  componentWillMount() {
+    if (this.props.value) {
+      this.setState({
+        [this.props.name]: this.props.value,
+      });
+    }
+  }
   handleChange(e, { name, value }) {
+    this.setState({
+      [this.props.name]: value,
+    });
     this.props.onChange(e, { name, value });
   }
 
@@ -22,10 +31,11 @@ export default class CreateOption extends Component {
         width={this.props.width}
         onChange={this.handleChange}
         name={this.props.name}
-        value={this.state[this.props.value]}
-        placeholder="Option"
+        value={this.state[this.props.name]}
+        placeholder="Alternative"
         required
         type="text"
+        label="Alternative"
       />
     );
   }
