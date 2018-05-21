@@ -2,6 +2,7 @@ import ActionTypes from './Types';
 import Axios from '../../../Lib/Common/Axios';
 import { saveVoteToLocalStorage } from '../../../Lib/Helpers/Session';
 import openSocket from 'socket.io-client';
+import { fetchQuestionnaires } from '../Questionnaires';
 
 export const startActivatePoll = () => ({
   type: ActionTypes.ACTIVATE_POLL_START,
@@ -96,32 +97,11 @@ export const activatePoll = questionnaireId => (dispatch) => {
   dispatch(startActivatePoll());
   Axios.post('/my-polls', { questionnaireId })
     .then((response) => {
+      dispatch(fetchQuestionnaires());
       dispatch(pollActivated());
     })
     .catch((error) => {
       dispatch(rejectedActivatePoll());
-    });
-};
-
-export const closePoll = id => (dispatch) => {
-  dispatch(startClosePoll());
-  Axios.put(`/my-polls/${id}`)
-    .then((response) => {
-      dispatch(pollClosed());
-    })
-    .catch((error) => {
-      dispatch(rejectedClosePoll());
-    });
-};
-
-export const deletePoll = id => (dispatch) => {
-  dispatch(startDeletePoll());
-  Axios.delete(`/my-polls/${id}`)
-    .then((response) => {
-      dispatch(pollDeleted());
-    })
-    .catch((error) => {
-      dispatch(rejectedDeletePoll());
     });
 };
 
@@ -144,6 +124,30 @@ export const fetchPolls = () => (dispatch) => {
     })
     .catch((error) => {
       dispatch(rejectedFetchPolls());
+    });
+};
+
+export const closePoll = id => (dispatch) => {
+  dispatch(startClosePoll());
+  Axios.put(`/my-polls/${id}`)
+    .then((response) => {
+      dispatch(fetchQuestionnaires());
+      dispatch(pollClosed());
+    })
+    .catch((error) => {
+      dispatch(rejectedClosePoll());
+    });
+};
+
+export const deletePoll = id => (dispatch) => {
+  dispatch(startDeletePoll());
+  Axios.delete(`/my-polls/${id}`)
+    .then((response) => {
+      dispatch(fetchPolls());
+      dispatch(pollDeleted());
+    })
+    .catch((error) => {
+      dispatch(rejectedDeletePoll());
     });
 };
 

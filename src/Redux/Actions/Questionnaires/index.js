@@ -108,6 +108,7 @@ export const deleteQuestionnaire = id => (dispatch) => {
   dispatch(startDeleteQuestionnaire());
   Axios.delete(`/my-questionnaires/${id}`)
     .then(() => {
+      dispatch(fetchQuestionnaires());
       dispatch(questionnaireDeleted());
     })
     .catch(() => {
@@ -130,6 +131,7 @@ export const createQuestion = data => (dispatch) => {
   dispatch(startCreateQuestion());
   Axios.post('/questions', data)
     .then(() => {
+      dispatch(fetchQuestionnaire(data.questionnaireId));
       dispatch(questionCreated());
     })
     .catch(() => {
@@ -137,10 +139,11 @@ export const createQuestion = data => (dispatch) => {
     });
 };
 
-export const updateQuestion = (data, id) => (dispatch) => {
+export const updateQuestion = (data, id, questionnaireId) => (dispatch) => {
   dispatch(startUpdateQuestion());
   Axios.put(`/questions/${id}`, data)
     .then(() => {
+      dispatch(fetchQuestionnaire(questionnaireId));
       dispatch(questionUpdated());
     })
     .catch(() => {
@@ -159,10 +162,11 @@ export const deleteOption = (id, questionId) => (dispatch) => {
     });
 };
 
-export const deleteQuestion = id => (dispatch) => {
+export const deleteQuestion = (id, questionnaireId) => (dispatch) => {
   dispatch(startDeleteQuestion());
   Axios.delete(`/questions/${id}`)
     .then(() => {
+      dispatch(fetchQuestionnaire(questionnaireId));
       dispatch(questionDeleted());
     })
     .catch(() => {
