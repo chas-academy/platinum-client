@@ -9,7 +9,9 @@ import { closeNavbar } from '../../Lib/Common/Views';
 
 export default class SignOut extends Component {
   signOut() {
-    if (Session.decodedToken() === false) return this.props.auth(false);
+    if (Session.decodedToken() === false) {
+      this.props.auth(false);
+    }
 
     Axios.post(process.env.REACT_APP_API_SIGN_OUT_URL).then((response) => {
       Session.deleteToken();
