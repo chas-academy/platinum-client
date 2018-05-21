@@ -44,7 +44,7 @@ export const NavLink = ({ ...props }) => {
 export const AuthNavLink = ({ ...props }) =>
   (Session.isAuthorised(props.to) ? (
     <li className={navLinkIsActive({ ...props })}>
-      <Link to={props.to}>{props.title}</Link>
+      <Link to={props.to} onClick={closeNavbar}>{props.title}</Link>
     </li>
   ) : null);
 
