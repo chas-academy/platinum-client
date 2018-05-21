@@ -43,7 +43,7 @@ export default class CreateQuestion extends Component {
               width={1}
               type="button"
               negative
-              compact
+              className="align-bottom"
               content="X"
               value={0}
               onClick={this.removeOption}
@@ -60,7 +60,7 @@ export default class CreateQuestion extends Component {
               width={1}
               type="button"
               negative
-              compact
+              className="align-bottom"
               content="X"
               value={1}
               onClick={this.removeOption}
@@ -92,9 +92,9 @@ export default class CreateQuestion extends Component {
             <Option name={`option${index + 1}`} width={11} value={option.name} order={index + 1} onChange={this.handleChange} />
             <Form.Button
               width={1}
+              className="align-bottom"
               type="button"
               negative
-              compact
               content="X"
               value={index}
               onClick={this.removeOption}
@@ -181,7 +181,7 @@ export default class CreateQuestion extends Component {
               width={1}
               type="button"
               negative
-              compact
+              className="align-bottom"
               content="X"
               value={this.state.options.length}
               onClick={this.removeOption}
@@ -205,7 +205,7 @@ export default class CreateQuestion extends Component {
               width={1}
               type="button"
               negative
-              compact
+              className="align-bottom"
               content="X"
               value={0}
               onClick={this.removeOption}
@@ -251,7 +251,7 @@ export default class CreateQuestion extends Component {
             width={1}
             type="button"
             negative
-            compact
+            className="align-bottom"
             content="X"
             value={index}
             onClick={this.removeOption}
