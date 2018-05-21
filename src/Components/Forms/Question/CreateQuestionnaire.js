@@ -109,6 +109,7 @@ export default class CreateQuestionnaire extends Component {
                 index={index}
                 activeIndex={this.state.editingQuestionIndex}
                 editingQuestion={this.editingQuestion}
+                editingQuestionnaire={this.state.editing}
               />);
             questions.push(newQuestion);
             return questions;
@@ -215,6 +216,7 @@ export default class CreateQuestionnaire extends Component {
           this.props.activeQuestionnaire.id &&
           !this.state.addingQuestion &&
           this.state.editingQuestionIndex === -1 &&
+          !this.state.editing &&
           <Button
             basic
             content="Add question"
@@ -227,6 +229,7 @@ export default class CreateQuestionnaire extends Component {
           this.props.activeQuestionnaire.id &&
           !this.state.addingQuestion &&
           this.state.editingQuestionIndex === -1 &&
+          !this.state.editing &&
 
           <div className="margin-tb-1">
             <Button
