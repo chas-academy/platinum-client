@@ -16,6 +16,7 @@ export default class CreateQuestionnaire extends Component {
       addingQuestion: false,
       countOfQuestions: 0,
       editingQuestionIndex: -1,
+      editing: false,
 
     };
     this.handleChange = this.handleChange.bind(this);
@@ -23,6 +24,8 @@ export default class CreateQuestionnaire extends Component {
     this.editingQuestion = this.editingQuestion.bind(this);
     this.createQuestionnaire = this.createQuestionnaire.bind(this);
     this.triggerRedirect = this.triggerRedirect.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
+    this.updateQuestionnaire = this.updateQuestionnaire.bind(this);
   }
   componentWillMount() {
     if (!this.props.location.state) {
@@ -76,6 +79,20 @@ export default class CreateQuestionnaire extends Component {
     this.setState({
       redirectToQuestionnaires: true,
     });
+  }
+  toggleEdit() {
+    this.setState({
+      editing: !this.state.editing,
+      title: this.props.activeQuestionnaire.title,
+    });
+  }
+
+  updateQuestionnaire() {
+    const data = {
+      title: this.state.title,
+    };
+    this.props.updateQuestionnaire(this.props.activeQuestionnaire.id, data);
+    this.toggleEdit();
   }
 
   render() {
@@ -142,9 +159,45 @@ export default class CreateQuestionnaire extends Component {
 
 
         {
-          this.props.activeQuestionnaire.id &&
+          this.props.activeQuestionnaire.id && !this.state.editing &&
           <div>
             <h2>{this.props.activeQuestionnaire.title}</h2>
+            <Button
+              basic
+              content="Edit"
+              onClick={this.toggleEdit}
+            />
+          </div>
+
+        }
+        {
+          this.state.editing &&
+          <div className="min-height">
+            <Form id="creat-question-form">
+              <div className="padding-tb-2">
+                <Form.Group
+                  className="center-content padding-b-1"
+                  widths={2}
+                  unstackable
+                >
+                  <Form.Input
+                    className="center padding-b-1"
+                    onChange={this.handleChange}
+                    name="title"
+                    value={this.state.title}
+                    required
+                    type="text"
+                    width={11}
+                  />
+                </Form.Group>
+              </div>
+            </Form>
+            <Button
+              basic
+              content="Update"
+              attached="bottom"
+              onClick={this.updateQuestionnaire}
+            />
           </div>
 
         }
