@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createQuestionnaire, fetchQuestionnaire, removeActiveQuestionnaire } from '../../Actions/Questionnaires';
+import { createQuestionnaire, fetchQuestionnaire, removeActiveQuestionnaire, updateQuestionnaire } from '../../Actions/Questionnaires';
 import CreateQuestionnaire from '../../../Components/Forms/Question/CreateQuestionnaire';
 
 
@@ -14,6 +14,7 @@ function mapDispatchToProps(dispatch) {
     createQuestionnaire: data => dispatch(createQuestionnaire(data)),
     fetchQuestionnaire: id => dispatch(fetchQuestionnaire(id)),
     removeActiveQuestionnaire: () => dispatch(removeActiveQuestionnaire()),
+    updateQuestionnaire: (id, data) => dispatch(updateQuestionnaire(id, data)),
   };
 }
 
