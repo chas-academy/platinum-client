@@ -48,6 +48,21 @@ export default function (state = DEFAULT_STATE, action) {
         ...state,
         isCreating: false,
       };
+    case actionTypes.UPDATE_QUESTIONNAIRE_START:
+      return {
+        ...state,
+        isUpdating: true,
+      };
+    case actionTypes.UPDATE_QUESTIONNAIRE_SUCCESS:
+      return {
+        ...state,
+        isUpdating: false,
+      };
+    case actionTypes.UPDATE_QUESTIONNAIRE_FAILURE:
+      return {
+        ...state,
+        isUpdating: false,
+      };
     case actionTypes.DELETE_QUESTIONNAIRE_START:
       return {
         ...state,
