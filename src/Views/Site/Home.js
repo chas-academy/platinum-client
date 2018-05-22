@@ -13,14 +13,14 @@ export default class Home extends Component {
             <div className="ui two column centered grid stackable columns">
               <div className="two column centered row">
                 <div className="two column aligned">
-                  <Button href="/sign-in" fluid inverted color="orange">SIGN IN</Button>
+                  <Button href="/sign-in" fluid inverted color="orange" size="large">SIGN IN</Button>
                 </div>
                 <div className="two column aligned">
-                  <Button href="/sign-up" fluid inverted color="orange">SIGN UP</Button>
+                  <Button href="/sign-up" fluid inverted color="orange" size="large">SIGN UP</Button>
                 </div>
               </div>
               <div className="two column middle aligned">
-                <Button href="/howdoesitwork" fluid inverted color="orange">HOW DOES IT WORK?</Button>
+                <Button href="/howdoesitwork" fluid inverted color="orange" size="large">HOW DOES IT WORK?</Button>
               </div>
             </div>
           </div>

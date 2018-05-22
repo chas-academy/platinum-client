@@ -33,7 +33,6 @@ export default class CreateOption extends Component {
         name={this.props.name}
         value={this.state[this.props.name]}
         placeholder="Alternative"
-        required
         type="text"
         label="Alternative"
       />

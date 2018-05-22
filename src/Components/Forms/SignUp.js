@@ -189,6 +189,7 @@ export default class SignUp extends Component {
             color="orange"
             content="SIGN UP"
             type="submit"
+            size="large"
             disabled={this.state.isSigningUp}
           />
 

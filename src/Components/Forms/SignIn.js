@@ -130,6 +130,7 @@ export default class SignIn extends Component {
             color="orange"
             content="SIGN IN"
             type="submit"
+            size="large"
             disabled={this.state.isSigningIn}
           />
 

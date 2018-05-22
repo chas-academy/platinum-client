@@ -125,7 +125,7 @@ export default class CreateQuestionnaire extends Component {
         {
           !this.props.activeQuestionnaire.id &&
           <div className="min-height">
-            <Form id="creat-question-form">
+            <Form id="creat-question-form" size="large">
               <div className="padding-tb-2">
                 <Form.Group
                   className="center-content padding-b-1"
