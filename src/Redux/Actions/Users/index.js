@@ -24,17 +24,6 @@ export const rejectedLoginUser = () => ({
   type: ActionTypes.LOGIN_USER_FAILURE,
 });
 
-export const registerUser = user => (dispatch) => {
-  dispatch(startRegisterUser());
-  Axios.post('/users', user)
-    .then(() => {
-      dispatch(userRegistered());
-    })
-    .catch(() => {
-      dispatch(rejectedRegisterUser());
-    });
-};
-
 export const loginUser = data => (dispatch) => {
   dispatch(startLoginUser());
   const tempToken = JWT.sign(data, process.env.REACT_APP_API_JWT_SECRET);
@@ -46,5 +35,17 @@ export const loginUser = data => (dispatch) => {
     })
     .catch(() => {
       dispatch(rejectedLoginUser());
+    });
+};
+
+export const registerUser = user => (dispatch) => {
+  dispatch(startRegisterUser());
+  Axios.post('/users', user)
+    .then(() => {
+      dispatch(userRegistered());
+      dispatch(loginUser(user));
+    })
+    .catch(() => {
+      dispatch(rejectedRegisterUser());
     });
 };
