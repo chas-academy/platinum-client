@@ -4,9 +4,9 @@ import Axios from '../../../Lib/Common/Axios';
 export const startFetchingQuestionnaires = () => ({
   type: ActionTypes.FETCH_QUESTIONNAIRES_START,
 });
-export const questionnairesFetched = questionnaires => ({
+export const questionnairesFetched = data => ({
   type: ActionTypes.FETCH_QUESTIONNAIRES_SUCCESS,
-  questionnaires,
+  data,
 });
 export const rejectedFetchingQuestionnaires = () => ({
   type: ActionTypes.FETCH_QUESTIONNAIRES_FAILURE,
@@ -91,9 +91,9 @@ export const rejectedDeleteQuestion = () => ({
 });
 
 /* eslint-disable no-console */
-export const fetchQuestionnaires = () => (dispatch) => {
+export const fetchQuestionnaires = page => (dispatch) => {
   dispatch(startFetchingQuestionnaires());
-  Axios.get('/my-questionnaires')
+  Axios.get(`/my-questionnaires?${page}&limit=10`)
     .then((response) => {
       dispatch(questionnairesFetched(response.data));
     })
@@ -113,11 +113,11 @@ export const createQuestionnaire = data => (dispatch) => {
     });
 };
 
-export const deleteQuestionnaire = id => (dispatch) => {
+export const deleteQuestionnaire = (id, page) => (dispatch) => {
   dispatch(startDeleteQuestionnaire());
   Axios.delete(`/my-questionnaires/${id}`)
     .then(() => {
-      dispatch(fetchQuestionnaires());
+      dispatch(fetchQuestionnaires(page));
       dispatch(questionnaireDeleted());
     })
     .catch(() => {
