@@ -17,8 +17,8 @@ export default class BarChartResult extends Component {
         fill: colors[index],
       };
       const label = (
-        <div key={uuidv4()}>
-          <svg width="10" height="10">
+        <div className="bar__legend" key={uuidv4()}>
+          <svg className="bar__legend-svg" width="10" height="10">
             <rect width="10" height="10" style={color} />
           </svg>
           <p>{element.name}</p>
@@ -46,7 +46,7 @@ export default class BarChartResult extends Component {
             </Bar>
           </BarChart>
         </ResponsiveContainer>
-        <div>
+        <div className="bar__legend-labels">
           {labels}
         </div>
       </div>
