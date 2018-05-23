@@ -93,11 +93,11 @@ export const rejectedCastVote = () => ({
 });
 
 /* eslint-disable no-unused-vars */
-export const activatePoll = questionnaireId => (dispatch) => {
+export const activatePoll = (questionnaireId, page) => (dispatch) => {
   dispatch(startActivatePoll());
   Axios.post('/my-polls', { questionnaireId })
     .then((response) => {
-      dispatch(fetchQuestionnaires());
+      dispatch(fetchQuestionnaires(page));
       dispatch(pollActivated());
     })
     .catch((error) => {
@@ -127,11 +127,11 @@ export const fetchPolls = () => (dispatch) => {
     });
 };
 
-export const closePoll = id => (dispatch) => {
+export const closePoll = (id, page) => (dispatch) => {
   dispatch(startClosePoll());
   Axios.put(`/my-polls/${id}`)
     .then((response) => {
-      dispatch(fetchQuestionnaires());
+      dispatch(fetchQuestionnaires(page));
       dispatch(pollClosed());
     })
     .catch((error) => {
