@@ -50,10 +50,11 @@ export default class Questionnaire extends Component {
   }
 
   togglePoll() {
+    const page = `page=${this.props.page}`;
     if (this.state.active) {
-      this.props.closePoll(this.props.questionnaire.activePoll.id);
+      this.props.closePoll(this.props.questionnaire.activePoll.id, page);
     } else {
-      this.props.activatePoll(this.props.questionnaire.id);
+      this.props.activatePoll(this.props.questionnaire.id, page);
     }
   }
 
@@ -64,8 +65,9 @@ export default class Questionnaire extends Component {
   }
 
   removeQuestionnaire() {
+    const page = `page=${this.props.page}`;
     if (this.state.delete) {
-      this.props.deleteQuestionnaire(this.props.questionnaire.id);
+      this.props.deleteQuestionnaire(this.props.questionnaire.id, page);
     }
     this.props.handleAccordion(null, -1);
   }
