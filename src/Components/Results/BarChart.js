@@ -21,7 +21,7 @@ export default class BarChartResult extends Component {
           <svg className="bar__legend-svg" width="10" height="10">
             <rect width="10" height="10" style={color} />
           </svg>
-          <p>{element.name}</p>
+          <p className="bar__legend-name">{element.name}</p>
         </div>
       );
 
