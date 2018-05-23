@@ -10,7 +10,6 @@ const DEFAULT_STATE = {
   isFetching: false,
   isUpdating: false,
   morePages: false,
-
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -89,6 +88,7 @@ export default function (state = DEFAULT_STATE, action) {
       return {
         ...state,
         activeQuestionnaire: new Questionnaire(action.questionnaire),
+        morePages: action.morePages,
         isFetching: false,
       };
     case actionTypes.FETCH_QUESTIONNAIRE_FAILURE:

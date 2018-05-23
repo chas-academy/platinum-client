@@ -6,15 +6,16 @@ import CreateQuestionnaire from '../../../Components/Forms/Question/CreateQuesti
 function mapStateToProps(state) {
   return {
     activeQuestionnaire: state.Questionnaires.activeQuestionnaire,
+    morePages: state.Questionnaires.morePages,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     createQuestionnaire: data => dispatch(createQuestionnaire(data)),
-    fetchQuestionnaire: id => dispatch(fetchQuestionnaire(id)),
+    fetchQuestionnaire: (id, page) => dispatch(fetchQuestionnaire(id, page)),
     removeActiveQuestionnaire: () => dispatch(removeActiveQuestionnaire()),
-    updateQuestionnaire: (id, data) => dispatch(updateQuestionnaire(id, data)),
+    updateQuestionnaire: (id, data, page) => dispatch(updateQuestionnaire(id, data, page)),
   };
 }
 

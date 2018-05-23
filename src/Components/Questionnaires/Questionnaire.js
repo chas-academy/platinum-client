@@ -73,7 +73,8 @@ export default class Questionnaire extends Component {
   }
 
   editQuestionnaire() {
-    this.props.fetchQuestionnaire(this.props.questionnaire.id);
+    const page = 1;
+    this.props.fetchQuestionnaire(this.props.questionnaire.id, page);
     this.setState({
       redirectToEdit: true,
     });

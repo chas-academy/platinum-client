@@ -119,7 +119,7 @@ export const fetchPoll = url => (dispatch) => {
 
 export const fetchPolls = page => (dispatch) => {
   dispatch(startFetchPolls());
-  Axios.get(`/my-polls?page=${page}&limit=2`)
+  Axios.get(`/my-polls?page=${page}&limit=10`)
     .then((response) => {
       dispatch(pollsFetched(response.data));
     })

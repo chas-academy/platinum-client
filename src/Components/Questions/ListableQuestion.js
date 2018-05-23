@@ -33,7 +33,8 @@ export default class  ListableQuestion extends Component {
 
   toggleDeleteQuestion() {
     if (this.state.delete) {
-      this.props.deleteQuestion(this.props.question.id, this.props.question.questionnaireId);
+      this.props.deleteQuestion(this.props.question.id, this.props.question.questionnaireId, 1);
+      this.props.setPage(1);
     }
   }
 
@@ -84,7 +85,7 @@ export default class  ListableQuestion extends Component {
         }
         { this.state.isBeingEdited &&
         <div>
-          <CreateQuestion question={this.props.question} onSubmit={this.toggleEditQuestion}/>
+          <CreateQuestion question={this.props.question} onSubmit={this.toggleEditQuestion} page={this.props.page}/>
         </div>
         }
       </div>

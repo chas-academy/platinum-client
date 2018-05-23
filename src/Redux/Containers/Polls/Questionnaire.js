@@ -8,7 +8,7 @@ function mapDispatchToProps(dispatch) {
     activatePoll: (questionnaireId, page) => dispatch(activatePoll(questionnaireId, page)),
     closePoll: (id, page) => dispatch(closePoll(id, page)),
     deleteQuestionnaire: (id, page) => dispatch(deleteQuestionnaire(id, page)),
-    fetchQuestionnaire: id => dispatch(fetchQuestionnaire(id)),
+    fetchQuestionnaire: (id, page) => dispatch(fetchQuestionnaire(id, page)),
   };
 }
 

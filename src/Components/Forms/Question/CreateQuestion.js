@@ -125,7 +125,7 @@ export default class CreateQuestion extends Component {
       options,
     };
 
-    this.props.createQuestion(data);
+    this.props.createQuestion(data, this.props.page);
     this.props.onSubmit();
   }
 
@@ -146,7 +146,7 @@ export default class CreateQuestion extends Component {
       order: this.props.question.order,
       options,
     };
-    this.props.updateQuestion(data, this.props.question.id, this.props.question.questionnaireId);
+    this.props.updateQuestion(data, this.props.question.id, this.props.question.questionnaireId, this.props.page);
     this.props.onSubmit();
   }
 

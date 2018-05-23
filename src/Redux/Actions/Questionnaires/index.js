@@ -42,9 +42,10 @@ export const rejectedDeleteQuestionnaire = () => ({
 export const startFetchingQuestionnaire = () => ({
   type: ActionTypes.FETCH_QUESTIONNAIRE_START,
 });
-export const questionnaireFetched = questionnaire => ({
+export const questionnaireFetched = data => ({
   type: ActionTypes.FETCH_QUESTIONNAIRE_SUCCESS,
-  questionnaire,
+  questionnaire: data.json,
+  morePages: data.morePages,
 });
 export const rejectedFetchingQuestionnaire = () => ({
   type: ActionTypes.FETCH_QUESTIONNAIRE_FAILURE,
@@ -125,9 +126,9 @@ export const deleteQuestionnaire = (id, page) => (dispatch) => {
     });
 };
 
-export const fetchQuestionnaire = id => (dispatch) => {
+export const fetchQuestionnaire = (id, page) => (dispatch) => {
   dispatch(startFetchingQuestionnaire());
-  Axios.get(`/questionnaires/${id}`)
+  Axios.get(`/questionnaires/${id}?page=${page}&limit=1`)
     .then((response) => {
       dispatch(questionnaireFetched(response.data));
     })
@@ -136,23 +137,23 @@ export const fetchQuestionnaire = id => (dispatch) => {
     });
 };
 
-export const updateQuestionnaire = (id, data) => (dispatch) => {
+export const updateQuestionnaire = (id, data, page) => (dispatch) => {
   dispatch(startUpdateQuestionnaire());
   Axios.put(`/my-questionnaires/${id}`, data)
     .then(() => {
       dispatch(questionnaireUpdated());
-      dispatch(fetchQuestionnaire(id));
+      dispatch(fetchQuestionnaire(id, page));
     })
     .catch(() => {
       dispatch(rejectedUpdateQuestionnaire());
     });
 };
 
-export const createQuestion = data => (dispatch) => {
+export const createQuestion = (data, page) => (dispatch) => {
   dispatch(startCreateQuestion());
   Axios.post('/questions', data)
     .then(() => {
-      dispatch(fetchQuestionnaire(data.questionnaireId));
+      dispatch(fetchQuestionnaire(data.questionnaireId, page));
       dispatch(questionCreated());
     })
     .catch(() => {
@@ -160,11 +161,11 @@ export const createQuestion = data => (dispatch) => {
     });
 };
 
-export const updateQuestion = (data, id, questionnaireId) => (dispatch) => {
+export const updateQuestion = (data, id, questionnaireId, page) => (dispatch) => {
   dispatch(startUpdateQuestion());
   Axios.put(`/questions/${id}`, data)
     .then(() => {
-      dispatch(fetchQuestionnaire(questionnaireId));
+      dispatch(fetchQuestionnaire(questionnaireId, page));
       dispatch(questionUpdated());
     })
     .catch(() => {
@@ -183,11 +184,11 @@ export const deleteOption = (id, questionId) => (dispatch) => {
     });
 };
 
-export const deleteQuestion = (id, questionnaireId) => (dispatch) => {
+export const deleteQuestion = (id, questionnaireId, page) => (dispatch) => {
   dispatch(startDeleteQuestion());
   Axios.delete(`/questions/${id}`)
     .then(() => {
-      dispatch(fetchQuestionnaire(questionnaireId));
+      dispatch(fetchQuestionnaire(questionnaireId, page));
       dispatch(questionDeleted());
     })
     .catch(() => {
