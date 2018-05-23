@@ -57,9 +57,10 @@ export const startFetchPolls = () => ({
   type: ActionTypes.FETCH_POLLS_START,
 });
 
-export const pollsFetched = polls => ({
+export const pollsFetched = data => ({
   type: ActionTypes.FETCH_POLLS_SUCCESS,
-  polls,
+  polls: data.json,
+  morePages: data.morePages,
 });
 
 export const rejectedFetchPolls = () => ({
@@ -116,9 +117,9 @@ export const fetchPoll = url => (dispatch) => {
     });
 };
 
-export const fetchPolls = () => (dispatch) => {
+export const fetchPolls = page => (dispatch) => {
   dispatch(startFetchPolls());
-  Axios.get('/my-polls')
+  Axios.get(`/my-polls?page=${page}&limit=2`)
     .then((response) => {
       dispatch(pollsFetched(response.data));
     })
@@ -139,11 +140,11 @@ export const closePoll = (id, page) => (dispatch) => {
     });
 };
 
-export const deletePoll = id => (dispatch) => {
+export const deletePoll = (id, page) => (dispatch) => {
   dispatch(startDeletePoll());
   Axios.delete(`/my-polls/${id}`)
     .then((response) => {
-      dispatch(fetchPolls());
+      dispatch(fetchPolls(page));
       dispatch(pollDeleted());
     })
     .catch((error) => {

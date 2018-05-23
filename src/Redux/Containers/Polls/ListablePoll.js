@@ -4,7 +4,7 @@ import ListablePoll from '../../../Components/Poll/Listable/ListablePoll';
 
 function mapDispatchToProps(dispatch) {
   return {
-    deletePoll: id => dispatch(deletePoll(id)),
+    deletePoll: (id, page) => dispatch(deletePoll(id, page)),
   };
 }
 

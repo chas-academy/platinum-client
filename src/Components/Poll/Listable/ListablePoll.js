@@ -20,7 +20,7 @@ export default class ListablePoll extends Component {
     });
   }
   deletePoll() {
-    this.props.deletePoll(this.props.poll.id);
+    this.props.deletePoll(this.props.poll.id, this.props.page);
     this.props.handleAccordion(null, -1);
   }
   render() {
