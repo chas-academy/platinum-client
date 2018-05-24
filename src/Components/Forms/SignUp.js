@@ -104,7 +104,7 @@ export default class SignUp extends Component {
       alertMessage: {},
       showAlertMessage: false,
       isSigningUp: false,
-      redirectToSignIn: false,
+      redirectToSlash: false,
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -158,14 +158,14 @@ export default class SignUp extends Component {
   }
 
   triggerRedirect() {
-    this.setState({ redirectToSignIn: true });
+    this.setState({ redirectToSlash: true });
   }
 
   render() {
     return (
       <div className="form-wrapper">
-        {this.state.redirectToSignIn &&
-          <Redirect to="/sign-in" />
+        {this.state.redirectToSlash &&
+          <Redirect to="/" />
         }
         {this.state.showAlertMessage &&
           <Alert type={this.state.alertMessage.type} hideDismissButton>
