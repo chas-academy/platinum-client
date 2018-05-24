@@ -184,8 +184,7 @@ export default class SignUp extends Component {
           onSubmit={this.onSubmit}
         >
           <Button
-            className="button__signup"
-            basic
+            className="button__signup button-opacity"
             color="orange"
             content="SIGN UP"
             type="submit"

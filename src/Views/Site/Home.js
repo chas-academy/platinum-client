@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Header, Button } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import * as Session from '../../Lib/Helpers/Session';
+import { PageTitle } from '../../Lib/Common/Views';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class Home extends Component {
@@ -9,29 +10,25 @@ export default class Home extends Component {
       <div>
         { !Session.isSignedIn() &&
           <div className="home-view" >
-            <Header as="h1">PLATINUM</Header>
-            <div className="ui two column centered grid stackable columns">
-              <div className="two column centered row">
-                <div className="two column aligned">
-                  <Button href="/sign-in" fluid inverted color="orange" size="large">SIGN IN</Button>
-                </div>
-                <div className="two column aligned">
-                  <Button href="/sign-up" fluid inverted color="orange" size="large">SIGN UP</Button>
-                </div>
+            <PageTitle title="PLATINUM" />
+            <div className="width-35 mobile-width">
+              <div className="width-100 center-content-row mobile-center-content-column ">
+                <Button href="/sign-in" fluid color="red" size="large" className="button-opacity margin-r-05">SIGN IN</Button>
+                <Button href="/sign-up" fluid color="red" size="large" className="button-opacity margin-l-05">SIGN UP</Button>
               </div>
-              <div className="two column middle aligned">
-                <Button href="/howdoesitwork" fluid inverted color="orange" size="large">HOW DOES IT WORK?</Button>
+              <div className="width-100 center-content-row margin-t-1">
+                <Button href="/howdoesitwork" fluid color="red" size="large" className="button-opacity">HOW DOES IT WORK?</Button>
               </div>
             </div>
           </div>
         }
         { Session.isSignedIn() &&
         <div className="home-view">
-          <Header as="h1">PLATINUM</Header>
-          <div className="ui one column centered grid stackable columns">
-            <div className="one column centered row">
-              <div className="column middle aligned">
-                <Button href="/create-questionnaire" fluid inverted color="orange">LET&apos;S GET STARTED!</Button>
+          <PageTitle title="PLATINUM" />
+          <div className="width-100 center-content">
+            <div className="width-35 mobile-width">
+              <div className="width-100 center-content-row">
+                <Button href="/create-questionnaire" fluid color="red" size="large" className="button-opacity">LET&apos;S GET STARTED!</Button>
               </div>
             </div>
           </div>

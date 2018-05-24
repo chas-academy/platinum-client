@@ -165,8 +165,7 @@ export default class SignIn extends Component {
         >
 
           <Button
-            className="button__signin"
-            basic
+            className="button__signin button-opacity"
             color="orange"
             content="SIGN IN"
             type="submit"

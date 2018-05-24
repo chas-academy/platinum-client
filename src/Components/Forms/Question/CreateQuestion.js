@@ -42,7 +42,7 @@ export default class CreateQuestion extends Component {
               width={1}
               type="button"
               negative
-              className="align-bottom"
+              className="align-bottom button-opacity"
               content="X"
               value={0}
               onClick={this.removeOption}
@@ -60,7 +60,7 @@ export default class CreateQuestion extends Component {
               width={1}
               type="button"
               negative
-              className="align-bottom"
+              className="align-bottom button-opacity"
               content="X"
               value={1}
               onClick={this.removeOption}
@@ -93,7 +93,7 @@ export default class CreateQuestion extends Component {
             <Option name={`option${index + 1}`} width={11} value={option.name} order={index + 1} onChange={this.handleChange} />
             <Form.Button
               width={1}
-              className="align-bottom"
+              className="align-bottom button-opacity"
               type="button"
               negative
               content="X"
@@ -176,7 +176,7 @@ export default class CreateQuestion extends Component {
               width={1}
               type="button"
               negative
-              className="align-bottom"
+              className="align-bottom button-opacity"
               content="X"
               value={this.state.options.length}
               onClick={this.removeOption}
@@ -201,7 +201,7 @@ export default class CreateQuestion extends Component {
               width={1}
               type="button"
               negative
-              className="align-bottom"
+              className="align-bottom button-opacity"
               content="X"
               value={0}
               onClick={this.removeOption}
@@ -248,7 +248,7 @@ export default class CreateQuestion extends Component {
             width={1}
             type="button"
             negative
-            className="align-bottom"
+            className="align-bottom button-opacity"
             content="X"
             value={index}
             onClick={this.removeOption}
@@ -291,9 +291,9 @@ export default class CreateQuestion extends Component {
             </div>
           </Form>
           <Button
-            basic
-            className="margin-1"
-            content="add option"
+            className="margin-l-1 button-opacity"
+            content="Add option"
+            color="yellow"
             icon="plus"
             labelPosition="left"
             onClick={this.addOption}

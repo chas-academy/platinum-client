@@ -171,17 +171,20 @@ export default class CreateQuestionnaire extends Component {
                 </Form.Group>
               </div>
             </Form>
-            <Button
-              basic
-              className="pos-absolute-b-6-r-2"
-              content="Create"
-              floated="right"
-              icon="arrow right"
-              size="large"
-              attached="bottom"
-              labelPosition="right"
-              onClick={this.createQuestionnaire}
-            />
+            <div className="width-100 center-content">
+              <div className="width-35 mobile-width">
+                <div className="width-100 center-content-row">
+                  <Button
+                    fluid
+                    color="yellow"
+                    className="button-opacity"
+                    content="Create"
+                    size="large"
+                    onClick={this.createQuestionnaire}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         }
 
@@ -193,8 +196,8 @@ export default class CreateQuestionnaire extends Component {
               <div className="width-100 center-content-row mobile-center-content-column">
                 <h2 className="margin-tb-1 page-title max-width-3-of-4 mobile-max-width-100">{this.props.activeQuestionnaire.title}</h2>
                 <Button
-                  basic
-                  color="blue"
+                  color="teal"
+                  className="button-opacity"
                   size="large"
                   content="Edit"
                   onClick={this.toggleEdit}
@@ -228,7 +231,8 @@ export default class CreateQuestionnaire extends Component {
               </div>
             </Form>
             <Button
-              basic
+              color="orange"
+              className="button-opacity"
               size="large"
               content="Update"
               attached="bottom"
@@ -253,12 +257,12 @@ export default class CreateQuestionnaire extends Component {
           this.state.editingQuestionIndex === -1 &&
           !this.state.editing &&
           <Button
-            basic
             size="large"
+            color="olive"
             content="Add question"
             icon="plus"
             labelPosition="right"
-            className="margin-tb-1"
+            className="margin-tb-1 button-opacity"
             onClick={this.activeQuestion}
           />
         }
@@ -270,7 +274,8 @@ export default class CreateQuestionnaire extends Component {
              !this.state.editing &&
              <Button
                content="Previous"
-               basic
+               color="yellow"
+               className="button-opacity"
                size="large"
                floated="left"
                onClick={this.prevPage}
@@ -286,7 +291,8 @@ export default class CreateQuestionnaire extends Component {
            !this.state.editing &&
            <Button
              content="Next"
-             basic
+             color="yellow"
+             className="button-opacity"
              size="large"
              floated="right"
              onClick={this.nextPage}
@@ -305,7 +311,8 @@ export default class CreateQuestionnaire extends Component {
             <div className="width-35 mobile-width">
               <div className="width-100 center-content-row">
                 <Button
-                  basic
+                  color="orange"
+                  className="button-opacity"
                   fluid
                   size="large"
                   content="Done"
