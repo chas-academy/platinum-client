@@ -10,6 +10,7 @@ export default class ListablePolls extends Component {
       activeIndex: -1,
       page: 1,
     };
+    this.setPage = this.setPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
   }
@@ -17,16 +18,20 @@ export default class ListablePolls extends Component {
     this.props.fetchPolls(this.state.page);
   }
 
+  setPage(page) {
+    this.setState({ page });
+  }
+
   nextPage() {
     this.props.fetchPolls(this.state.page + 1);
     this.handleAccordion(null, -1);
-    this.setState({ page: this.state.page + 1 });
+    this.setPage(this.state.page + 1);
   }
 
   prevPage() {
     this.props.fetchPolls(this.state.page - 1);
     this.handleAccordion(null, -1);
-    this.setState({ page: this.state.page - 1 });
+    this.setPage(this.state.page - 1);
   }
 
   handleAccordion = (e, titleProps) => {
@@ -50,6 +55,7 @@ export default class ListablePolls extends Component {
             activeIndex={activeIndex}
             index={index}
             page={this.state.page}
+            setPage={this.setPage}
           />);
         myPolls.push(myPoll);
       });
