@@ -258,6 +258,7 @@ export default class CreateQuestionnaire extends Component {
             content="Add question"
             icon="plus"
             labelPosition="right"
+            className="margin-tb-1"
             onClick={this.activeQuestion}
           />
         }
@@ -300,14 +301,19 @@ export default class CreateQuestionnaire extends Component {
           this.state.editingQuestionIndex === -1 &&
           !this.state.editing &&
 
-          <div className="margin-tb-5">
-            <Button
-              basic
-              size="large"
-              content="Done"
-              attached="bottom"
-              onClick={this.triggerRedirect}
-            />
+          <div className="width-100 center-content margin-tb-5">
+            <div className="width-35 mobile-width">
+              <div className="width-100 center-content-row">
+                <Button
+                  basic
+                  fluid
+                  size="large"
+                  content="Done"
+                  attached="bottom"
+                  onClick={this.triggerRedirect}
+                />
+              </div>
+            </div>
           </div>
         }
       </div>

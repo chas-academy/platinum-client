@@ -300,13 +300,20 @@ export default class CreateQuestion extends Component {
             size="large"
           />
         </div>
-        <Button
-          basic
-          content={this.props.question ? 'Update' : 'Add'}
-          attached="bottom"
-          onClick={this.props.question ? this.updateQuestion : this.createQuestion}
-          size="large"
-        />
+        <div className="width-100 center-content margin-tb-5">
+          <div className="width-35 mobile-width">
+            <div className="width-100 center-content-row">
+              <Button
+                basic
+                fluid
+                content={this.props.question ? 'Update' : 'Add'}
+                attached="bottom"
+                onClick={this.props.question ? this.updateQuestion : this.createQuestion}
+                size="large"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
