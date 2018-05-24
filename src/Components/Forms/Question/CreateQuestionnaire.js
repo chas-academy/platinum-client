@@ -32,10 +32,11 @@ export default class CreateQuestionnaire extends Component {
     this.prevPage = this.prevPage.bind(this);
   }
   componentWillMount() {
-    if (!this.props.location.state) {
+    if (this.props.location.pathname === '/create-questionnaire') {
       this.props.removeActiveQuestionnaire();
     }
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.activeQuestionnaire.questions) {
       if (nextProps.activeQuestionnaire.questions[0]) {
@@ -58,8 +59,12 @@ export default class CreateQuestionnaire extends Component {
         countOfQuestions: 0,
       });
     }
+    if (nextProps.location.pathname !== this.props.location.pathname) {
+      if (nextProps.location.pathname === '/create-questionnaire') {
+        this.props.removeActiveQuestionnaire();
+      }
+    }
   }
-
   setPage(page) {
     this.setState({ page });
   }

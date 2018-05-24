@@ -4,7 +4,7 @@ import Questionnaire from '../../Redux/Containers/Questionnaires/CreateQuestionn
 /* eslint-disable react/prop-types */
 const CreateQuestionnaire = props => (
   <div className="width-100">
-    { !props.location.state &&
+    { props.location.pathname === '/create-questionnaire' &&
       <PageTitle title="Create Questionnaire" />
     }
     <Questionnaire location={props.location} />

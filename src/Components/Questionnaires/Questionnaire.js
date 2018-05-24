@@ -96,11 +96,7 @@ export default class Questionnaire extends Component {
         <Redirect to={`/polls/${this.props.questionnaire.activePoll.id}/result`} />
         }
         {this.state.redirectToEdit &&
-        <Redirect to={{
-          pathname: '/create-questionnaire',
-          state: { shouldNotReset: true },
-        }}
-        />
+        <Redirect to="/edit-questionnaire" />
         }
         <Accordion.Title className="frame" active={this.props.activeIndex === this.props.index} index={this.props.index} onClick={this.props.handleAccordion}>
           <div className="space-between padding-05">
