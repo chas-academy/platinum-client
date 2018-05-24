@@ -12,27 +12,29 @@ export default class Questionnaires extends Component {
       activeIndex: -1,
       page: 1,
     };
+    this.setPage = this.setPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.prevPage = this.prevPage.bind(this);
   }
 
   componentWillMount() {
-    const page = `page=${this.state.page}`;
-    this.props.fetchQuestionnaires(page);
+    this.props.fetchQuestionnaires(this.state.page);
+  }
+
+  setPage(page) {
+    this.setState({ page });
   }
 
   nextPage() {
-    const page = `page=${this.state.page + 1}`;
-    this.props.fetchQuestionnaires(page);
+    this.props.fetchQuestionnaires(this.state.page + 1);
     this.handleAccordion(null, -1);
-    this.setState({ page: this.state.page + 1 });
+    this.setPage(this.state.page + 1);
   }
 
   prevPage() {
-    const page = `page=${this.state.page - 1}`;
-    this.props.fetchQuestionnaires(page);
+    this.props.fetchQuestionnaires(this.state.page - 1);
     this.handleAccordion(null, -1);
-    this.setState({ page: this.state.page - 1 });
+    this.setPage(this.state.page - 1);
   }
 
   handleAccordion = (e, titleProps) => {
@@ -57,6 +59,7 @@ export default class Questionnaires extends Component {
             activeIndex={activeIndex}
             index={index}
             page={this.state.page}
+            setPage={this.setPage}
           />);
         myQuestionnaires.push(myQuestionnaire);
       });

@@ -94,7 +94,7 @@ export const rejectedDeleteQuestion = () => ({
 /* eslint-disable no-console */
 export const fetchQuestionnaires = page => (dispatch) => {
   dispatch(startFetchingQuestionnaires());
-  Axios.get(`/my-questionnaires?${page}&limit=10`)
+  Axios.get(`/my-questionnaires?page=${page}&limit=10`)
     .then((response) => {
       dispatch(questionnairesFetched(response.data));
     })
@@ -128,7 +128,7 @@ export const deleteQuestionnaire = (id, page) => (dispatch) => {
 
 export const fetchQuestionnaire = (id, page) => (dispatch) => {
   dispatch(startFetchingQuestionnaire());
-  Axios.get(`/questionnaires/${id}?page=${page}&limit=1`)
+  Axios.get(`/questionnaires/${id}?page=${page}&limit=5`)
     .then((response) => {
       dispatch(questionnaireFetched(response.data));
     })
