@@ -7,12 +7,13 @@ function mapStateToProps(state) {
   return {
     polls: state.Polls.myPolls,
     isFetching: state.Polls.isFetching,
+    morePages: state.Polls.morePages,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchPolls: () => dispatch(fetchPolls()),
+    fetchPolls: page => dispatch(fetchPolls(page)),
   };
 }
 

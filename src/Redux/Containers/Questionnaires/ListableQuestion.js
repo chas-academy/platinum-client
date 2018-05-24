@@ -4,7 +4,8 @@ import ListableQuestion from '../../../Components/Questions/ListableQuestion';
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteQuestion: (id, questionnaireId) => dispatch(deleteQuestion(id, questionnaireId)),
+    deleteQuestion:
+    (id, questionnaireId, page) => dispatch(deleteQuestion(id, questionnaireId, page)),
   };
 }
 

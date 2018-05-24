@@ -13,6 +13,7 @@ const DEFAULT_STATE = {
   isCreatingAnswer: false,
   isCastingVote: false,
   isDeletingPoll: false,
+  morePages: false,
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -44,7 +45,12 @@ export default function (state = DEFAULT_STATE, action) {
     case actionTypes.FETCH_POLLS_START:
       return { ...state, isFetching: true };
     case actionTypes.FETCH_POLLS_SUCCESS:
-      return { ...state, myPolls: action.polls.map(poll => new Poll(poll)), isFetching: false };
+      return {
+        ...state,
+        myPolls: action.polls.map(poll => new Poll(poll)),
+        morePages: action.morePages,
+        isFetching: false,
+      };
     case actionTypes.FETCH_POLLS_FAILURE:
       return { ...state, isFetching: false };
     case actionTypes.CREATE_ANSWER_START:

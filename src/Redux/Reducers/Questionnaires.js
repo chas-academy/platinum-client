@@ -9,7 +9,7 @@ const DEFAULT_STATE = {
   isDeleting: false,
   isFetching: false,
   isUpdating: false,
-
+  morePages: false,
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -23,9 +23,10 @@ export default function (state = DEFAULT_STATE, action) {
       return {
         ...state,
         questionnaires:
-        action.questionnaires
+        action.data.json
           .map(questionnaire => new Questionnaire(questionnaire)),
         isFetching: false,
+        morePages: action.data.morePages,
       };
     case actionTypes.FETCH_QUESTIONNAIRES_FAILURE:
       return {
@@ -87,6 +88,7 @@ export default function (state = DEFAULT_STATE, action) {
       return {
         ...state,
         activeQuestionnaire: new Questionnaire(action.questionnaire),
+        morePages: action.morePages,
         isFetching: false,
       };
     case actionTypes.FETCH_QUESTIONNAIRE_FAILURE:

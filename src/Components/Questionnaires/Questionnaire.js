@@ -51,9 +51,9 @@ export default class Questionnaire extends Component {
 
   togglePoll() {
     if (this.state.active) {
-      this.props.closePoll(this.props.questionnaire.activePoll.id);
+      this.props.closePoll(this.props.questionnaire.activePoll.id, this.props.page);
     } else {
-      this.props.activatePoll(this.props.questionnaire.id);
+      this.props.activatePoll(this.props.questionnaire.id, this.props.page);
     }
   }
 
@@ -65,13 +65,15 @@ export default class Questionnaire extends Component {
 
   removeQuestionnaire() {
     if (this.state.delete) {
-      this.props.deleteQuestionnaire(this.props.questionnaire.id);
+      this.props.deleteQuestionnaire(this.props.questionnaire.id, 1);
     }
     this.props.handleAccordion(null, -1);
+    this.props.setPage(1);
   }
 
   editQuestionnaire() {
-    this.props.fetchQuestionnaire(this.props.questionnaire.id);
+    const page = 1;
+    this.props.fetchQuestionnaire(this.props.questionnaire.id, page);
     this.setState({
       redirectToEdit: true,
     });

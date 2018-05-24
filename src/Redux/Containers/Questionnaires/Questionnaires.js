@@ -5,12 +5,13 @@ import Questionnaires from '../../../Components/Questionnaires/Questionnaires';
 function mapStateToProps(state) {
   return {
     questionnaires: state.Questionnaires.questionnaires,
+    morePages: state.Questionnaires.morePages,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchQuestionnaires: () => dispatch(fetchQuestionnaires()),
+    fetchQuestionnaires: page => dispatch(fetchQuestionnaires(page)),
   };
 }
 

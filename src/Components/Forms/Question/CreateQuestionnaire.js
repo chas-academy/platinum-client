@@ -17,6 +17,7 @@ export default class CreateQuestionnaire extends Component {
       countOfQuestions: 0,
       editingQuestionIndex: -1,
       editing: false,
+      page: 1,
 
     };
     this.handleChange = this.handleChange.bind(this);
@@ -26,6 +27,9 @@ export default class CreateQuestionnaire extends Component {
     this.triggerRedirect = this.triggerRedirect.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.updateQuestionnaire = this.updateQuestionnaire.bind(this);
+    this.setPage = this.setPage.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.prevPage = this.prevPage.bind(this);
   }
   componentWillMount() {
     if (!this.props.location.state) {
@@ -55,6 +59,21 @@ export default class CreateQuestionnaire extends Component {
       });
     }
   }
+
+  setPage(page) {
+    this.setState({ page });
+  }
+
+  nextPage() {
+    this.props.fetchQuestionnaire(this.props.activeQuestionnaire.id, this.state.page + 1);
+    this.setPage(this.state.page + 1);
+  }
+
+  prevPage() {
+    this.props.fetchQuestionnaire(this.props.activeQuestionnaire.id, this.state.page - 1);
+    this.setPage(this.state.page - 1);
+  }
+
   createQuestionnaire() {
     const data = {
       title: this.state.title,
@@ -91,7 +110,7 @@ export default class CreateQuestionnaire extends Component {
     const data = {
       title: this.state.title,
     };
-    this.props.updateQuestionnaire(this.props.activeQuestionnaire.id, data);
+    this.props.updateQuestionnaire(this.props.activeQuestionnaire.id, data, this.state.page);
     this.toggleEdit();
   }
 
@@ -110,6 +129,8 @@ export default class CreateQuestionnaire extends Component {
                 activeIndex={this.state.editingQuestionIndex}
                 editingQuestion={this.editingQuestion}
                 editingQuestionnaire={this.state.editing}
+                page={this.state.page}
+                setPage={this.setPage}
               />);
             questions.push(newQuestion);
             return questions;
@@ -212,9 +233,9 @@ export default class CreateQuestionnaire extends Component {
             questionnaireId={this.props.activeQuestionnaire.id}
             countOfQuestions={this.state.countOfQuestions}
             onSubmit={this.activeQuestion}
+            page={this.state.page}
           />
         }
-
         {
           this.props.activeQuestionnaire.id &&
           !this.state.addingQuestion &&
@@ -229,13 +250,46 @@ export default class CreateQuestionnaire extends Component {
             onClick={this.activeQuestion}
           />
         }
+        <div className="width-100 margin-tb-1">
+          {
+             this.state.page !== 1 &&
+             !this.state.addingQuestion &&
+             this.state.editingQuestionIndex === -1 &&
+             !this.state.editing &&
+             <Button
+               content="Previous"
+               basic
+               size="large"
+               floated="left"
+               onClick={this.prevPage}
+               icon="arrow left"
+               labelPosition="left"
+             />
+          }
+
+          {
+           this.props.morePages &&
+           !this.state.addingQuestion &&
+           this.state.editingQuestionIndex === -1 &&
+           !this.state.editing &&
+           <Button
+             content="Next"
+             basic
+             size="large"
+             floated="right"
+             onClick={this.nextPage}
+             icon="arrow right"
+             labelPosition="right"
+           />
+          }
+        </div>
         {
           this.props.activeQuestionnaire.id &&
           !this.state.addingQuestion &&
           this.state.editingQuestionIndex === -1 &&
           !this.state.editing &&
 
-          <div className="margin-tb-1">
+          <div className="margin-tb-5">
             <Button
               basic
               size="large"
