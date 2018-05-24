@@ -282,30 +282,43 @@ export default class CreateQuestion extends Component {
                   value={this.state.question}
                   placeholder="Question"
                   type="text"
-                  width={11}
+                  width={12}
                   label="Question"
                 />
-                <Form.Select label="Type" name="type" options={types} width={1} defaultValue={this.state.type} onChange={this.handleChange} />
+              </Form.Group>
+              <Form.Group
+                className="center-content padding-b-1"
+                widths={2}
+              >
+                <Form.Select label="Type" name="type" options={types} width={12} defaultValue={this.state.type} onChange={this.handleChange} />
               </Form.Group>
               {this.state.options}
             </div>
           </Form>
-          <Button
-            className="margin-l-1 button-opacity"
-            content="Add option"
-            color="yellow"
-            icon="plus"
-            labelPosition="left"
-            onClick={this.addOption}
-            size="large"
-          />
+          <div className="width-100 center-content margin-tb-5">
+            <div className="width-35 mobile-width">
+              <div className="width-100 center-content-row">
+                <Button
+                  className="button-opacity"
+                  content="Option"
+                  fluid
+                  color="yellow"
+                  icon="plus"
+                  labelPosition="left"
+                  onClick={this.addOption}
+                  size="large"
+                />
+              </div>
+            </div>
+          </div>
         </div>
         <div className="width-100 center-content margin-tb-5">
           <div className="width-35 mobile-width">
             <div className="width-100 center-content-row">
               <Button
-                basic
+                color="olive"
                 fluid
+                className="button-opacity"
                 content={this.props.question ? 'Update' : 'Add'}
                 attached="bottom"
                 onClick={this.props.question ? this.updateQuestion : this.createQuestion}

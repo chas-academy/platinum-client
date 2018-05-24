@@ -1,12 +1,6 @@
 .create-question-view {
   width: 100%;
-
-  .center-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
+  max-width: 50em;
   .center-content-row {
     display:flex;
     flex-direction: row;
@@ -45,9 +39,10 @@
   .width-35 {
     width: 35em;
   }
-  .frame {
-    border: 2px solid #FE9A76;
+  &.frame, .frame {
+    border: 2px solid rgb(240,255,255);
     border-radius: 4px;
+    background-color: rgba(240,255,255,0.7)
   }
   .padding-1{
     padding: 1em;
@@ -68,7 +63,12 @@
 .align-bottom{
   align-self: flex-end;
 }
-
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
 .margin-tb-5 {
   margin: 5em 0;

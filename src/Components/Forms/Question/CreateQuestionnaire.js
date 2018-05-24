@@ -144,7 +144,7 @@ export default class CreateQuestionnaire extends Component {
       }
     }
     return (
-      <div className="create-question-view">
+      <div className="create-question-view frame">
         { this.state.redirectToQuestionnaires &&
         <Redirect to="/my-questionnaires" />
         }
@@ -176,7 +176,7 @@ export default class CreateQuestionnaire extends Component {
                 <div className="width-100 center-content-row">
                   <Button
                     fluid
-                    color="yellow"
+                    color="olive"
                     className="button-opacity"
                     content="Create"
                     size="large"
@@ -196,7 +196,7 @@ export default class CreateQuestionnaire extends Component {
               <div className="width-100 center-content-row mobile-center-content-column">
                 <h2 className="margin-tb-1 page-title max-width-3-of-4 mobile-max-width-100">{this.props.activeQuestionnaire.title}</h2>
                 <Button
-                  color="teal"
+                  color="yellow"
                   className="button-opacity"
                   size="large"
                   content="Edit"
@@ -231,7 +231,7 @@ export default class CreateQuestionnaire extends Component {
               </div>
             </Form>
             <Button
-              color="orange"
+              color="olive"
               className="button-opacity"
               size="large"
               content="Update"
@@ -256,15 +256,22 @@ export default class CreateQuestionnaire extends Component {
           !this.state.addingQuestion &&
           this.state.editingQuestionIndex === -1 &&
           !this.state.editing &&
-          <Button
-            size="large"
-            color="olive"
-            content="Add question"
-            icon="plus"
-            labelPosition="right"
-            className="margin-tb-1 button-opacity"
-            onClick={this.activeQuestion}
-          />
+          <div className="width-100 center-content margin-tb-5">
+            <div className="width-35 mobile-width">
+              <div className="width-100 center-content-row">
+                <Button
+                  fluid
+                  size="large"
+                  color="yellow"
+                  content="Add question"
+                  icon="plus"
+                  labelPosition="right"
+                  className="button-opacity"
+                  onClick={this.activeQuestion}
+                />
+              </div>
+            </div>
+          </div>
         }
         <div className="width-100 margin-tb-1">
           {
@@ -291,7 +298,7 @@ export default class CreateQuestionnaire extends Component {
            !this.state.editing &&
            <Button
              content="Next"
-             color="yellow"
+             color="olive"
              className="button-opacity"
              size="large"
              floated="right"
@@ -311,7 +318,7 @@ export default class CreateQuestionnaire extends Component {
             <div className="width-35 mobile-width">
               <div className="width-100 center-content-row">
                 <Button
-                  color="orange"
+                  color="olive"
                   className="button-opacity"
                   fluid
                   size="large"

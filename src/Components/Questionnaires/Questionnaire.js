@@ -108,12 +108,12 @@ export default class Questionnaire extends Component {
           <div className="center-content-column padding-1">
             <div className="center content-row">
               <button
-                className="ui blue basic button large"
+                className="ui blue button large button-opacity"
                 onClick={this.state.active ? this.viewResults : this.editQuestionnaire}
               > {this.state.active ? 'Live results' : 'Edit' }
               </button>
               { this.state.hasQuestions && this.state.hasOptions &&
-                <button className="ui orange basic button large" onClick={this.togglePoll}>{ this.state.active ? 'End' : 'Activate' }</button>
+                <button className="ui orange button large button-opacity" onClick={this.togglePoll}>{ this.state.active ? 'End' : 'Activate' }</button>
               }
 
             </div>
@@ -123,7 +123,7 @@ export default class Questionnaire extends Component {
               <Modal
                 className="scrolling"
                 trigger={<Button
-                  className="ui black basic button large"
+                  className="ui red button large button-opacity"
 
                 >Delete
                          </Button>}
