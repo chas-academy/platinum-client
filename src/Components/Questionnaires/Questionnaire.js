@@ -137,6 +137,7 @@ export default class Questionnaire extends Component {
                 <Header icon="trash" content="DELETE QUESTIONNAIRE" />
                 <Modal.Content>
                   <p>Are you sure you want to delete this questionnaire?</p>
+                  <p>Deleting this questionnaire will also delete all associated results</p>
                 </Modal.Content>
                 <Modal.Actions>
                   <Button basic color="red" inverted onClick={this.handleClose}>
