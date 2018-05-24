@@ -183,14 +183,20 @@ export default class CreateQuestionnaire extends Component {
 
         {
           this.props.activeQuestionnaire.id && !this.state.editing &&
-          <div>
-            <h2>{this.props.activeQuestionnaire.title}</h2>
-            <Button
-              basic
-              size="large"
-              content="Edit"
-              onClick={this.toggleEdit}
-            />
+          <div className="width-100 center-content">
+            <div className="width-35 mobile-width">
+              <div className="width-100 center-content-row mobile-center-content-column">
+                <h2 className="margin-tb-1 page-title max-width-3-of-4 mobile-max-width-100">{this.props.activeQuestionnaire.title}</h2>
+                <Button
+                  basic
+                  color="blue"
+                  size="large"
+                  content="Edit"
+                  onClick={this.toggleEdit}
+                />
+              </div>
+              <h3 className="font-wight-n">Questions: </h3>
+            </div>
           </div>
 
         }

@@ -292,7 +292,7 @@ export default class CreateQuestion extends Component {
           </Form>
           <Button
             basic
-            className="margin-l-1"
+            className="margin-1"
             content="add option"
             icon="plus"
             labelPosition="left"

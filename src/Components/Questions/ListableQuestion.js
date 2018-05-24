@@ -46,49 +46,57 @@ export default class  ListableQuestion extends Component {
 
   render() {
     return (
-    
-      <div className="margin-tb-1">
+      <div className="margin-tb-1 center-content">
         { !this.state.isBeingEdited &&
-        <div>
-        <h3>{this.props.question.name}</h3>
-        <Button basic size="large" color="blue" content="Edit" onClick={this.toggleEditQuestion}  disabled={this.props.editingQuestionnaire} />
+        <div className="width-100 center-content">
+          <div className="width-35 mobile-width">
+            <div className="width-100 frame center-content-row padding-1 mobile-center-content-column">
+              <h3 className="font-wight-n max-width-half mobile-max-width-100">{this.props.question.name}</h3>
+              <div className="mobile-space-around">
+                <Button basic className="margin-tb-1 margin-r-1" size="large" color="blue" content="Edit" onClick={this.toggleEditQuestion} disabled={this.props.editingQuestionnaire} />
+             
         {this.state.delete &&
         <Modal
         className="scrolling"
-        trigger={<Button
+        trigger={ 
+          <Button
           size="large"
-          className="ui red basic button"
+          className="ui red basic button margin-tb-1"
           disabled={this.props.editingQuestionnaire}
-        >Delete
-                 </Button>}
+          content="Delete"
+          />
+        }
         open={this.state.deleteModalOpen}
         onClose={this.handleClose}
         basic
-        size="small"
-        
-      >
-        <Header icon="trash" content="DELETE QUESTION" />
-        <Modal.Content>
-          <p>If you delete this question all of the content and data will be deleted forever!</p>
+        size="small" 
+        >
+          <Header icon="trash" content="DELETE QUESTION" />
+          <Modal.Content>
+            <p>If you delete this question all of the content and data will be deleted forever!</p>
 
-        </Modal.Content>
-        <Modal.Actions>
-          <Button size="large" basic color="red" inverted onClick={this.handleClose}>
-            <Icon name="remove" /> No
-          </Button>
-          <Button size="large" color="green" inverted onClick={this.toggleDeleteQuestion}>
-            <Icon name="checkmark" /> Yes
-          </Button>
-        </Modal.Actions>
-      </Modal>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button size="large" basic color="red" inverted onClick={this.handleClose}>
+              <Icon name="remove" /> No
+            </Button>
+            <Button size="large" color="green" inverted onClick={this.toggleDeleteQuestion}>
+              <Icon name="checkmark" /> Yes
+            </Button>
+          </Modal.Actions>
+        </Modal>
         }
+         </div>
+            </div>
+          </div>
         </div>
         }
         { this.state.isBeingEdited &&
-        <div>
+        <div className="width-100">
           <CreateQuestion question={this.props.question} onSubmit={this.toggleEditQuestion} page={this.props.page}/>
         </div>
         }
+      
       </div>
       
     )
