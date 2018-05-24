@@ -110,12 +110,12 @@ export default class Questionnaire extends Component {
           <div className="center-content-column padding-1">
             <div className="center content-row">
               <button
-                className="ui blue basic button"
+                className="ui blue basic button large"
                 onClick={this.state.active ? this.viewResults : this.editQuestionnaire}
               > {this.state.active ? 'Live results' : 'Edit' }
               </button>
               { this.state.hasQuestions && this.state.hasOptions &&
-                <button className="ui orange basic button" onClick={this.togglePoll}>{ this.state.active ? 'End' : 'Activate' }</button>
+                <button className="ui orange basic button large" onClick={this.togglePoll}>{ this.state.active ? 'End' : 'Activate' }</button>
               }
 
             </div>
@@ -125,7 +125,7 @@ export default class Questionnaire extends Component {
               <Modal
                 className="scrolling"
                 trigger={<Button
-                  className="ui black basic button"
+                  className="ui black basic button large"
 
                 >Delete
                          </Button>}
@@ -158,12 +158,12 @@ export default class Questionnaire extends Component {
                   text={this.state.value}
                   onCopy={() => this.setState({ copied: true })}
                 >
-                  <button className="ui basic button yellow" >Link</button>
+                  <button className="ui basic button yellow large" >Link</button>
                 </CopyToClipboard>
 
                 <Modal
                   className="scrolling"
-                  trigger={<Button onClick={this.handleModal} className="ui basic button yellow" >QR-Code</Button>}
+                  trigger={<Button size="large" onClick={this.handleModal} className="ui basic button yellow" >QR-Code</Button>}
                   open={this.state.modalOpen}
                 >
                   <Modal.Header>

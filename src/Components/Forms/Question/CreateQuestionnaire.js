@@ -151,6 +151,7 @@ export default class CreateQuestionnaire extends Component {
               content="Create"
               floated="right"
               icon="arrow right"
+              size="large"
               attached="bottom"
               labelPosition="right"
               onClick={this.createQuestionnaire}
@@ -165,6 +166,7 @@ export default class CreateQuestionnaire extends Component {
             <h2>{this.props.activeQuestionnaire.title}</h2>
             <Button
               basic
+              size="large"
               content="Edit"
               onClick={this.toggleEdit}
             />
@@ -195,6 +197,7 @@ export default class CreateQuestionnaire extends Component {
             </Form>
             <Button
               basic
+              size="large"
               content="Update"
               attached="bottom"
               onClick={this.updateQuestionnaire}
@@ -219,6 +222,7 @@ export default class CreateQuestionnaire extends Component {
           !this.state.editing &&
           <Button
             basic
+            size="large"
             content="Add question"
             icon="plus"
             labelPosition="right"
@@ -234,6 +238,7 @@ export default class CreateQuestionnaire extends Component {
           <div className="margin-tb-1">
             <Button
               basic
+              size="large"
               content="Done"
               attached="bottom"
               onClick={this.triggerRedirect}
