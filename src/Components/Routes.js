@@ -20,7 +20,7 @@ export default class Routes extends Component {
           <SiteRoute path="/polls/:pollId/result" component={Site.Result} />
           <AuthSiteRoute exact path="/create-questionnaire" component={Site.CreateQuestionnaire} />
           <AuthSiteRoute exact path="/my-questionnaires" component={Site.MyQuestionnaires} />
-          <AuthSiteRoute exact path="/my-polls" component={Site.MyPolls} />
+          <AuthSiteRoute exact path="/results" component={Site.MyPolls} />
           <AuthSiteRoute exact path="/howdoesitwork" component={Site.HowDoesItWork} />
 
           <AdminRoute

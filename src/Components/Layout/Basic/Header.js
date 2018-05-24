@@ -26,7 +26,7 @@ class Header extends Component {
               <AuthNavLink title="Admin" to="/admin/users" />
               <AuthNavLink title="My Questionnaires" to="/my-questionnaires" path={path} />
               <AuthNavLink title="Create Questionnaire" to="/create-questionnaire" path={path} />
-              <AuthNavLink title="My Polls" to="/my-polls" path={path} />
+              <AuthNavLink title="Results" to="/results" path={path} />
               <NavLink title="Pricing" to="/pricing" path={path} />
               <NavLink title="About us" to="/about" path={path} isSignedOut />
               <SignOutButton referrer={referrer} />
