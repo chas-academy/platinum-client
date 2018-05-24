@@ -137,8 +137,8 @@ export default class CreateQuestionnaire extends Component {
                     onChange={this.handleChange}
                     name="title"
                     value={this.state.title}
-                    placeholder="Questionnaire Title"
-                    required
+                    placeholder="Questionnaire"
+                    label="Title"
                     type="text"
                     width={11}
                   />
@@ -188,7 +188,7 @@ export default class CreateQuestionnaire extends Component {
                     onChange={this.handleChange}
                     name="title"
                     value={this.state.title}
-                    required
+                    label="Title"
                     type="text"
                     width={11}
                   />
