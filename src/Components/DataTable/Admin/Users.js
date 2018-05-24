@@ -30,7 +30,6 @@ if (window.innerWidth < 700) {
 export default class Users extends Component {
   render() {
     const props = this.props;
-    console.log(NewConfig);
     return (
       <DataTable
         {...NewConfig}
