@@ -50,11 +50,12 @@ export default class  ListableQuestion extends Component {
         { !this.state.isBeingEdited &&
         <div>
         <h3>{this.props.question.name}</h3>
-        <Button basic color="blue" content="Edit" onClick={this.toggleEditQuestion}  disabled={this.props.editingQuestionnaire} />
+        <Button basic size="large" color="blue" content="Edit" onClick={this.toggleEditQuestion}  disabled={this.props.editingQuestionnaire} />
         {this.state.delete &&
         <Modal
         className="scrolling"
         trigger={<Button
+          size="large"
           className="ui red basic button"
           disabled={this.props.editingQuestionnaire}
         >Delete
@@ -71,10 +72,10 @@ export default class  ListableQuestion extends Component {
 
         </Modal.Content>
         <Modal.Actions>
-          <Button basic color="red" inverted onClick={this.handleClose}>
+          <Button size="large" basic color="red" inverted onClick={this.handleClose}>
             <Icon name="remove" /> No
           </Button>
-          <Button color="green" inverted onClick={this.toggleDeleteQuestion}>
+          <Button size="large" color="green" inverted onClick={this.toggleDeleteQuestion}>
             <Icon name="checkmark" /> Yes
           </Button>
         </Modal.Actions>

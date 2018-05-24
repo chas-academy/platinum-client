@@ -46,6 +46,7 @@ export default class CreateQuestion extends Component {
               content="X"
               value={0}
               onClick={this.removeOption}
+              size="large"
             />
           </Form.Group>,
           <Form.Group
@@ -63,6 +64,7 @@ export default class CreateQuestion extends Component {
               content="X"
               value={1}
               onClick={this.removeOption}
+              size="large"
             />
           </Form.Group>,
         ],
@@ -97,6 +99,7 @@ export default class CreateQuestion extends Component {
               content="X"
               value={index}
               onClick={this.removeOption}
+              size="large"
             />
           </Form.Group>);
         oldOptions.push(oldOption);
@@ -177,6 +180,7 @@ export default class CreateQuestion extends Component {
               content="X"
               value={this.state.options.length}
               onClick={this.removeOption}
+              size="large"
             />
           </Form.Group>,
         ],
@@ -201,6 +205,7 @@ export default class CreateQuestion extends Component {
               content="X"
               value={0}
               onClick={this.removeOption}
+              size="large"
             />
           </Form.Group>,
         ],
@@ -247,6 +252,7 @@ export default class CreateQuestion extends Component {
             content="X"
             value={index}
             onClick={this.removeOption}
+            size="large"
           />
         </Form.Group>);
       return newOption;
@@ -263,7 +269,7 @@ export default class CreateQuestion extends Component {
         <Redirect to="/my-questionnaires" />
         }
         <div>
-          <Form id="creat-question-form">
+          <Form id="creat-question-form" size="large">
             <div className="padding-tb-2">
               <Form.Group
                 className="center-content padding-b-1"
@@ -274,11 +280,10 @@ export default class CreateQuestion extends Component {
                   onChange={this.handleChange}
                   name="question"
                   value={this.state.question}
-                  placeholder="Question title"
-                  required
+                  placeholder="Question"
                   type="text"
                   width={11}
-                  label="Question title"
+                  label="Question"
                 />
                 <Form.Select label="Type" name="type" options={types} width={1} defaultValue={this.state.type} onChange={this.handleChange} />
               </Form.Group>
@@ -292,6 +297,7 @@ export default class CreateQuestion extends Component {
             icon="plus"
             labelPosition="left"
             onClick={this.addOption}
+            size="large"
           />
         </div>
         <Button
@@ -299,6 +305,7 @@ export default class CreateQuestion extends Component {
           content={this.props.question ? 'Update' : 'Add'}
           attached="bottom"
           onClick={this.props.question ? this.updateQuestion : this.createQuestion}
+          size="large"
         />
       </div>
     );

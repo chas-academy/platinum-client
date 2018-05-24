@@ -41,8 +41,8 @@ export default class ListablePoll extends Component {
         <Accordion.Content active={this.props.activeIndex === this.props.index}>
           <div className="center-content-column padding-1">
             <div className="center content-row">
-              <Button basic onClick={this.viewResults} content="View Result" />
-              <Button basic onClick={this.deletePoll} content="Delete" />
+              <Button basic size="large" onClick={this.viewResults} content="View Result" />
+              <Button basic size="large" onClick={this.deletePoll} content="Delete" />
             </div>
           </div>
         </Accordion.Content>

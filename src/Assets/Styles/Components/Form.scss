@@ -71,6 +71,8 @@ label {
   &:focus, &:active:focus {
     box-shadow: none;
   }
+  height: fit-content;
+  font-size: 1.2em;
 }
 .btn {
   &:focus, &:focus:active {
