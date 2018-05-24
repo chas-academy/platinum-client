@@ -124,7 +124,7 @@ export default class SignUp extends Component {
         this.setState({
           alertMessage: {
             type: 'info',
-            message: 'Some thing when wrong, please try again',
+            message: 'Something went wrong, please try again',
             isSigningUp: false,
           },
         });
