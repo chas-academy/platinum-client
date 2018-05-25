@@ -165,12 +165,12 @@ export default class Questionnaire extends Component {
                   text={this.state.value}
                   onCopy={() => this.setState({ copied: true })}
                 >
-                  <button className="ui button yellow large button-opacity" >Link</button>
+                  <button className="ui button blue large button-opacity" >Link</button>
                 </CopyToClipboard>
 
                 <Modal
                   className="scrolling"
-                  trigger={<Button size="large" onClick={this.handleModal} className="ui button yellow button-opacity" >QR-Code</Button>}
+                  trigger={<Button size="large" onClick={this.handleModal} className="ui button blue button-opacity" >QR-Code</Button>}
                   open={this.state.modalOpen}
                 >
                   <Modal.Header>
