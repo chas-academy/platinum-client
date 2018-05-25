@@ -37,7 +37,7 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name="option1" width={11} value={this.state.option1} order={1} onChange={this.handleChange} />
+            <Option name="option1" width={9} value={this.state.option1} order={1} onChange={this.handleChange} />
             <Form.Button
               width={1}
               type="button"
@@ -55,7 +55,7 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name="option2" width={11} value={this.state.option2} order={2} onChange={this.handleChange} />
+            <Option name="option2" width={9} value={this.state.option2} order={2} onChange={this.handleChange} />
             <Form.Button
               width={1}
               type="button"
@@ -90,7 +90,7 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name={`option${index + 1}`} width={11} value={option.name} order={index + 1} onChange={this.handleChange} />
+            <Option name={`option${index + 1}`} width={9} value={option.name} order={index + 1} onChange={this.handleChange} />
             <Form.Button
               width={1}
               className="align-bottom button-opacity"
@@ -167,7 +167,7 @@ export default class CreateQuestion extends Component {
           >
             <Option
               name={`option${this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}`}
-              width={11}
+              width={9}
               value=""
               order={this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}
               onChange={this.handleChange}
@@ -196,7 +196,7 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name="option1" width={11} value="" order={1} onChange={this.handleChange} />
+            <Option name="option1" width={9} value="" order={1} onChange={this.handleChange} />
             <Form.Button
               width={1}
               type="button"
@@ -239,7 +239,7 @@ export default class CreateQuestion extends Component {
         >
           <Option
             name={option.props.children[0].props.name}
-            width={11}
+            width={9}
             value={this.state[option.props.children[0].props.name]}
             order={option.props.children[0].props.order}
             onChange={this.handleChange}
