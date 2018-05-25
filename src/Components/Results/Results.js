@@ -42,12 +42,12 @@ export default class Result extends Component {
     const buttons = [];
     let button;
     if (this.state.currentQuestion !== 0) {
-      button = <Button size="large" key={uuidv4()} content="previus" onClick={this.prevQuestion} basic floated="left" />;
+      button = <Button size="large" key={uuidv4()} content="previus" onClick={this.prevQuestion} color="orange" className="button-opacity" floated="left" />;
       buttons.push(button);
     }
     if (this.props.poll.questionnaire) {
       if (this.state.currentQuestion !== (this.props.poll.questionnaire.questions.length - 1)) {
-        button = <Button size="large" key={uuidv4()} content="next" onClick={this.nextQuestion} basic floated="right" />;
+        button = <Button size="large" key={uuidv4()} content="next" onClick={this.nextQuestion} color="olive" className="button-opacity" floated="right" />;
         buttons.push(button);
       }
     }
