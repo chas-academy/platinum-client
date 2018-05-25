@@ -25,7 +25,7 @@ class Pricing extends Component {
           <Table.Row>
             <Table.HeaderCell singleLine />
             <Table.HeaderCell textAlign="center">Free</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">One day $3</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">One Poll $3</Table.HeaderCell>
             <Table.HeaderCell textAlign="center">Pro $6.99/m</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
