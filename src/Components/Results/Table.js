@@ -14,17 +14,19 @@ export default class QuestionTable extends Component {
       options.push(newOption);
     });
     return (
-      <Table unstackable celled>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Options</Table.HeaderCell>
-            <Table.HeaderCell>Votes</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {options}
-        </Table.Body>
-      </Table>
+      <div className="min-height-400 center-content-column">
+        <Table unstackable celled inverted>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Options</Table.HeaderCell>
+              <Table.HeaderCell>Votes</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {options}
+          </Table.Body>
+        </Table>
+      </div>
     );
   }
 }

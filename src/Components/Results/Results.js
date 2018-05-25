@@ -56,7 +56,7 @@ export default class Result extends Component {
       <div>
         { this.props.poll.questionnaire &&
         <div>
-          <PageTitle title={this.props.poll.questionnaire.title} className="headline" />
+          <PageTitle title={this.props.poll.questionnaire.title} className="headline page-title" />
           <div className="center-content-column min-height-100">
             <div className="min-width-300px max-width-670px width-100">
               <Question

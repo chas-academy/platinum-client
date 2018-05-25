@@ -12,7 +12,7 @@ export default class Question extends Component {
         menuItem: 'Bar',
         render: () =>
           (
-            <Tab.Pane>
+            <Tab.Pane >
               <BarChartResult options={this.props.question.options} />
             </Tab.Pane>
           ),
@@ -21,7 +21,7 @@ export default class Question extends Component {
         menuItem: 'Pie',
         render: () =>
           (
-            <Tab.Pane>
+            <Tab.Pane >
               <PieChartResult options={this.props.question.options} />
             </Tab.Pane>
           ),
@@ -39,8 +39,8 @@ export default class Question extends Component {
 
     return (
       <div className="min-width-100">
-        <h3 className="margin-b-2"> {this.props.question.name} </h3>
-        <Tab panes={panes} />
+        <h3 className="margin-b-2 bold"> {this.props.question.name} </h3>
+        <Tab className="frame opacity" panes={panes} />
       </div>
     );
   }

@@ -35,11 +35,26 @@
 .min-width-300px {
     min-width: 300px;
 }
+.bold{
+    font-weight: bold;
+    font-size: 24px
+}
+.frame {
+    border: 2px solid rgb(240,255,255);
+    border-radius: 4px;
+    background-color: rgba(240,255,255,0.7)
+}
+
+.opacity{
+    opacity: 0.9;
+}
 
 .max-width-670px {
     max-width: 670px;
 }
-
+.min-height-400{
+    min-height: 400px;
+}
 .width-100 {
     width:100%
 }

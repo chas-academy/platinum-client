@@ -53,7 +53,7 @@ export default class  ListableQuestion extends Component {
             <div className="width-100 frame center-content-row padding-1 mobile-center-content-column">
               <h3 className="font-wight-n max-width-half mobile-max-width-100">{this.props.question.name}</h3>
               <div className="mobile-space-around">
-                <Button className="margin-tb-1 margin-r-1 button-opacity" size="large" color="yellow" content="Edit" onClick={this.toggleEditQuestion} disabled={this.props.editingQuestionnaire} />
+                <Button className="margin-tb-1 margin-r-1 button-opacity" size="large" color="blue" content="Edit" onClick={this.toggleEditQuestion} disabled={this.props.editingQuestionnaire} />
              
               {this.state.delete &&
               <Modal

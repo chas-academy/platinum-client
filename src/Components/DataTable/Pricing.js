@@ -19,7 +19,7 @@ class Pricing extends Component {
   render() {
     return (
 
-      <Table celled padded compact={this.state.smalscreenprops} unstackable className="table">
+      <Table celled padded compact={this.state.smalscreenprops} unstackable className="table opacity" inverted color="yellow" key="yellow">
 
         <Table.Header>
           <Table.Row>

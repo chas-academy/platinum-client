@@ -150,7 +150,7 @@ export default class CreateQuestionnaire extends Component {
         }
         {
           !this.props.activeQuestionnaire.id &&
-          <div className="min-height">
+          <div>
             <Form id="creat-question-form" size="large">
               <div className="padding-tb-2">
                 <Form.Group
@@ -196,7 +196,7 @@ export default class CreateQuestionnaire extends Component {
               <div className="width-100 center-content-row mobile-center-content-column">
                 <h2 className="margin-tb-1 page-title max-width-3-of-4 mobile-max-width-100">{this.props.activeQuestionnaire.title}</h2>
                 <Button
-                  color="yellow"
+                  color="blue"
                   className="button-opacity"
                   size="large"
                   content="Edit"
@@ -210,7 +210,7 @@ export default class CreateQuestionnaire extends Component {
         }
         {
           this.state.editing &&
-          <div className="min-height">
+          <div>
             <Form id="creat-question-form">
               <div className="padding-tb-2">
                 <Form.Group
@@ -230,14 +230,21 @@ export default class CreateQuestionnaire extends Component {
                 </Form.Group>
               </div>
             </Form>
-            <Button
-              color="olive"
-              className="button-opacity"
-              size="large"
-              content="Update"
-              attached="bottom"
-              onClick={this.updateQuestionnaire}
-            />
+            <div className="width-100 center-content">
+              <div className="width-35 mobile-width">
+                <div className="width-100 center-content-row">
+                  <Button
+                    color="olive"
+                    fluid
+                    className="button-opacity"
+                    size="large"
+                    content="Update"
+                    attached="bottom"
+                    onClick={this.updateQuestionnaire}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
         }
@@ -265,7 +272,7 @@ export default class CreateQuestionnaire extends Component {
                   color="yellow"
                   content="Add question"
                   icon="plus"
-                  labelPosition="right"
+                  labelPosition="left"
                   className="button-opacity"
                   onClick={this.activeQuestion}
                 />

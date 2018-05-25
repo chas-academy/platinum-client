@@ -295,12 +295,12 @@ export default class CreateQuestion extends Component {
               {this.state.options}
             </div>
           </Form>
-          <div className="width-100 center-content margin-tb-5">
+          <div className="width-100 center-content margin-tb-1">
             <div className="width-35 mobile-width">
               <div className="width-100 center-content-row">
                 <Button
                   className="button-opacity"
-                  content="Option"
+                  content="Add option"
                   fluid
                   color="yellow"
                   icon="plus"
