@@ -145,6 +145,7 @@ export default function (state = DEFAULT_STATE, action) {
       return {
         ...state,
         activeQuestionnaire: Immutable.Record(),
+        morePages: false,
       };
     case actionTypes.DELETE_QUESTION_START:
       return {
