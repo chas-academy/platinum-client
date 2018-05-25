@@ -288,8 +288,8 @@ export default class CreateQuestionnaire extends Component {
              !this.state.editing &&
              <Button
                content="Previous"
-               color="yellow"
-               className="button-opacity"
+               color="orange"
+               className="button-opacity margin-b-2"
                size="large"
                floated="left"
                onClick={this.prevPage}
@@ -306,7 +306,7 @@ export default class CreateQuestionnaire extends Component {
            <Button
              content="Next"
              color="olive"
-             className="button-opacity"
+             className="button-opacity margin-b-2"
              size="large"
              floated="right"
              onClick={this.nextPage}

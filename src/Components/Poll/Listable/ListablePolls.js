@@ -69,7 +69,8 @@ export default class ListablePolls extends Component {
           { this.state.page !== 1 &&
           <Button
             content="Previous"
-            basic
+            color="orange"
+            className="button-opacity"
             size="large"
             floated="left"
             onClick={this.prevPage}
@@ -82,7 +83,8 @@ export default class ListablePolls extends Component {
           { this.props.morePages &&
           <Button
             content="Next"
-            basic
+            color="olive"
+            className="button-opacity"
             size="large"
             floated="right"
             onClick={this.nextPage}
