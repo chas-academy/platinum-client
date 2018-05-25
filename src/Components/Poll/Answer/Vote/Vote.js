@@ -127,7 +127,7 @@ export default class Vote extends Component {
     return (
       <div className="center-content-column">
         <h1 className="text-allign-center margin-b-3">{this.props.question.name}</h1>
-        <p className="text-allign-center margin-b-3 font-color-white">{this.props.question.type === 'select-one' ? 'Select one' : 'Select all that apply' }</p>
+        <p className="text-allign-center margin-b-3 font-color-grey font-size-16">{this.props.question.type === 'select-one' ? 'Select one' : 'Select all that apply' }</p>
         {options}
         <Message content={this.state.errorMessage} hidden={this.state.errorMessage === ''} className="opacity" />
         <div className="min-width-15 margin-t-2">
