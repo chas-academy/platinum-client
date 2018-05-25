@@ -20,7 +20,7 @@ export default class Vote extends Component {
       <div className="margin-b-2 min-width-15">
         <Button
           fluid
-          basic
+          className="button-opacity"
           size="large"
           content={this.props.option.name}
           color={this.props.color}

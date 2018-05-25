@@ -51,9 +51,9 @@ export default class Questionnaire extends Component {
 
   togglePoll() {
     if (this.state.active) {
-      this.props.closePoll(this.props.questionnaire.activePoll.id);
+      this.props.closePoll(this.props.questionnaire.activePoll.id, this.props.page);
     } else {
-      this.props.activatePoll(this.props.questionnaire.id);
+      this.props.activatePoll(this.props.questionnaire.id, this.props.page);
     }
   }
 
@@ -65,13 +65,15 @@ export default class Questionnaire extends Component {
 
   removeQuestionnaire() {
     if (this.state.delete) {
-      this.props.deleteQuestionnaire(this.props.questionnaire.id);
+      this.props.deleteQuestionnaire(this.props.questionnaire.id, 1);
     }
     this.props.handleAccordion(null, -1);
+    this.props.setPage(1);
   }
 
   editQuestionnaire() {
-    this.props.fetchQuestionnaire(this.props.questionnaire.id);
+    const page = 1;
+    this.props.fetchQuestionnaire(this.props.questionnaire.id, page);
     this.setState({
       redirectToEdit: true,
     });
@@ -94,11 +96,7 @@ export default class Questionnaire extends Component {
         <Redirect to={`/polls/${this.props.questionnaire.activePoll.id}/result`} />
         }
         {this.state.redirectToEdit &&
-        <Redirect to={{
-          pathname: '/create-questionnaire',
-          state: { shouldNotReset: true },
-        }}
-        />
+        <Redirect to="/edit-questionnaire" />
         }
         <Accordion.Title className="frame" active={this.props.activeIndex === this.props.index} index={this.props.index} onClick={this.props.handleAccordion}>
           <div className="space-between padding-05">
@@ -109,13 +107,21 @@ export default class Questionnaire extends Component {
         <Accordion.Content active={this.props.activeIndex === this.props.index}>
           <div className="center-content-column padding-1">
             <div className="center content-row">
-              <button
-                className="ui blue basic button"
+              <Button
+                className="button-opacity"
+                size="large"
+                color={this.state.active ? 'olive' : 'blue'}
                 onClick={this.state.active ? this.viewResults : this.editQuestionnaire}
-              > {this.state.active ? 'Live results' : 'Edit' }
-              </button>
+                content={this.state.active ? 'Live results' : 'Edit'}
+              />
               { this.state.hasQuestions && this.state.hasOptions &&
-                <button className="ui orange basic button" onClick={this.togglePoll}>{ this.state.active ? 'End' : 'Activate' }</button>
+                <Button
+                  className="button-opacity"
+                  color={this.state.active ? 'red' : 'olive'}
+                  size="large"
+                  onClick={this.togglePoll}
+                  content={this.state.active ? 'End' : 'Activate'}
+                />
               }
 
             </div>
@@ -125,7 +131,7 @@ export default class Questionnaire extends Component {
               <Modal
                 className="scrolling"
                 trigger={<Button
-                  className="ui black basic button"
+                  className="ui red button large button-opacity"
 
                 >Delete
                          </Button>}
@@ -137,6 +143,7 @@ export default class Questionnaire extends Component {
                 <Header icon="trash" content="DELETE QUESTIONNAIRE" />
                 <Modal.Content>
                   <p>Are you sure you want to delete this questionnaire?</p>
+                  <p>Deleting this questionnaire will also delete all associated results</p>
                 </Modal.Content>
                 <Modal.Actions>
                   <Button basic color="red" inverted onClick={this.handleClose}>
@@ -152,18 +159,18 @@ export default class Questionnaire extends Component {
 
             { this.state.active &&
             <div className="center-content-column padding-1">
-              <h3>Share Poll</h3>
+              <h3 className="font-color-white">Share Poll</h3>
               <div className="center-content-row">
                 <CopyToClipboard
                   text={this.state.value}
                   onCopy={() => this.setState({ copied: true })}
                 >
-                  <button className="ui basic button yellow" >Link</button>
+                  <button className="ui button yellow large button-opacity" >Link</button>
                 </CopyToClipboard>
 
                 <Modal
                   className="scrolling"
-                  trigger={<Button onClick={this.handleModal} className="ui basic button yellow" >QR-Code</Button>}
+                  trigger={<Button size="large" onClick={this.handleModal} className="ui button yellow button-opacity" >QR-Code</Button>}
                   open={this.state.modalOpen}
                 >
                   <Modal.Header>

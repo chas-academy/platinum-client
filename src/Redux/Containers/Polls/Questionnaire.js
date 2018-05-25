@@ -5,10 +5,10 @@ import Questionnaire from '../../../Components/Questionnaires/Questionnaire';
 
 function mapDispatchToProps(dispatch) {
   return {
-    activatePoll: questionnaireId => dispatch(activatePoll(questionnaireId)),
-    closePoll: id => dispatch(closePoll(id)),
-    deleteQuestionnaire: id => dispatch(deleteQuestionnaire(id)),
-    fetchQuestionnaire: id => dispatch(fetchQuestionnaire(id)),
+    activatePoll: (questionnaireId, page) => dispatch(activatePoll(questionnaireId, page)),
+    closePoll: (id, page) => dispatch(closePoll(id, page)),
+    deleteQuestionnaire: (id, page) => dispatch(deleteQuestionnaire(id, page)),
+    fetchQuestionnaire: (id, page) => dispatch(fetchQuestionnaire(id, page)),
   };
 }
 

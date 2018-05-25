@@ -42,12 +42,12 @@ export default class Result extends Component {
     const buttons = [];
     let button;
     if (this.state.currentQuestion !== 0) {
-      button = <Button key={uuidv4()} content="previus" onClick={this.prevQuestion} basic floated="left" />;
+      button = <Button size="large" key={uuidv4()} content="previus" onClick={this.prevQuestion} basic floated="left" />;
       buttons.push(button);
     }
     if (this.props.poll.questionnaire) {
       if (this.state.currentQuestion !== (this.props.poll.questionnaire.questions.length - 1)) {
-        button = <Button key={uuidv4()} content="next" onClick={this.nextQuestion} basic floated="right" />;
+        button = <Button size="large" key={uuidv4()} content="next" onClick={this.nextQuestion} basic floated="right" />;
         buttons.push(button);
       }
     }
@@ -56,7 +56,7 @@ export default class Result extends Component {
       <div>
         { this.props.poll.questionnaire &&
         <div>
-          <PageTitle title={this.props.poll.questionnaire.title} className="headline" />
+          <PageTitle title={this.props.poll.questionnaire.title} className="headline page-title" />
           <div className="center-content-column min-height-100">
             <div className="min-width-300px max-width-670px width-100">
               <Question

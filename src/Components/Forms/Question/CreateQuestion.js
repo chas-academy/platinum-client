@@ -37,15 +37,16 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name="option1" width={11} value={this.state.option1} order={1} onChange={this.handleChange} />
+            <Option name="option1" width={9} value={this.state.option1} order={1} onChange={this.handleChange} />
             <Form.Button
               width={1}
               type="button"
               negative
-              className="align-bottom"
+              className="align-bottom button-opacity"
               content="X"
               value={0}
               onClick={this.removeOption}
+              size="large"
             />
           </Form.Group>,
           <Form.Group
@@ -54,15 +55,16 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name="option2" width={11} value={this.state.option2} order={2} onChange={this.handleChange} />
+            <Option name="option2" width={9} value={this.state.option2} order={2} onChange={this.handleChange} />
             <Form.Button
               width={1}
               type="button"
               negative
-              className="align-bottom"
+              className="align-bottom button-opacity"
               content="X"
               value={1}
               onClick={this.removeOption}
+              size="large"
             />
           </Form.Group>,
         ],
@@ -88,15 +90,16 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name={`option${index + 1}`} width={11} value={option.name} order={index + 1} onChange={this.handleChange} />
+            <Option name={`option${index + 1}`} width={9} value={option.name} order={index + 1} onChange={this.handleChange} />
             <Form.Button
               width={1}
-              className="align-bottom"
+              className="align-bottom button-opacity"
               type="button"
               negative
               content="X"
               value={index}
               onClick={this.removeOption}
+              size="large"
             />
           </Form.Group>);
         oldOptions.push(oldOption);
@@ -125,7 +128,7 @@ export default class CreateQuestion extends Component {
       options,
     };
 
-    this.props.createQuestion(data);
+    this.props.createQuestion(data, this.props.page);
     this.props.onSubmit();
   }
 
@@ -146,7 +149,7 @@ export default class CreateQuestion extends Component {
       order: this.props.question.order,
       options,
     };
-    this.props.updateQuestion(data, this.props.question.id, this.props.question.questionnaireId);
+    this.props.updateQuestion(data, this.props.question.id, this.props.question.questionnaireId, this.props.page);
     this.props.onSubmit();
   }
 
@@ -164,7 +167,7 @@ export default class CreateQuestion extends Component {
           >
             <Option
               name={`option${this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}`}
-              width={11}
+              width={9}
               value=""
               order={this.state.options[this.state.options.length - 1].props.children[0].props.order + 1}
               onChange={this.handleChange}
@@ -173,10 +176,11 @@ export default class CreateQuestion extends Component {
               width={1}
               type="button"
               negative
-              className="align-bottom"
+              className="align-bottom button-opacity"
               content="X"
               value={this.state.options.length}
               onClick={this.removeOption}
+              size="large"
             />
           </Form.Group>,
         ],
@@ -192,15 +196,16 @@ export default class CreateQuestion extends Component {
             unstackable
             widths={2}
           >
-            <Option name="option1" width={11} value="" order={1} onChange={this.handleChange} />
+            <Option name="option1" width={9} value="" order={1} onChange={this.handleChange} />
             <Form.Button
               width={1}
               type="button"
               negative
-              className="align-bottom"
+              className="align-bottom button-opacity"
               content="X"
               value={0}
               onClick={this.removeOption}
+              size="large"
             />
           </Form.Group>,
         ],
@@ -234,7 +239,7 @@ export default class CreateQuestion extends Component {
         >
           <Option
             name={option.props.children[0].props.name}
-            width={11}
+            width={9}
             value={this.state[option.props.children[0].props.name]}
             order={option.props.children[0].props.order}
             onChange={this.handleChange}
@@ -243,10 +248,11 @@ export default class CreateQuestion extends Component {
             width={1}
             type="button"
             negative
-            className="align-bottom"
+            className="align-bottom button-opacity"
             content="X"
             value={index}
             onClick={this.removeOption}
+            size="large"
           />
         </Form.Group>);
       return newOption;
@@ -263,7 +269,7 @@ export default class CreateQuestion extends Component {
         <Redirect to="/my-questionnaires" />
         }
         <div>
-          <Form id="creat-question-form">
+          <Form id="creat-question-form" size="large">
             <div className="padding-tb-2">
               <Form.Group
                 className="center-content padding-b-1"
@@ -274,32 +280,53 @@ export default class CreateQuestion extends Component {
                   onChange={this.handleChange}
                   name="question"
                   value={this.state.question}
-                  placeholder="Question title"
-                  required
+                  placeholder="Question"
                   type="text"
-                  width={11}
-                  label="Question title"
+                  width={12}
+                  label="Question"
                 />
-                <Form.Select label="Type" name="type" options={types} width={1} defaultValue={this.state.type} onChange={this.handleChange} />
+              </Form.Group>
+              <Form.Group
+                className="center-content padding-b-1"
+                widths={2}
+              >
+                <Form.Select label="Type" name="type" options={types} width={12} defaultValue={this.state.type} onChange={this.handleChange} />
               </Form.Group>
               {this.state.options}
             </div>
           </Form>
-          <Button
-            basic
-            className="margin-l-1"
-            content="add option"
-            icon="plus"
-            labelPosition="left"
-            onClick={this.addOption}
-          />
+          <div className="width-100 center-content margin-tb-1">
+            <div className="width-35 mobile-width">
+              <div className="width-100 center-content-row">
+                <Button
+                  className="button-opacity"
+                  content="Add option"
+                  fluid
+                  color="yellow"
+                  icon="plus"
+                  labelPosition="left"
+                  onClick={this.addOption}
+                  size="large"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-        <Button
-          basic
-          content={this.props.question ? 'Update' : 'Add'}
-          attached="bottom"
-          onClick={this.props.question ? this.updateQuestion : this.createQuestion}
-        />
+        <div className="width-100 center-content margin-tb-5">
+          <div className="width-35 mobile-width">
+            <div className="width-100 center-content-row">
+              <Button
+                color="olive"
+                fluid
+                className="button-opacity"
+                content={this.props.question ? 'Update' : 'Add'}
+                attached="bottom"
+                onClick={this.props.question ? this.updateQuestion : this.createQuestion}
+                size="large"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

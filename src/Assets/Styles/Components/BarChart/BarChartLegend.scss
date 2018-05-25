@@ -1,0 +1,23 @@
+.bar__legend, .bar__legend-labels {
+    display: flex;
+}
+
+.bar__legend{
+    margin-right: 1rem;
+}
+
+.bar__legend-labels{
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.bar__legend-svg {
+    margin-top: 0.35rem;
+    margin-right: 0.3rem;
+}
+
+.bar__legend-name {
+    margin-right: 0.3rem;
+    font-weight: bold;
+}

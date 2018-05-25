@@ -104,7 +104,7 @@ export default class SignUp extends Component {
       alertMessage: {},
       showAlertMessage: false,
       isSigningUp: false,
-      redirectToSignIn: false,
+      redirectToSlash: false,
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -124,7 +124,7 @@ export default class SignUp extends Component {
         this.setState({
           alertMessage: {
             type: 'info',
-            message: 'Some thing when wrong, please try again',
+            message: 'Something went wrong, please try again',
             isSigningUp: false,
           },
         });
@@ -150,7 +150,7 @@ export default class SignUp extends Component {
       role: 'Premium',
       redirect: '/',
       status: 'Active',
-      allowedPaths: ['/my-questionnaires', '/create-questionnaire', '/my-polls'],
+      allowedPaths: ['/my-questionnaires', '/create-questionnaire', '/results', '/edit-questionnaire'],
       excludedPaths: [],
     };
 
@@ -158,14 +158,14 @@ export default class SignUp extends Component {
   }
 
   triggerRedirect() {
-    this.setState({ redirectToSignIn: true });
+    this.setState({ redirectToSlash: true });
   }
 
   render() {
     return (
       <div className="form-wrapper">
-        {this.state.redirectToSignIn &&
-          <Redirect to="/sign-in" />
+        {this.state.redirectToSlash &&
+          <Redirect to="/" />
         }
         {this.state.showAlertMessage &&
           <Alert type={this.state.alertMessage.type} hideDismissButton>
@@ -184,11 +184,11 @@ export default class SignUp extends Component {
           onSubmit={this.onSubmit}
         >
           <Button
-            className="button__signup"
-            basic
+            className="button__signup button-opacity"
             color="orange"
             content="SIGN UP"
             type="submit"
+            size="large"
             disabled={this.state.isSigningUp}
           />
 

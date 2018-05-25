@@ -1,12 +1,19 @@
 .create-question-view {
   width: 100%;
-
-  .center-content {
-    display: flex;
+  max-width: 50em;
+  .center-content-row {
+    display:flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-between;
   }
+  .width-35 {
+      width: 35em;
+    }
+
+  .width-100 {
+      width: 100%;
+    }
 
   .padding-tb-2 {
     padding-top: 2em;
@@ -20,16 +27,54 @@
   .min-height {
     min-height: 68vh;
   }
-
-  .margin-l-1 {
+  .margin-tb-1 {
+    margin: 1em 0;
+  }
+  .margin-r-1 {
+    margin-right: 1em;
+  }
+  .margin-1 {
     margin: 1em;
+  }
+  .margin-b-2{
+    margin-bottom: 2em;
+  }
+  .width-35 {
+    width: 35em;
+  }
+  &.frame, .frame {
+    border: 2px solid rgb(240,255,255);
+    border-radius: 4px;
+    background-color: rgba(240,255,255,0.7)
+  }
+  .padding-1{
+    padding: 1em;
+  }
+  .font-wight-n {
+    font-weight: normal;
+  }
+  h3:first-child {
+    margin-bottom: 0;
+  }
+  .max-width-half {
+    max-width: 50%;
+  }
+  .max-width-3-of-4 {
+    max-width: 75%;
   }
 }
 .align-bottom{
   align-self: flex-end;
 }
-.margin-tb-1 {
-  margin: 1em 0;
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.margin-tb-5 {
+  margin: 5em 0;
 }
 
 @media only screen and (min-height: 645px) {
@@ -61,5 +106,34 @@
     .min-height {
       min-height: 77vh;
     }
+  }
+}
+
+@media only screen and (max-width: 645px) {
+  .create-question-view {
+   .mobile-width {
+     width: 30em
+   }
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .create-question-view {
+   .mobile-width {
+     width: 20em
+   }
+   .mobile-center-content-column {
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+  }
+  .mobile-max-width-100{
+    max-width: 100%;
+  }
+  .mobile-space-around {
+    display:flex;
+    justify-content: space-around;
+    width: 100%;
+   }
   }
 }

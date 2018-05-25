@@ -20,8 +20,9 @@ export default class ListablePoll extends Component {
     });
   }
   deletePoll() {
-    this.props.deletePoll(this.props.poll.id);
+    this.props.deletePoll(this.props.poll.id, 1);
     this.props.handleAccordion(null, -1);
+    this.props.setPage(1);
   }
   render() {
     return (
@@ -41,8 +42,8 @@ export default class ListablePoll extends Component {
         <Accordion.Content active={this.props.activeIndex === this.props.index}>
           <div className="center-content-column padding-1">
             <div className="center content-row">
-              <Button basic onClick={this.viewResults} content="View Result" />
-              <Button basic onClick={this.deletePoll} content="Delete" />
+              <Button className="button-opacity" color="blue" size="large" onClick={this.viewResults} content="View Result" />
+              <Button className="button-opacity" color="red" size="large" onClick={this.deletePoll} content="Delete" />
             </div>
           </div>
         </Accordion.Content>

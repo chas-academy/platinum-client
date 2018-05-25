@@ -6,6 +6,11 @@ html {
 body {
   height: 100%;
   margin-bottom: 60px;
+  background: url(../Images/arch.jpg) no-repeat 50% 50% fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .navbar-inverse {
@@ -20,7 +25,6 @@ body {
   position: relative;
   bottom: 0;
   text-align: center;
-  border-top: 1px solid #E5E5E5;
   margin-top: 100px;
   padding: 2.5em 0em;
   background-color: #fff;
@@ -32,8 +36,10 @@ body {
     align-items: center;
     margin: auto;
   }
+  a {
+    color: whitesmoke;
+  }
 }
-
 .no-padding {
   padding: 0;
 }

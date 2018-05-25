@@ -102,7 +102,7 @@ export default class Vote extends Component {
       });
     } else {
       this.setState({
-        errorMessage: 'please select one option',
+        errorMessage: 'please select a option',
       });
     }
   }
@@ -111,7 +111,7 @@ export default class Vote extends Component {
     this.props.question.options.forEach((option) => {
       let color = 'grey';
       if (this.state.selectedOptions.includes(option.id) && !this.state.answered) {
-        color = 'green';
+        color = 'olive';
       }
       const newOption = (
         <Option
@@ -127,16 +127,30 @@ export default class Vote extends Component {
     return (
       <div className="center-content-column">
         <h1 className="text-allign-center margin-b-3">{this.props.question.name}</h1>
-        <p className="text-allign-center margin-b-3">{this.props.question.type}</p>
+        <p className="text-allign-center margin-b-3 font-color-white">{this.props.question.type === 'select-one' ? 'Select one' : 'Select all that apply' }</p>
         {options}
-        <Message content={this.state.errorMessage} hidden={this.state.errorMessage === ''} />
+        <Message content={this.state.errorMessage} hidden={this.state.errorMessage === ''} className="opacity" />
         <div className="min-width-15 margin-t-2">
-          <Button basic size="large" color="orange" content={!this.state.answered ? 'Vote' : 'Next'} onClick={!this.state.answered ? this.castVote : this.props.nextQuestion} fluid />
+          <Button
+            className="button-opacity"
+            size="large"
+            color="orange"
+            content={!this.state.answered ? 'Vote' : 'Next'}
+            onClick={!this.state.answered ? this.castVote : this.props.nextQuestion}
+            fluid
+          />
         </div>
 
         {this.state.answered &&
         <div className="min-width-15 margin-t-2">
-          <Button basic size="large" color="blue" content="View Result" onClick={this.props.redirectToResult} fluid />
+          <Button
+            className="button-opacity"
+            size="large"
+            color="blue"
+            content="View Result"
+            onClick={this.props.redirectToResult}
+            fluid
+          />
         </div>
         }
       </div>
